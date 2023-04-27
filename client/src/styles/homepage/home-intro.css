@@ -1,0 +1,4 @@
+.home-intro {
+    display: flex;
+    flex-direction: row;
+}

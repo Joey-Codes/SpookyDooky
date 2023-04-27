@@ -1,0 +1,27 @@
+import express from "express";
+import mongoose from "mongoose";
+import { ReviewModel } from "../models/Reviews.js";
+import { verifyToken } from "./users.js";
+
+const router = express.Router();
+
+router.get("/", async (req, res) => {
+    try {
+        const response = await ReviewModel.find({});
+        res.json(response);
+    } catch(err) {
+        res.json(err);
+    }
+});
+
+router.post("/", async (req, res) => {
+    const recipe = new ReviewModel(req.body);
+    try {
+        const response = await recipe.save();
+        res.json(response);
+    } catch(err) {
+        res.json(err);
+    }
+});
+
+export {router as reviewsRouter};
