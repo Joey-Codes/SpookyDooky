@@ -1,4 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
+
+.samplefont {
+    font-family: 'Chango', cursive;
+    font-size: 100px;
+    margin-bottom: 0;
+}
+
+.samplefont2 {
+    font-family: "Bangers";
+    font-size: 130px;
+    margin-bottom: 0;
+}
+
+.samplefont3 {
+    font-family: "CarterOne";
+    font-size: 100px;
+    margin-bottom: 0;
+}
+
+.samplefont4 {
+    font-family: "RammettoOne";
+    font-size: 100px;
+    margin-bottom: 0;
+}
+
+.white {
+    color: white;
+}
+
+.red {
+    color: red;
+}
+
 .home-intro {
+    background-color: black;
     display: flex;
     flex-direction: row;
+    text-align: center;
 }
+
