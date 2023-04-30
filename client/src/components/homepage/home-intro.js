@@ -8,15 +8,10 @@ export const HomeIntro = () => {
       <div>
         <h1 className='samplefont white'>SPOOKY</h1>
         <h1 className='samplefont red'>DOOKY</h1>
-        <h1 className='samplefont2 white'>SPOOKY</h1>
-        <h1 className='samplefont2 red'>DOOKY</h1>
-        <h1 className='samplefont3 white'>SPOOKY</h1>
-        <h1 className='samplefont3 red'>DOOKY</h1>
-        <h1 className='samplefont4 white'>SPOOKY</h1>
-        <h1 className='samplefont4 red'>DOOKY</h1>
+        <h2 className='white'>find and review spooky places</h2>
         <button>Sign Up</button>
       </div>
-      <div>
+      <div className='right-side'>
         <img src="" alt="Placeholder 1" />
         <img src="" alt="Placeholder 2" />
         <img src="" alt="Placeholder 3" />

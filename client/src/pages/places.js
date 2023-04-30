@@ -25,7 +25,11 @@ export const Places = () => {
                 <li key={place._id}>
                     <div>
                         <button>{place.name}</button>
+                        <h2>{place.rating}</h2>
+                        <h2>{place.numRatings}</h2>
                         <h2>{place.address}</h2>
+                        <h2>{place.description}</h2>
+                        <br />
                     </div>
                 </li>
             ))}

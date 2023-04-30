@@ -8,7 +8,7 @@
 
 .samplefont2 {
     font-family: "Bangers";
-    font-size: 130px;
+    font-size: 170px;
     margin-bottom: 0;
 }
 
@@ -36,6 +36,14 @@
     background-color: black;
     display: flex;
     flex-direction: row;
-    text-align: center;
+    align-items: center;
 }
 
+h1 {
+    margin: 0;
+}
+
+.right-side {
+    margin-top: 25%;
+    margin-left: 10%;
+}
