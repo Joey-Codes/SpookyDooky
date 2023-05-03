@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Places = () => {
   const [places, setPlaces] = useState([]);
+  const navigate = useNavigate();
+
+  const handlePlaceClick = (placeId) => {
+    navigate(`/places/${placeId}`);
+  };
 
   useEffect(() => {
     const fetchPlaces = async () => {
@@ -20,11 +26,13 @@ export const Places = () => {
   return (
     <div>
         <h1>Places</h1>
+        <br />
+        <h1>Top Rated</h1>
         <ul>
             {places.map((place) => (
                 <li key={place._id}>
                     <div>
-                        <button>{place.name}</button>
+                        <button onClick={() => handlePlaceClick(place._id)}>{place.name}</button>
                         <h2>{place.rating}</h2>
                         <h2>{place.numRatings}</h2>
                         <h2>{place.address}</h2>

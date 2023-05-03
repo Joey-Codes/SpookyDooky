@@ -6,8 +6,8 @@ const ReviewSchema = new mongoose.Schema({
     likes: { type: Number, required: true },
     dislikes: { type: Number, required: true },
     description: { type: String, required: true },
-    userOwner: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
-    placeOwner: { type: mongoose.Schema.Types.ObjectId, ref: "places" },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+    placeId: { type: mongoose.Schema.Types.ObjectId, ref: "places" },
 });
 
 export const ReviewModel = mongoose.model("reviews", ReviewSchema); 

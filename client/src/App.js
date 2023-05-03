@@ -9,6 +9,7 @@ import { Categories } from './pages/categories';
 import { Places } from './pages/places';
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
+import { PlacePage } from './components/placepage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/home" element={<RealHome/>} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/places" element={<Places />} />
+        <Route path="/places/:placeId" element={<PlacePage />} />     
       </Routes>
       <Footer />
     </Router>
