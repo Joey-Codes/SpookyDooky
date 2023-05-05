@@ -5,11 +5,14 @@ import React from 'react';
 export const HomeIntro = () => {
   return (
     <div className='home-intro'>
-      <div>
-        <h1 className='samplefont white'>SPOOKY</h1>
-        <h1 className='samplefont red'>DOOKY</h1>
-        <h2 className='white'>find and review spooky places</h2>
-        <button>Sign Up</button>
+      <div className='left-side'>
+        <h1 className='chango white'>SPOOKY</h1>
+        <h1 className='chango red'> DOOKY</h1>
+        <h2 className='rammettoone white'>find and review spooky places</h2>
+        <br />
+        <button className='h-b rammettoone'>SIGN UP</button>
+        <br />
+        <br />
       </div>
       <div className='right-side'>
         <img src="" alt="Placeholder 1" />

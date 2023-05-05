@@ -22,6 +22,12 @@
    url("./fonts/RammettoOne-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Chango";
+  src: local("Chango-Regular"),
+   url("./fonts/Chango-Regular.ttf") format("truetype");
+}
+
 body {
   margin: 0;
   padding: 0;
