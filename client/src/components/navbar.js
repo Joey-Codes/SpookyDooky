@@ -12,14 +12,14 @@ export const Navbar = () => {
         navigate("/auth");
     };
     return (
-        <div className='navbar'>
-            <Link to="/home"> Real Home</Link>
-            <Link to="/categories">Categories</Link>
-            <Link to="/places">Places</Link>
-            <Link to="/"> Home </Link>
-            <Link to="/create-recipe"> Create Recipe </Link>
+        <div className='navbar carterone'>
+            <Link to="/home"> REAL HOME</Link>
+            <Link to="/categories">CATEGORIES</Link>
+            <Link to="/places">PLACES</Link>
+            <Link to="/"> HOME </Link>
+            <Link to="/create-recipe"> NEW RECIPE</Link>
             {!cookies.access_token ? (
-                <Link to="/auth"> Login/Register</Link>
+                <Link to="/auth"> LOGIN</Link>
             ) : ( 
             <>
                 <Link to="/saved-recipes"> Saved Recipes </Link>

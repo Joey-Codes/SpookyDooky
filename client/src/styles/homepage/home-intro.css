@@ -1,18 +1,18 @@
 .chango {
     font-family: 'Chango', cursive;
-    font-size: 120px;
+    font-size: 110px;
     margin-bottom: 0;
 }
 
  .bangers {
     font-family: "Bangers";
-    font-size: 50px;
+    font-size: 30px;
     margin-bottom: 0;
 }
 
 .carterone {
     font-family: "CarterOne";
-    font-size: 100px;
+    font-size: 30px;
     margin-bottom: 0;
 }
 
@@ -21,6 +21,12 @@
     font-size: 30px;
     margin-bottom: 0;
 } 
+
+.readexpro {
+    font-family: "ReadexPro";
+    font-size: 25px;
+    margin-bottom: 0;
+}
 
 .white {
     color: white;
@@ -35,6 +41,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding-top: 30px;
   }
   
   h1 {
@@ -49,7 +56,6 @@
   }
   
   .right-side {
-    margin-left: 5%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -57,12 +63,21 @@
   }
   
   .right-side img {
-    background-color: white;
-    width: 100px;
-    height: 100px;
-    margin: 70px 35px;
+    margin: 50px 20px;
   }
   
+  .side-img {
+    height: 200px;
+    width: 200px;
+    animation: upAndDown 3s infinite ease-in-out;
+  }
+
+  .mid-img {
+    height: 250px;
+    width: 250px;
+    animation: downAndUp 3s infinite ease-in-out;
+  }
+
   .right-side img:nth-child(1),
   .right-side img:nth-child(3) {
     align-self: flex-end;
@@ -70,6 +85,42 @@
   
   .right-side img:nth-child(2) {
     align-self: flex-start;
+  }
+  
+  @keyframes upAndDown {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(10%);
+    }
+
+    75% {
+      transform: translateY(-10%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes downAndUp {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10%);
+    }
+
+    75% {
+      transform: translateY(10%);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
   }
 
   .h-b {
