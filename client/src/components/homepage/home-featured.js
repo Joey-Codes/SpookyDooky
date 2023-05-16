@@ -1,17 +1,22 @@
-import React from 'react';
+import '../../styles/homepage/home-featured.css'
+import glasses_ghost from '../../images/glasses_ghost.png'
 
 export const HomeFeatured = () => {
   return (
-    <div>
+    <div className='home-featured flex'>
       <div>
-        <h1>Reviews For All Things Spooky</h1>
+        <h1 className='readexpro rp2 red'>REVIEWS</h1>
+        <h1 className='readexpro rp2 white'>FOR ALL THINGS SPOOKY</h1>
       </div>
+      <br />
       <div>
-        <img src="" alt="Placeholder 1" />
-        <img src="" alt="Placeholder 2" />
-        <img src="" alt="Placeholder 3" />
+        <img src={glasses_ghost} alt="Placeholder 1" className='fade-in sample-review'/>
+        <img src={glasses_ghost} alt="Placeholder 2" className='sample-review'/>
+        <img src={glasses_ghost} alt="Placeholder 3" className='sample-review'/>
       </div>
-      <button>All Reviews</button>
+      <button className='h-b rammettoone r1'>ALL REVIEWS</button>
+      <br />
+      <br />
     </div>
   );
 }

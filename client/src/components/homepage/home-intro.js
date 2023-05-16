@@ -7,13 +7,13 @@ import React from 'react';
 
 export const HomeIntro = () => {
   return (
-    <div className='home-intro'>
+    <div className='home-intro flex'>
       <div className='left-side'>
-        <h1 className='chango white'>SPOOKY</h1>
-        <h1 className='chango red'> DOOKY</h1>
-        <h2 className='readexpro white'>FIND AND RATE SPOOKY PLACES</h2>
+        <h1 className='chango c1 white'>SPOOKY</h1>
+        <h1 className='chango c1 red'> DOOKY</h1>
+        <h2 className='readexpro rp1 white'>FIND AND RATE SPOOKY PLACES</h2>
         <br />
-        <button className='h-b rammettoone'>SIGN UP</button>
+        <button className='h-b rammettoone r1'>SIGN UP</button>
         <br />
         <br />
       </div>

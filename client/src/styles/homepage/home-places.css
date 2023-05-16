@@ -1,0 +1,26 @@
+.home-places {
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-left: 15%;
+    margin-right: 10%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.home-places-right {
+    padding-left: 10%;
+}
+
+.sample-place {
+    background-color: black;
+    height: 300px;
+    width: 200px;
+    margin: 50px 50px;
+}
+
+.ls2 {
+    background-color: black;
+    padding: 30px 30px 30px 30px;
+}
+

@@ -1,15 +1,20 @@
+import '../../styles/homepage/home-categories.css'
+
 export const HomeCategories = () => {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <button>Ghosts</button>
-        <button>Aliens</button>
-        <button>Cryptids</button>
-        <button>Unexplained</button>
+    <div className="home-categories flex">
+      <div className="test">
+        <button className='h-b2 h-b2a bangers b2'>PARANORMAL &#x1F47B;</button>
+        <button className='h-b2 h-b2b bangers b2'>ALIENS &#x1F47D;</button>
+        <button className='h-b2 h-b2c bangers b2'>CRYPTIDS &#x1F479;</button>
+        <button className='h-b2 h-b2d bangers b2'>UNEXPLAINED &#x2754;</button>
       </div>
-      <div style={{ marginLeft: "20px" }}>
-        <h1>Pick from all kinds of categories</h1>
-        <button>? What are these</button>
+      <div>
+        <h1 className='readexpro rp2 white'>PICK FROM</h1>
+        <h1 className='readexpro rp2 white'>DIFFERENT</h1>
+        <h1 className='readexpro rp2 red'>CATEGORIES</h1>
+        <br />
+        <button className='h-b rammettoone r1'>? WHAT ARE THESE</button>
       </div>
     </div>
   );

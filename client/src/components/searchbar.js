@@ -1,5 +1,7 @@
+import '../styles/searchbar.css'
+
 export const SearchBar = () => {
     return (
-        <h1>This will be the search bar</h1>
+        <div className="search-bar">This will be the search bar</div>
     )
 };

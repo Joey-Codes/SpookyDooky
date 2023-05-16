@@ -1,0 +1,6 @@
+.search-bar {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    height: 200px;
+}

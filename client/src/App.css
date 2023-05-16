@@ -104,6 +104,38 @@ a {
   flex-direction: column;
 }
 
+.white {
+    color: white;
+}
+
+.red {
+    color: red;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.chango {
+  font-family: 'Chango', cursive;
+}
+
+.bangers {
+  font-family: "Bangers";
+}
+
+.carterone {
+  font-family: "CarterOne";
+}
+
+.rammettoone {
+  font-family: "RammettoOne";
+} 
+
+.readexpro {
+  font-family: "ReadexPro";
+}
 
 
 

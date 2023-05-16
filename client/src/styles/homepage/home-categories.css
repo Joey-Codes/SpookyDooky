@@ -1,0 +1,45 @@
+.home-categories {
+    background-color: black;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    align-items: center;
+}
+
+.test {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+}
+
+.b2 {
+    font-size: 70px;
+}
+
+.h-b2 {
+    border-radius: 15px 15px 15px 15px;
+    margin-bottom: 20px;
+    color: white;
+    padding: 0 35px 0 35px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.h-b2:hover {
+    animation: shake 0.5s;
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(0, 0); }
+    10%, 30%, 50%, 70%, 90% { transform: translate(-5px, 0); }
+    20%, 40%, 60%, 80% { transform: translate(5px, 0); }
+    100% { transform: translate(0, 0); }
+  }
+
+.h-b2a { background-color: red; }
+.h-b2b { background-color: orange; }
+.h-b2c { background-color: blue; }
+.h-b2d { background-color: green; }
+
+
+
+

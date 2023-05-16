@@ -1,0 +1,33 @@
+.home-featured {
+    background-color: black;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.rp2 {
+    font-size: 65px;
+}
+
+.sample-review {
+    background-color: white;
+    height: 450px;
+    width: 300px;
+    margin: 50px 50px;
+    opacity: 0;
+}
+
+.fade-in {
+    animation: fadeIn 2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
