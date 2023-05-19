@@ -11,10 +11,10 @@ export const HomeFeatured = () => {
       <br />
       <div>
         <img src={glasses_ghost} alt="Placeholder 1" className='fade-in sample-review'/>
-        <img src={glasses_ghost} alt="Placeholder 2" className='sample-review'/>
-        <img src={glasses_ghost} alt="Placeholder 3" className='sample-review'/>
+        <img src={glasses_ghost} alt="Placeholder 2" className='fade-in sample-review'/>
+        <img src={glasses_ghost} alt="Placeholder 3" className='fade-in sample-review'/>
       </div>
-      <button className='h-b rammettoone r1'>ALL REVIEWS</button>
+      <button className='h-b rammettoone r1'>MORE REVIEWS</button>
       <br />
       <br />
     </div>

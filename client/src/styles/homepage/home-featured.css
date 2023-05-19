@@ -1,9 +1,11 @@
 .home-featured {
     background-color: black;
+    background-image: url('../../images/ghost-background1.png');
     flex-direction: column;
     text-align: center;
     align-items: center;
-}
+    position: relative;
+  }
 
 .rp2 {
     font-size: 65px;

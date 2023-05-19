@@ -1,0 +1,21 @@
+.home-community {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+.community-example {
+    height: 250px;
+    width: 200px;
+}
+
+.community-section {
+   padding: 0% 1% 1% 1%;
+   margin: 2% 5% 0 5%;
+   border: 5px solid black;
+   width: 20%;
+}
+
+.ct1 {
+    font-size: 40px;
+}
