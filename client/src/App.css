@@ -67,6 +67,11 @@ body {
   margin-bottom: 20px;
 }
 
+.map-container {
+  width: 50%;
+  height: 50vh;
+}
+
 .navbar {
   margin: 0;
   width: 100%;
@@ -135,6 +140,14 @@ a {
 
 .readexpro {
   font-family: "ReadexPro";
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-style: bold;
 }
 
 
