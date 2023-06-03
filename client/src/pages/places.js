@@ -28,8 +28,18 @@ export const Places = () => {
   return (
     <div>
         <div className="places-title flex">
-          <p className='white'>Search bar will go here</p>
-          <h1 className='readexpro rp2 red'>FIND SPOOKY PLACES</h1>
+          <div>
+            <h1 className='readexpro white rp1'>SEARCH ALL PLACES</h1>
+            <h2 className='white italic'>searchbar goes here</h2>
+            <h2 className='white'>You can also search with the map</h2>
+          </div>
+          <div>
+            <h2 className='readexpro rp2 white'>OR</h2>
+          </div>
+          <div>
+            <h2 className='readexpro white rp1'>ADD A NEW PLACE</h2>
+            <button className='h-b readexpro r1'>ADD +</button>
+          </div>
         </div>
         <br />
         <h1 className='readexpro rp2 bold top-rated'>Top Rated</h1>
@@ -48,10 +58,10 @@ export const Places = () => {
                               starDimension="40px" // Adjust the size of the stars
                               starSpacing="2px" // Adjust the spacing between stars
                             />
-                            <h2 className='readexpro num-ratings'>({place.numRatings})</h2>
+                            <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
                           </div>
-                          <h2 className='readexpro italic'>Address- {place.address}</h2>
-                          <h2 className='readexpro bold'>Description- {place.description}</h2>
+                          <h2 className='readexpro italic white'>Address- {place.address}</h2>
+                          <h2 className='readexpro white'>Description- {place.description}</h2>
                         </div>
                         <div className='place-image'>
                           <img className="test" alt='place-pic'></img>

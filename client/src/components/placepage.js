@@ -34,35 +34,35 @@ export const PlacePage = ({ match }) => {
       <div className="placepage-title flex">
         <h1 className='readexpro rp2'>{place.name}</h1>
         <h3 className='readexpro red'>{place.description}</h3>
+        <h3 className='readexpro red'>{place.address}</h3>
       </div>
       <div className='placepage-middle flex'>
         <div className='place-options'> 
-          <button className='h-b3 h-b3a rammettoone r1'>REVIEW THIS PLACE</button>
-          <button className='h-b3 h-b3b rammettoone r1'>SEE PHOTOS</button>
+          <button className='h-b3 h-b3a readexpro rp3 bold'>REVIEW THIS PLACE</button>
         </div>
         <br />
         <br />
         <div className='page-ratings'>
           <div>
-            <h2 className='bangers b2 white h-b3a'>Scariness Rating</h2>
-            <StarRatings
-              rating={3.21837} // Replace with your actual rating value
-              starRatedColor="red" // Customize the color of the filled stars
-              starEmptyColor="lightgray" // Customize the color of the empty stars
-              starDimension="40px" // Adjust the size of the stars
-              starSpacing="2px" // Adjust the spacing between stars
-            />
-            <div className="dropdown">
-              <button className="readepxpro rp1 dropdown-toggle">SORT BY</button>
-              <div className="dropdown-menu">
-                <button className='h-b readexpro rp1'>OPTION</button>
-                <button className='h-b readexpro rp1'>OPTION</button>
-                <button className='h-b readexpro rp1'>OPTION</button>
-              </div>
+            <div className='scariness-rating'>
+              <h2 className='bangers b2 white h-b3a'>Scariness Rating</h2>
+              <StarRatings
+                className="star-rating"
+                rating={3.21837} // Replace with your actual rating value
+                starRatedColor="red" // Customize the color of the filled stars
+                starEmptyColor="lightgray" // Customize the color of the empty stars
+                starDimension="50px" // Adjust the size of the stars
+                starSpacing="2px" // Adjust the spacing between stars
+              />
+              <h2 className='readexpro rp3 white ml'>({place.numRatings})</h2>
             </div>
-          </div>
-          <div className='h-b3a'>
-            <h2 className='white'>review distribution goes here</h2>
+            <div className="filters">
+              <h2 className="readexpro rp1 white mr">SORT BY</h2>
+              <button className='h-b4 readexpro rp1 bold mr'>TOP RATED</button>
+              <button className='h-b4 readexpro rp1 bold mr'>LOWEST RATED</button>
+              <button className='h-b4 readexpro rp1 bold mr'>MOST LIKED</button>
+              <button className='h-b4 readexpro rp1 bold'>MOST DISLIKED</button>
+            </div>
           </div>
         </div>
       </div>
@@ -79,12 +79,16 @@ export const PlacePage = ({ match }) => {
                 starSpacing="2px" // Adjust the spacing between stars
               />
               <h2 className='h-b2 h-b2a readexpro rp1'>{review.category}</h2>
-              <h2>&#128077;</h2>
-              <p className='readexpro rp1 likes'>{review.likes}</p>
-              <h2>&#128078;</h2>
-              <p className='readexpro rp1 '>{review.dislikes}</p>
+              <div className='chungus'> 
+                <h2 className='mr'>&#128077;</h2>
+                <p className='readexpro rp1 likes'>{review.likes}</p>
+              </div>
+              <div className='chungus'>
+                <h2 className='mr'>&#128078;</h2>
+                <p className='readexpro rp1 '>{review.dislikes}</p>
+              </div>
             </div>
-            <p className='readexpro rp1'>Description: {review.description}</p>
+            <p className='readexpro rp1'>{review.description}</p>
           </div>
         ))}
       </ul>

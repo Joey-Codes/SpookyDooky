@@ -1,17 +1,19 @@
 .places-title {
-  background-color: black;
-  flex-direction: column;
+  background-color: rgb(255, 54, 54);
+  background-image: url('../images/ghost-background1.png');
+  flex-direction: row;
   align-items: center;
-  height: 20vh;
+  height: 30vh;
+  justify-content: space-evenly;
 }
 
 .top-rated {
-  margin-left: 10%;
+  margin-left: 40%;
   margin-bottom: 3%;
 }
 
 .place-list {
-  margin-left: 10%;
+  margin-left: 35%;
 }
 
 .entry-format {
@@ -51,6 +53,8 @@
 }
 
 .place-entry {
+  background-color: rgb(0, 0, 0);
+  background-image: url('../images/ghost-background1.png');
   border: 1px solid black;
   border-radius: 10px;
   padding: 1%;

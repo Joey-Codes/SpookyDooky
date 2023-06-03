@@ -103,6 +103,7 @@
     background-image: linear-gradient(-45deg, white 50%, red 50%);
     background-position: 100%;
     background-size: 400%;
+    border: none;
     transition: background-position 0.5s;
   }
   

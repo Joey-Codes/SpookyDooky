@@ -2,7 +2,7 @@
     background-color: aqua;
     flex-direction: column;
     align-items: center;
-    height: 25vh;
+    height: 30vh;
   } 
 
 .placepage-middle {
@@ -11,13 +11,16 @@
     flex-direction: column;
     align-items: center;
     height: auto;
-    padding: 20px 0 10px 0;
+    padding: 40px 0 40px 0;
   } 
 
-  .place-options {
+.place-options {
     display: flex;
-    justify-content: space-between;
-  }
+}
+
+.rp3 {
+  font-size: 45px;
+}
 
 .review-list {
     margin-left: 10%;
@@ -26,11 +29,27 @@
 .rating-top-portion {
   display: flex;
   text-align: center;
+  justify-content: space-between;
+}
+
+.chungus {
+  display: flex;
+  flex-direction: row;
 }
 
 .page-ratings {
   display: flex;
   justify-content: space-between;  
+}
+
+.scariness-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.h-b3a {
+  margin-right: 50px;
 }
 
 .review-entry {
@@ -41,56 +60,37 @@
     width: 75%;
   }
 
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.mr {
+  margin-right: 20px;
+}
+
+.ml {
+  margin-left: 20px;
+}
+
 .likes {
   margin-right: 10px;
 }
 
-  .h-b3 {
+.h-b3 {
     color: white;
     background-image: linear-gradient(-45deg, red 50%, white 50%);
     background-position: 100%;
     background-size: 400%;
     border-radius: 20px;
     transition: background-position 0.5s;
-  }
-  
-  .h-b:hover {
-    background-position: 0%;
-  }
-  
-  .h-b3a {
-    margin-right: 75px;
-  }
+}
 
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-toggle {
-    color: red;
-    background-color: black;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    display: none;
-    background-color: white;
-    padding: 5px;
-    z-index: 1;
-  }
-  
-  .dropdown-menu button {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
+.h-b4 {
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+}
+
   
