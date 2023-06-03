@@ -108,6 +108,7 @@
   
   .h-b:hover {
     background-position: 0%;
+    cursor: pointer;
   }
   
   

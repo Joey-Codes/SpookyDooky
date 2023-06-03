@@ -1,0 +1,96 @@
+.placepage-title {
+    background-color: aqua;
+    flex-direction: column;
+    align-items: center;
+    height: 25vh;
+  } 
+
+.placepage-middle {
+    background-color: black;
+    background-image: url('../images/ghost-background1.png');
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 20px 0 10px 0;
+  } 
+
+  .place-options {
+    display: flex;
+    justify-content: space-between;
+  }
+
+.review-list {
+    margin-left: 10%;
+  }
+
+.rating-top-portion {
+  display: flex;
+  text-align: center;
+}
+
+.page-ratings {
+  display: flex;
+  justify-content: space-between;  
+}
+
+.review-entry {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    margin-bottom: 5vh;
+    width: 75%;
+  }
+
+.likes {
+  margin-right: 10px;
+}
+
+  .h-b3 {
+    color: white;
+    background-image: linear-gradient(-45deg, red 50%, white 50%);
+    background-position: 100%;
+    background-size: 400%;
+    border-radius: 20px;
+    transition: background-position 0.5s;
+  }
+  
+  .h-b:hover {
+    background-position: 0%;
+  }
+  
+  .h-b3a {
+    margin-right: 75px;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    color: red;
+    background-color: black;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: white;
+    padding: 5px;
+    z-index: 1;
+  }
+  
+  .dropdown-menu button {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  

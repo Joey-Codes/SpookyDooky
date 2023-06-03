@@ -1,4 +1,5 @@
-import '../styles/places.css'
+import '../styles/places.css';
+import StarRatings from 'react-star-ratings';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -31,17 +32,26 @@ export const Places = () => {
           <h1 className='readexpro rp2 red'>FIND SPOOKY PLACES</h1>
         </div>
         <br />
-        <h1 className='readexpro rp2 bold top-rated'>TOP RATED</h1>
+        <h1 className='readexpro rp2 bold top-rated'>Top Rated</h1>
         <ul className='place-list'>
             {places.map((place) => (
                 <div className="place-entry" key={place._id}>
                     <div className='entry-format'>
                         <div className='place-info'>
                           <h1 className="red readexpro name" onClick={() => handlePlaceClick(place._id)}>{place.name}</h1>
-                          <h2 className='readexpro'>{place.rating} stars</h2>
-                          <h2 className='readexpro'>Ratings- {place.numRatings}</h2>
-                          <h2 className='readexpro'>Address- {place.address}</h2>
-                          <h2>Description- {place.description}</h2>
+                          <br />
+                          <div className="place-rating">
+                            <StarRatings
+                              rating={place.rating} // Replace with your actual rating value
+                              starRatedColor="red" // Customize the color of the filled stars
+                              starEmptyColor="lightgray" // Customize the color of the empty stars
+                              starDimension="40px" // Adjust the size of the stars
+                              starSpacing="2px" // Adjust the spacing between stars
+                            />
+                            <h2 className='readexpro num-ratings'>({place.numRatings})</h2>
+                          </div>
+                          <h2 className='readexpro italic'>Address- {place.address}</h2>
+                          <h2 className='readexpro bold'>Description- {place.description}</h2>
                         </div>
                         <div className='place-image'>
                           <img className="test" alt='place-pic'></img>
