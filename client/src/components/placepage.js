@@ -1,4 +1,5 @@
 import '../styles/placepage.css'
+import Modal from 'react-modal';
 import StarRatings from 'react-star-ratings';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -8,6 +9,26 @@ export const PlacePage = ({ match }) => {
   const { placeId } = useParams();
   const [place, setPlace] = useState(null);
   const [reviews, setReviews] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [starRating, setStarRating] = useState(0);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  }
+
+  const handleRatingChange = (newRating) => {
+    setStarRating(newRating);
+  };  
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    // Do something with the selected file
+    console.log('Selected file:', file);
+  };  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +59,51 @@ export const PlacePage = ({ match }) => {
       </div>
       <div className='placepage-middle flex'>
         <div className='place-options'> 
-          <button className='h-b3 h-b3a readexpro rp3 bold'>REVIEW THIS PLACE</button>
+          <button onClick={openModal} className='h-b3 h-b3a readexpro rp3 bold'>REVIEW THIS PLACE</button>
+          <Modal
+            isOpen={modalIsOpen}
+          >
+            <div className='modal-form'>
+              <h1 className='readexpro rp2 red'>{place.name}</h1>
+              <br />
+              <br />
+              <div className='modal-row'>
+                <h2 className='readexpro mr'>SCARINESS RATING</h2>
+                <StarRatings
+                  rating={starRating} // The initial rating value
+                  starRatedColor="red" // Color of the filled-in stars
+                  starHoverColor="red" // Color when hovering over stars
+                  changeRating={handleRatingChange} // Callback function when rating changes
+                  numberOfStars={5} // Total number of stars
+                  starDimension="40px" // Size of the stars
+                  starSpacing="2px" // Spacing between stars
+                />
+              </div>
+              <br />
+              <br />
+              <div className='modal-row'>  
+                <h2 className='readexpro mr'>CATEGORY</h2>
+                <button className='h-b4 h-b4a readexpro rp1 bold mr'>PARANORMAL</button>
+                <button className='h-b4 readexpro rp1 bold mr'>ALIENS</button>
+                <button className='h-b4 readexpro rp1 bold mr'>CRYPTIDS</button>
+                <button className='h-b4 readexpro rp1 bold'>UNEXPLAINED</button>
+              </div>
+              <br />
+              <br />
+              <h2 className='readexpro'>DESCRIPTION</h2>
+              <textarea className="description-field" type='text'></textarea>
+              <br />
+              <br />
+              <div className='modal-row'>
+                <h2 className='readexpro mr'>ADD PHOTO (optional)</h2>
+                <input type="file" onChange={handleFileChange} />
+              </div>
+              <div className='modal-row'>
+                <button onClick={closeModal} className='h-b h-b3a readexpro rp1'>CANCEL</button>
+                <button className='h-b readexpro rp1'>ADD REVIEW</button>
+              </div>
+            </div>
+          </Modal>
         </div>
         <br />
         <br />

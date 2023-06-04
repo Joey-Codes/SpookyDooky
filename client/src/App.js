@@ -5,7 +5,7 @@ import { Auth } from './pages/auth';
 import { CreateRecipe } from './pages/create-recipe';
 import { SavedRecipes } from './pages/saved-recipes';
 import { RealHome } from './pages/real-home';
-import { Categories } from './pages/categories';
+import { About } from './pages/about';
 import { Places } from './pages/places';
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
@@ -22,7 +22,7 @@ function App() {
         <Route path="/create-recipe" element={<CreateRecipe/>} />
         <Route path="/saved-recipes" element={<SavedRecipes/>} />
         <Route path="/home" element={<RealHome/>} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/about" element={<About />} />
         <Route path="/places" element={<Places />} />
         <Route path="/places/:placeId" element={<PlacePage />} />     
       </Routes>

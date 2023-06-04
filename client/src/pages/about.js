@@ -1,4 +1,4 @@
-export const Categories = () => {
+export const About = () => {
     return (
         <div>
             <div>
