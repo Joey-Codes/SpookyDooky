@@ -38,7 +38,7 @@ router.get("/:id", async (req, res) => {
   router.get("/:id/reviews", async (req, res) => {
     try {
       const reviews = await ReviewModel.find({ placeId: req.params.id }).populate('placeId');
-      res.send(reviews);
+      res.send(reviews);  
     } catch (err) {
       res.status(500).send(err);
     }

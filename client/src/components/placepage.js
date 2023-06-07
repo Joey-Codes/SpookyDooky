@@ -4,13 +4,39 @@ import StarRatings from 'react-star-ratings';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useGetUserID } from '../hooks/useGetUserID';
 
 export const PlacePage = ({ match }) => {
+  const userID = useGetUserID();
   const { placeId } = useParams();
+
+  const [newReview, setNewReview] = useState({
+    rating: 0,
+    category: "",
+    likes: 0,
+    dislikes: 0,
+    description: "",
+    userId: userID,
+    placeId: placeId,
+  });
+
+  console.log(newReview)
   const [place, setPlace] = useState(null);
   const [reviews, setReviews] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [starRating, setStarRating] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNewReview({...newReview, [name]: value });
+  };
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+    const { value } = event.target;
+    setNewReview({...newReview, category: value})
+  };
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -22,6 +48,7 @@ export const PlacePage = ({ match }) => {
 
   const handleRatingChange = (newRating) => {
     setStarRating(newRating);
+    setNewReview({...newReview, rating: newRating});
   };  
 
   const handleFileChange = (event) => {
@@ -29,6 +56,17 @@ export const PlacePage = ({ match }) => {
     // Do something with the selected file
     console.log('Selected file:', file);
   };  
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/reviews", newReview);
+      alert("Review added");
+    } catch (err) {
+      console.log(err);
+    }
+    setModalIsOpen(false);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +97,7 @@ export const PlacePage = ({ match }) => {
       </div>
       <div className='placepage-middle flex'>
         <div className='place-options'> 
-          <button onClick={openModal} className='h-b3 h-b3a readexpro rp3 bold'>REVIEW THIS PLACE</button>
+          <button onClick={openModal} className='h-b3 h-b3a readexpro rp3 bold'>Review This Place</button>
           <Modal
             isOpen={modalIsOpen}
           >
@@ -83,30 +121,53 @@ export const PlacePage = ({ match }) => {
               <br />
               <div className='modal-row'>  
                 <h2 className='readexpro mr'>CATEGORY</h2>
-                <button className='h-b4 h-b4a readexpro rp1 bold mr'>PARANORMAL</button>
-                <button className='h-b4 readexpro rp1 bold mr'>ALIENS</button>
-                <button className='h-b4 readexpro rp1 bold mr'>CRYPTIDS</button>
-                <button className='h-b4 readexpro rp1 bold'>UNEXPLAINED</button>
+                <button 
+                  name="category" 
+                  value="Paranormal" 
+                  onClick={handleCategoryChange} 
+                  className={`h-b4 readexpro rp1 bold mr ${selectedCategory === 'Paranormal' ? 'active' : ''}`}
+                  >
+                PARANORMAL
+                </button>
+                <button 
+                  name="category" 
+                  value="Aliens" 
+                  onClick={handleCategoryChange} 
+                  className={`h-b4 readexpro rp1 bold mr ${selectedCategory === 'Aliens' ? 'active' : ''}`}
+                >ALIENS
+                </button>
+                <button 
+                  name="category"
+                  value="Cryptids"
+                  onClick={handleCategoryChange}
+                  className={`h-b4 readexpro rp1 bold mr ${selectedCategory === 'Cryptids' ? 'active' : ''}`}
+                >CRYPTIDS
+                </button>
+                <button 
+                  name="category"
+                  value="Unexplained"
+                  onClick={handleCategoryChange}
+                  className={`h-b4 readexpro rp1 bold ${selectedCategory === 'Unexplained' ? 'active' : ''}`}
+                >UNEXPLAINED
+                </button>
               </div>
               <br />
               <br />
               <h2 className='readexpro'>DESCRIPTION</h2>
-              <textarea className="description-field" type='text'></textarea>
+              <textarea className="description-field" name="description" onChange={handleChange} type='text'></textarea>
               <br />
               <br />
               <div className='modal-row'>
                 <h2 className='readexpro mr'>ADD PHOTO (optional)</h2>
-                <input type="file" onChange={handleFileChange} />
+                <input className='readexpro' type="file" onChange={handleFileChange} />
               </div>
               <div className='modal-row'>
                 <button onClick={closeModal} className='h-b h-b3a readexpro rp1'>CANCEL</button>
-                <button className='h-b readexpro rp1'>ADD REVIEW</button>
+                <button onClick={onSubmit} className='h-b readexpro rp1'>ADD REVIEW</button>
               </div>
             </div>
           </Modal>
         </div>
-        <br />
-        <br />
         <div className='page-ratings'>
           <div>
             <div className='scariness-rating'>

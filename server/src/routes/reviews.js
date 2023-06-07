@@ -15,9 +15,9 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const recipe = new ReviewModel(req.body);
+    const review = new ReviewModel(req.body);
     try {
-        const response = await recipe.save();
+        const response = await review.save();
         res.json(response);
     } catch(err) {
         res.json(err);
