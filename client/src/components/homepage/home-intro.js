@@ -2,6 +2,7 @@ import '../../styles/homepage/home-intro.css'
 import ghost from '../../images/ghosts.png';
 import glasses_ghost from '../../images/glasses_ghost.png'
 import weightlifting_ghost from '../../images/weightlifting_ghost.png'
+import { Link } from 'react-router-dom';
 
 import React from 'react';
 
@@ -13,7 +14,9 @@ export const HomeIntro = () => {
         <h1 className='chango c1 red'> DOOKY</h1>
         <h2 className='readexpro rp1 white'>FIND AND RATE SPOOKY PLACES</h2>
         <br />
-        <button className='h-b rammettoone r1'>SIGN UP</button>
+        <Link to="/auth">
+          <button className='h-b rammettoone r1'>SIGN UP</button>
+        </Link>
         <br />
         <br />
       </div>

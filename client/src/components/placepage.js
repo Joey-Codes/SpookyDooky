@@ -6,9 +6,23 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useGetUserID } from '../hooks/useGetUserID';
 
-export const PlacePage = ({ match }) => {
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
+export const PlacePage = () => {  
   const userID = useGetUserID();
   const { placeId } = useParams();
+  const [place, setPlace] = useState(null);
+  const [reviews, setReviews] = useState(null);
 
   const [newReview, setNewReview] = useState({
     rating: 0,
@@ -20,12 +34,17 @@ export const PlacePage = ({ match }) => {
     placeId: placeId,
   });
 
-  console.log(newReview)
-  const [place, setPlace] = useState(null);
-  const [reviews, setReviews] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [starRating, setStarRating] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,14 +56,6 @@ export const PlacePage = ({ match }) => {
     const { value } = event.target;
     setNewReview({...newReview, category: value})
   };
-
-  const openModal = () => {
-    setModalIsOpen(true);
-  }
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  }
 
   const handleRatingChange = (newRating) => {
     setStarRating(newRating);
@@ -66,7 +77,7 @@ export const PlacePage = ({ match }) => {
       console.log(err);
     }
     setModalIsOpen(false);
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -100,13 +111,14 @@ export const PlacePage = ({ match }) => {
           <button onClick={openModal} className='h-b3 h-b3a readexpro rp3 bold'>Review This Place</button>
           <Modal
             isOpen={modalIsOpen}
+            style={customStyles}
           >
             <div className='modal-form'>
               <h1 className='readexpro rp2 red'>{place.name}</h1>
               <br />
               <br />
               <div className='modal-row'>
-                <h2 className='readexpro mr'>SCARINESS RATING</h2>
+                <h2 className='readexpro form-font mr'>SCARINESS RATING -</h2>
                 <StarRatings
                   rating={starRating} // The initial rating value
                   starRatedColor="red" // Color of the filled-in stars
@@ -118,9 +130,8 @@ export const PlacePage = ({ match }) => {
                 />
               </div>
               <br />
-              <br />
               <div className='modal-row'>  
-                <h2 className='readexpro mr'>CATEGORY</h2>
+                <h2 className='readexpro form-font mr'>CATEGORY -</h2>
                 <button 
                   name="category" 
                   value="Paranormal" 
@@ -152,18 +163,17 @@ export const PlacePage = ({ match }) => {
                 </button>
               </div>
               <br />
-              <br />
-              <h2 className='readexpro'>DESCRIPTION</h2>
+              <h2 className='readexpro form-font'>DESCRIPTION:</h2>
               <textarea className="description-field" name="description" onChange={handleChange} type='text'></textarea>
               <br />
-              <br />
               <div className='modal-row'>
-                <h2 className='readexpro mr'>ADD PHOTO (optional)</h2>
+                <h2 className='readexpro form-font mr'>ADD PHOTO (optional) -</h2>
                 <input className='readexpro' type="file" onChange={handleFileChange} />
               </div>
+              <br />
               <div className='modal-row'>
-                <button onClick={closeModal} className='h-b h-b3a readexpro rp1'>CANCEL</button>
-                <button onClick={onSubmit} className='h-b readexpro rp1'>ADD REVIEW</button>
+                <button onClick={closeModal} className='h-b3 h-b3a readexpro form-font'>Cancel</button>
+                <button onClick={onSubmit} className='h-b3 readexpro form-font'>Add Review</button>
               </div>
             </div>
           </Modal>

@@ -12,7 +12,7 @@ export const RealHome = () => {
             <HomeIntro />
             <br />
             <SearchBar />
-             <Map />
+            <Map />
            <br />
             <HomeFeatured />
             <br />

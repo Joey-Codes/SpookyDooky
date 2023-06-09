@@ -1,4 +1,5 @@
-import '../../styles/homepage/home-categories.css'
+import '../../styles/homepage/home-categories.css';
+import { Link } from 'react-router-dom';
 
 export const HomeCategories = () => {
   return (
@@ -14,7 +15,9 @@ export const HomeCategories = () => {
         <h1 className='readexpro rp2 white'>DIFFERENT</h1>
         <h1 className='readexpro rp2 red'>CATEGORIES</h1>
         <br />
-        <button className='h-b rammettoone r1'>WHAT ARE THESE ?</button>
+        <Link to="/about">
+          <button className='h-b rammettoone r1'>WHAT ARE THESE ?</button>
+        </Link>
       </div>
     </div>
   );

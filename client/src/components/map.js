@@ -1,34 +1,18 @@
-import { useMemo, useState } from "react";
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  StandaloneSearchBox,
-} from "@react-google-maps/api";
+import React, { useState } from "react";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
-const libraries = ["places"]; // Add "places" to the libraries array
+const libraries = ["places"];
 
 export const Map = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "",
-    libraries, // Pass the libraries array to useLoadScript
+    libraries,
   });
 
   const [map, setMap] = useState(null);
-  const [searchBox, setSearchBox] = useState(null);
-  const [places, setPlaces] = useState([]);
 
   const onMapLoad = (map) => {
     setMap(map);
-  };
-
-  const onSearchBoxLoad = (ref) => {
-    setSearchBox(ref);
-  };
-
-  const onPlacesChanged = () => {
-    const newPlaces = searchBox.getPlaces();
-    setPlaces(newPlaces);
   };
 
   if (loadError) return <div>Error loading maps</div>;
@@ -37,8 +21,6 @@ export const Map = () => {
   return (
     <div>
       <TheMap onMapLoad={onMapLoad} />
-      <SearchBox onSearchBoxLoad={onSearchBoxLoad} onPlacesChanged={onPlacesChanged} />
-      <PlacesList places={places} />
     </div>
   );
 };
@@ -51,26 +33,5 @@ function TheMap({ onMapLoad }) {
       mapContainerClassName="map-container"
       onLoad={onMapLoad}
     />
-  );
-}
-
-function SearchBox({ onSearchBoxLoad, onPlacesChanged }) {
-  return (
-    <StandaloneSearchBox onLoad={onSearchBoxLoad} onPlacesChanged={onPlacesChanged}>
-      <input type="text" placeholder="Search for a place" />
-    </StandaloneSearchBox>
-  );
-}
-
-function PlacesList({ places }) {
-  return (
-    <div>
-      <h2>Places</h2>
-      <ul>
-        {places.map((place) => (
-          <li key={place.place_id}>{place.name}</li>
-        ))}
-      </ul>
-    </div>
   );
 }

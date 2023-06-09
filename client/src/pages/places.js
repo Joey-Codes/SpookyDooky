@@ -1,12 +1,30 @@
 import '../styles/places.css';
+import Modal from 'react-modal';
 import StarRatings from 'react-star-ratings';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { SearchBar } from '../components/searchbar';
 
 export const Places = () => {
   const [places, setPlaces] = useState([]);
   const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+
+  const handlePlaceSelect = (place) => {
+    setSelectedPlace(place);
+  };
+
+  console.log(selectedPlace);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const handlePlaceClick = (placeId) => {
     navigate(`/places/${placeId}`);
@@ -38,7 +56,16 @@ export const Places = () => {
           </div>
           <div>
             <h2 className='readexpro white rp1'>ADD A NEW PLACE</h2>
-            <button className='h-b readexpro r1'>ADD +</button>
+            <button onClick={openModal} className='h-b readexpro r1'>ADD +</button>
+            <Modal
+              isOpen={modalIsOpen}
+            >
+              <h2>Choose A New Place To Review</h2>
+              <SearchBar whenPlaceSelect={handlePlaceSelect}/>
+              <div className='modal-row'>
+                <button onClick={closeModal} className='h-b h-b3a readexpro rp1'>CANCEL</button>
+              </div>
+            </Modal>
           </div>
         </div>
         <br />
