@@ -3,11 +3,8 @@ import { Autocomplete, useLoadScript } from "@react-google-maps/api";
 import "../styles/searchbar.css";
 
 const libraries = ["places"];
-const options = {
-  types: ["establishment"], // Restrict to businesses
-};
 
-export const SearchBar = ({ whenPlaceSelect }) => {
+export const SearchBar = ({ onPlaceSelect }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "",
     libraries,
@@ -16,32 +13,39 @@ export const SearchBar = ({ whenPlaceSelect }) => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const autocompleteRef = useRef(null);
 
-  console.log(selectedPlace);
-
-  const onPlaceSelect = () => {
+  const handlePlaceSelect = () => {
     const place = autocompleteRef.current.getPlace();
-    setSelectedPlace(place);
+
+    // Ensure that a valid place is selected
+    if (place && place.geometry && place.geometry.location) {
+      setSelectedPlace(place);
+      onPlaceSelect(place); // Pass the selected place to the parent component
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setSelectedPlace(null); // Clear the selected place when the input value changes
+    autocompleteRef.current.setFields([{ value: '' }]); // Clear the autocomplete field value
   };
 
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="searchbar-container">
       <Autocomplete
+        className="searchbar-autocomplete"
         onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
-        onPlaceChanged={onPlaceSelect}
-        options={options} // Apply the options to the Autocomplete component
+        onPlaceChanged={handlePlaceSelect}
       >
-        <input className="searchbar" type="text" placeholder="Search for a place" />
+        <input
+          className="searchbar-input"
+          type="text"
+          placeholder="Search for a place"
+          onChange={handleInputChange} // Handle input change event
+        />
       </Autocomplete>
-      {selectedPlace && (
-        <div>
-          <h2>Selected Place</h2>
-          <p>{selectedPlace.name}</p>
-          <p>Address: {selectedPlace.formatted_address}</p>
-        </div>
-      )}
     </div>
   );
 };

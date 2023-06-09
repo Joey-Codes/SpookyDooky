@@ -43,6 +43,16 @@ router.get("/:id", async (req, res) => {
       res.status(500).send(err);
     }
   });
-  
+
+  router.get("/search/:name", async (req, res) => {
+    try {
+      const name = req.params.name;
+      const places = await PlacesModel.find({ name: { $eq: name } });
+      res.send(places);
+      console.log("Response sent successfully"); // Check if this gets logged
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });  
 
 export {router as placesRouter};

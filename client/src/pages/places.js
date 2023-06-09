@@ -6,17 +6,32 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { SearchBar } from '../components/searchbar';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 export const Places = () => {
   const [places, setPlaces] = useState([]);
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [selectedPlaceName, setSelectedPlaceName] = (useState(''));
+  const encodedPlaceName = encodeURIComponent(selectedPlaceName);
+  const [selectedPlaceAddress, setSelectedPlaceAddress] = useState('');
+  const [result, setResult] = useState('');
+  const [placeExists, setPlaceExists] = useState('');
+  const [isInitialSelection, setIsInitialSelection] = useState(false);
 
   const handlePlaceSelect = (place) => {
-    setSelectedPlace(place);
+    setSelectedPlaceName(place.name);
+    setSelectedPlaceAddress(place.formatted_address);
   };
-
-  console.log(selectedPlace);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -30,6 +45,10 @@ export const Places = () => {
     navigate(`/places/${placeId}`);
   };
 
+  const handleExistingPlaceClick = () => {
+    navigate(`/places/${placeExists[0]._id}`);
+  }
+
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
@@ -42,6 +61,30 @@ export const Places = () => {
 
     fetchPlaces();
   }, []);
+
+  useEffect(() => {
+    if (encodedPlaceName && isInitialSelection) {
+      const fetchSelectedPlace = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3001/places/search/${encodedPlaceName}`);
+          console.log(response.data);
+          if (response.data.length === 0) {
+            setResult("There are no reviews for this place yet! Be the first!");
+          } else {
+            setPlaceExists(response.data);
+            setResult("There are already reviews for this place!");
+          }
+        } catch (err) {
+          setResult("There was an error! Try again later");
+        }
+      };
+  
+      fetchSelectedPlace();
+    } else {
+      setIsInitialSelection(true);
+    }
+  }, [encodedPlaceName, isInitialSelection]);
+  
 
   return (
     <div>
@@ -59,10 +102,27 @@ export const Places = () => {
             <button onClick={openModal} className='h-b readexpro r1'>ADD +</button>
             <Modal
               isOpen={modalIsOpen}
+              style={customStyles}
             >
-              <h2>Choose A New Place To Review</h2>
-              <SearchBar whenPlaceSelect={handlePlaceSelect}/>
-              <div className='modal-row'>
+              <div className='modal-form'>
+                <h1 className='readexpro rp2 red'>Choose A New Place To Review</h1>
+                <br />
+                <br />
+                <div>
+                  <SearchBar onPlaceSelect={handlePlaceSelect}/>
+                </div>
+                <br />
+                <h1 className='readexpro bold'>{selectedPlaceName}</h1>
+                <h2 className='readexpro italic'>{selectedPlaceAddress}</h2>
+                <h2 className='readexpro red'>{result}</h2>
+                {result === "There are already reviews for this place!" && (
+                  <button className='h-b3 readexpro form-font' onClick={handleExistingPlaceClick}>Go to {selectedPlaceName} page</button>
+                )}
+                {result === "There are no reviews for this place yet! Be the first!" && (
+                  <button className='h-b3 readexpro form-font'>Add The First Review!</button>
+                )}
+                <br />
+                <br />
                 <button onClick={closeModal} className='h-b h-b3a readexpro rp1'>CANCEL</button>
               </div>
             </Modal>
