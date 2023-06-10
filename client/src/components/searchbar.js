@@ -42,7 +42,7 @@ export const SearchBar = ({ onPlaceSelect }) => {
         <input
           className="searchbar-input"
           type="text"
-          placeholder="Search for a place"
+          placeholder="Search for a place..."
           onChange={handleInputChange} // Handle input change event
         />
       </Autocomplete>
