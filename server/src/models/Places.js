@@ -6,7 +6,7 @@ const PlacesSchema = new mongoose.Schema({
     numRatings: { type: Number },
     address: { type: String, required: true },
     img: { },
-    description: { type: String, required: true},
+    description: { type: String },
 });
 
 export const PlacesModel = mongoose.model("places", PlacesSchema); 

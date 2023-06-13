@@ -1,0 +1,27 @@
+.about {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.about-text {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+
+.about-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.category-fit {
+    width: 50%;
+    white-space: nowrap;
+}
+
+.text {
+    max-width: 65%;
+    font-family: 'Bungee';
+}

@@ -34,6 +34,12 @@
    url("./fonts/ReadexPro-Medium.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Bungee";
+  src: local("Bungee-Regular"),
+   url("./fonts/Bungee-Regular.ttf") format("truetype");
+}
+
 
 body {
   margin: 0;

@@ -18,9 +18,8 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
     setModalIsOpen(false);
   };
 
-  const openModalWithPlaceName = (placeName) => {
+  const openModalWithPlaceName = () => {
     setModalIsOpen(true);
-    setPlace(placeName);
   };
 
     useEffect(() => {
@@ -55,7 +54,7 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
         <button onClick={() => openModalWithPlaceName(place.name)} className='h-b3 h-b3a readexpro rp3 bold'>
             Review This Place
             </button>
-            <ReviewModal isOpen={modalIsOpen} closeModal={closeModal} placeId={placeId} userID={userID} placeName={place}/>
+            <ReviewModal isOpen={modalIsOpen} closeModal={closeModal} placeId={placeId} userID={userID} placeName={place.name}/>
         </div>
          <div className='page-ratings'>
           <div>

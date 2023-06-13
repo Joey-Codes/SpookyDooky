@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { SearchBar } from '../components/searchbar';
+import { ReviewModal } from '../components/reviewmodal';
+import { useGetUserID } from '../hooks/useGetUserID';
 
 const customStyles = {
   content: {
@@ -18,20 +20,47 @@ const customStyles = {
 };
 
 export const Places = () => {
+  const userID = useGetUserID();
   const [places, setPlaces] = useState([]);
+  const [newPlaceId, setNewPlaceId] = useState('');
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedPlaceName, setSelectedPlaceName] = (useState(''));
-  const encodedPlaceName = encodeURIComponent(selectedPlaceName);
-  const [selectedPlaceAddress, setSelectedPlaceAddress] = useState('');
+  const [reviewModalIsOpen, setReviewModalIsOpen] = useState(false);
   const [result, setResult] = useState('');
   const [placeExists, setPlaceExists] = useState('');
   const [isInitialSelection, setIsInitialSelection] = useState(false);
+  const [newPlace, setNewPlace] = useState({
+    name: "",
+    rating: 1,
+    numRatings: 0,
+    address: "",
+    description: "",
+  });
+
+  const encodedPlaceName = encodeURIComponent(newPlace.name);
+  const encodedPlaceAddress = encodeURIComponent(newPlace.address);
 
   const handlePlaceSelect = (place) => {
-    setSelectedPlaceName(place.name);
-    setSelectedPlaceAddress(place.formatted_address);
-  };
+    console.log(place);
+    setNewPlace(prevState => ({
+      ...prevState,
+      name: place.name,
+      address: place.formatted_address
+    }));
+  };  
+
+
+  const createPlace = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3001/places", newPlace);
+      const placeId = response.data._id; // Retrieve the _id property from the response
+      setNewPlaceId(placeId); // Update the newPlaceId state with the place ID
+      openReviewModal();
+    } catch (err) {
+      console.log(err);
+    }
+  };  
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -39,6 +68,14 @@ export const Places = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const openReviewModal = () => {
+    setReviewModalIsOpen(true)
+  }
+
+  const closeReviewModal = () => {
+    setReviewModalIsOpen(false);
   };
 
   const handlePlaceClick = (placeId) => {
@@ -67,7 +104,6 @@ export const Places = () => {
       const fetchSelectedPlace = async () => {
         try {
           const response = await axios.get(`http://localhost:3001/places/search/${encodedPlaceName}`);
-          console.log(response.data);
           if (response.data.length === 0) {
             setResult("There are no reviews for this place yet! Be the first!");
           } else {
@@ -83,7 +119,7 @@ export const Places = () => {
     } else {
       setIsInitialSelection(true);
     }
-  }, [encodedPlaceName, isInitialSelection]);
+  }, [encodedPlaceName, isInitialSelection, newPlaceId]);
   
 
   return (
@@ -112,14 +148,14 @@ export const Places = () => {
                   <SearchBar onPlaceSelect={handlePlaceSelect}/>
                 </div>
                 <br />
-                <h1 className='readexpro bold'>{selectedPlaceName}</h1>
-                <h2 className='readexpro italic'>{selectedPlaceAddress}</h2>
+                <h1 className='readexpro bold'>{newPlace.name}</h1>
+                <h2 className='readexpro italic'>{newPlace.address}</h2>
                 <h2 className='readexpro red'>{result}</h2>
                 {result === "There are already reviews for this place!" && (
-                  <button className='h-b3 readexpro form-font' onClick={handleExistingPlaceClick}>Go to {selectedPlaceName} page</button>
+                  <button className='h-b3 readexpro form-font' onClick={handleExistingPlaceClick}>Go to {newPlace.name} page</button>
                 )}
                 {result === "There are no reviews for this place yet! Be the first!" && (
-                  <button className='h-b3 readexpro form-font'>Add The First Review!</button>
+                  <button onClick={createPlace} className='h-b3 readexpro form-font'>Add The First Review!</button>
                 )}
                 <br />
                 <br />
@@ -127,6 +163,9 @@ export const Places = () => {
               </div>
             </Modal>
           </div>
+          {newPlaceId && (
+      <ReviewModal isOpen={reviewModalIsOpen} closeModal={closeReviewModal} placeId={newPlaceId} userID={userID} placeName={newPlace.name}/>
+    )}
         </div>
         <br />
         <h1 className='readexpro rp2 bold top-rated'>Top Rated</h1>

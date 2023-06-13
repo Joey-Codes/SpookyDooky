@@ -1,5 +1,6 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
 
@@ -15,6 +16,7 @@ const customStyles = {
 };
 
 export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) => {
+  const navigate = useNavigate();
   const [starRating, setStarRating] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [newReview, setNewReview] = useState({
@@ -32,7 +34,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     const { value } = event.target;
     setNewReview({ ...newReview, category: value });
   };
-
+  
   const handleRatingChange = (newRating) => {
     setStarRating(newRating);
     setNewReview({ ...newReview, rating: newRating });
@@ -53,15 +55,20 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     event.preventDefault();
     try {
       await axios.post("http://localhost:3001/reviews", newReview);
-      window.location.reload();
+      const currentPath = window.location.pathname;
+      const targetPath = `/places/${placeId}`;
+  
+      if (currentPath === targetPath) {
+        window.location.reload(); // Reload the page
+      } else {
+        navigate(targetPath); // Navigate to the page
+      }
     } catch (err) {
       console.log(err);
     }
     closeModal();
-  };
+  };  
 
-
-  console.log(placeName);
   return (
     <Modal isOpen={isOpen} style={customStyles}>
       <div className='modal-form'>
