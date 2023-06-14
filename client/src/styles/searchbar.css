@@ -1,10 +1,10 @@
 .searchbar-container {
-  width: 100%;
+  width: 600px;
 }
 
 .searchbar-autocomplete {
   width: 100%;
-  font-size: 25px;
+  font-size: 35px;
 }
 
 .searchbar-input {

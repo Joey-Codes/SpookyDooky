@@ -37,17 +37,17 @@ export const Places = () => {
     description: "",
   });
 
-  const encodedPlaceName = encodeURIComponent(newPlace.name);
   const encodedPlaceAddress = encodeURIComponent(newPlace.address);
 
   const handlePlaceSelect = (place) => {
-    console.log(place);
     setNewPlace(prevState => ({
       ...prevState,
       name: place.name,
       address: place.formatted_address
     }));
   };  
+
+  console.log(newPlaceId);
 
 
   const createPlace = async (event) => {
@@ -100,10 +100,10 @@ export const Places = () => {
   }, []);
 
   useEffect(() => {
-    if (encodedPlaceName && isInitialSelection) {
+    if (encodedPlaceAddress && isInitialSelection) {
       const fetchSelectedPlace = async () => {
         try {
-          const response = await axios.get(`http://localhost:3001/places/search/${encodedPlaceName}`);
+          const response = await axios.get(`http://localhost:3001/places/search/address/${encodedPlaceAddress}`);
           if (response.data.length === 0) {
             setResult("There are no reviews for this place yet! Be the first!");
           } else {
@@ -119,7 +119,7 @@ export const Places = () => {
     } else {
       setIsInitialSelection(true);
     }
-  }, [encodedPlaceName, isInitialSelection, newPlaceId]);
+  }, [encodedPlaceAddress, isInitialSelection, newPlaceId]);
   
 
   return (

@@ -58,12 +58,9 @@ router.get("/:id", async (req, res) => {
   router.get("/search/address/:address", async (req, res) => {
     try {
       const address = req.params.address;
-      const place = await PlacesModel.findOne({ address: address });
-      if (place) {
-        res.send({ id: place._id });
-      } else {
-        res.status(404).send("Place not found");
-      }
+      const place = await PlacesModel.find({ address: { $eq: address} });
+      res.send(place);
+      console.log("Response sent successfully");
     } catch (err) {
       res.status(500).send(err);
     }
