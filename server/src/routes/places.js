@@ -44,6 +44,18 @@ router.get("/:id", async (req, res) => {
     }
   });
 
+  router.get("/:id/reviews/toprated", async (req, res) => {
+    try {
+      const reviews = await ReviewModel.find({ placeId: req.params.id })
+        .populate('placeId')
+        .sort({ rating: -1 }); // Sort by rating in descending order
+  
+      res.send(reviews);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+
   router.get("/search/:name", async (req, res) => {
     try {
       const name = req.params.name;
@@ -65,5 +77,20 @@ router.get("/:id", async (req, res) => {
       res.status(500).send(err);
     }
   });  
+
+  router.delete("/delete/:id", async (req, res) => {
+  try {
+    const place = await PlacesModel.findByIdAndDelete(req.params.id).exec();
+    if (!place) {
+      // If the document doesn't exist, return an appropriate response
+      return res.status(404).send("Place not found");
+    }
+    // If the document is successfully deleted, return a success message or appropriate response
+    return res.send("Place deleted successfully");
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+});
+
 
 export {router as placesRouter};

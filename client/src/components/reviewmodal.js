@@ -51,6 +51,22 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     console.log('Selected file:', file);
   };
 
+   const deletePlace = async () => {
+    try {
+      const currentPath = window.location.pathname;
+      const targetPath = `/places/${placeId}`;
+  
+      if (currentPath === targetPath) {
+          closeModal();
+          return; // Exit the function without making the delete request
+      }
+  
+      await axios.delete(`http://localhost:3001/places/delete/${placeId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  };   
+
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -132,7 +148,10 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
               </div>
               <br />
         <div className='modal-row'>
-          <button onClick={closeModal} className='h-b3 h-b3a readexpro form-font'>
+          <button onClick={() => {
+            closeModal();
+            deletePlace();
+          }} className='h-b3 h-b3a readexpro form-font'>
             Cancel
           </button>
           <button onClick={onSubmit} className='h-b3 readexpro form-font'>

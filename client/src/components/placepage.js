@@ -28,7 +28,7 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
         const placeResponse = await axios.get(`http://localhost:3001/places/${placeId}`);
         setPlace(placeResponse.data);
     
-        const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews`);
+        const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews/toprated`);
         setReviews(reviewsResponse.data); 
       } catch (err) {
         console.error(err);

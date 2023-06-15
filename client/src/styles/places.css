@@ -12,8 +12,18 @@
   margin-bottom: 3%;
 }
 
+.map-container {
+  max-width: 30%;
+}
+
+.places-display {
+  display: flex;
+  justify-content: space-between; /* Adjust spacing as needed */
+  flex-wrap: wrap; /* Wrap the elements if they exceed the container width */
+}
+
 .place-list {
-  margin-left: 35%;
+  flex-basis: 50%; /* Set the width of the list to occupy 50% of the container */
 }
 
 .entry-format {
@@ -27,8 +37,8 @@
 }
 
 .name:hover {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .place-rating {

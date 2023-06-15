@@ -21,14 +21,20 @@ export const About = () => {
                     not fabricate stories or images.
                 </h2>
                 <br />
+                <h1 className='readexpro rp2 red italic'>1. Locations</h1>
                 <h2 className='readexpro'>You can find a location to review in the 'Places' tab, 
-                    where you can apply filters and use the search bar to browse already reviewed 
-                    locations. You can use the 'Add' button to select a new location to review as well.
+                    where you can use the searchbar to quickly find a place or use the filters to 
+                    look for specific categories, such as locations by rating or geographic area. 
+                </h2>
+                <h2 className='readexpro'>If you would like to add a new place to review, click on 
+                    the 'Add' button and search for a location. If the location already has reviews, 
+                    you will be redirected to its specific page. 
                 </h2>
                 <br />
             </div>
             <div>
                 <div>
+                    <h1 className='readexpro rp2 red italic'>2. Reviews</h1>
                     <h2 className='readexpro'>The first aspect of a review is its Spookiness Rating. 
                         This is a subjective measure, from 1 to 5 stars, of how scary you found the 
                         location to be, which contributes to its overall score. 
@@ -77,7 +83,7 @@ export const About = () => {
                     <br />
                     <div className='about-row'>
                         <button className='h-b2 h-b2d bangers b2 mr category-fit'>UNEXPLAINED &#x2754;</button>
-                        <h2 className='readexpro text'>This category includes anything paranromal that does not fit into any 
+                        <h2 className='readexpro text'>This category includes anything paranormal that does not fit into any 
                                                   of the categories listed above. Any phenomena that seems to defy logical or
                                                   natural explanations can belong into this category.      
                         </h2>

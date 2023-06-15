@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { SearchBar } from '../components/searchbar';
+import { Map } from '../components/map';  
 import { ReviewModal } from '../components/reviewmodal';
 import { useGetUserID } from '../hooks/useGetUserID';
 
@@ -47,9 +48,6 @@ export const Places = () => {
     }));
   };  
 
-  console.log(newPlaceId);
-
-
   const createPlace = async (event) => {
     event.preventDefault();
     try {
@@ -76,6 +74,8 @@ export const Places = () => {
 
   const closeReviewModal = () => {
     setReviewModalIsOpen(false);
+    setModalIsOpen(false);
+    setNewPlaceId("");
   };
 
   const handlePlaceClick = (placeId) => {
@@ -120,7 +120,7 @@ export const Places = () => {
       setIsInitialSelection(true);
     }
   }, [encodedPlaceAddress, isInitialSelection, newPlaceId]);
-  
+
 
   return (
     <div>
@@ -159,7 +159,9 @@ export const Places = () => {
                 )}
                 <br />
                 <br />
-                <button onClick={closeModal} className='h-b h-b3a readexpro rp1'>CANCEL</button>
+                <button onClick={() => {
+                  closeModal();
+                }} className='h-b h-b3a readexpro rp1'>CANCEL</button>
               </div>
             </Modal>
           </div>
@@ -169,34 +171,37 @@ export const Places = () => {
         </div>
         <br />
         <h1 className='readexpro rp2 bold top-rated'>Top Rated</h1>
-        <ul className='place-list'>
-            {places.map((place) => (
-                <div className="place-entry" key={place._id}>
-                    <div className='entry-format'>
-                        <div className='place-info'>
-                          <h1 className="red readexpro name" onClick={() => handlePlaceClick(place._id)}>{place.name}</h1>
-                          <br />
-                          <div className="place-rating">
-                            <StarRatings
-                              rating={place.rating} // Replace with your actual rating value
-                              starRatedColor="red" // Customize the color of the filled stars
-                              starEmptyColor="lightgray" // Customize the color of the empty stars
-                              starDimension="40px" // Adjust the size of the stars
-                              starSpacing="2px" // Adjust the spacing between stars
-                            />
-                            <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
+        <div className='places-display'>
+          <Map />
+          <ul className='place-list'>
+              {places.map((place) => (
+                  <div className="place-entry" key={place._id}>
+                      <div className='entry-format'>
+                          <div className='place-info'>
+                            <h1 className="red readexpro name" onClick={() => handlePlaceClick(place._id)}>{place.name}</h1>
+                            <br />
+                            <div className="place-rating">
+                              <StarRatings
+                                rating={place.rating} // Replace with your actual rating value
+                                starRatedColor="red" // Customize the color of the filled stars
+                                starEmptyColor="lightgray" // Customize the color of the empty stars
+                                starDimension="40px" // Adjust the size of the stars
+                                starSpacing="2px" // Adjust the spacing between stars
+                              />
+                              <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
+                            </div>
+                            <h2 className='readexpro italic white'>Address- {place.address}</h2>
+                            <h2 className='readexpro white'>Description- {place.description}</h2>
                           </div>
-                          <h2 className='readexpro italic white'>Address- {place.address}</h2>
-                          <h2 className='readexpro white'>Description- {place.description}</h2>
-                        </div>
-                        <div className='place-image'>
-                          <img className="test" alt='place-pic'></img>
-                        </div>
-                        <br />
-                    </div>
-                </div>
-            ))}
-        </ul>
+                          <div className='place-image'>
+                            <img className="test" alt='place-pic'></img>
+                          </div>
+                          <br />
+                      </div>
+                  </div>
+              ))}
+          </ul>
+      </div>
     </div>
   );
 };
