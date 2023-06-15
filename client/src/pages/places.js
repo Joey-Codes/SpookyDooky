@@ -24,6 +24,7 @@ export const Places = () => {
   const userID = useGetUserID();
   const [places, setPlaces] = useState([]);
   const [newPlaceId, setNewPlaceId] = useState('');
+  const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [reviewModalIsOpen, setReviewModalIsOpen] = useState(false);
@@ -37,6 +38,16 @@ export const Places = () => {
     address: "",
     description: "",
   });
+
+  const handleQuerySearch = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    try {
+      const response = await axios.get(`http://localhost:3001/places/searchquery/${query}`)
+      setPlaces(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const encodedPlaceAddress = encodeURIComponent(newPlace.address);
 
@@ -126,16 +137,26 @@ export const Places = () => {
     <div>
         <div className="places-title flex">
           <div>
-            <h1 className='readexpro white rp1'>SEARCH ALL PLACES</h1>
-            <h2 className='white italic'>searchbar goes here</h2>
+            <br />
+            <br />
+            <br />
+            <h1 className='readexpro white rp1'>SEARCH FOR A PLACE &#x1F50D;</h1>
+            <br />
+            <form onSubmit={handleQuerySearch}>
+              <input
+                className='h-b5 search'
+                type='text'
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+              />
+              <button type='submit' className='h-b5 readexpro search'>Go</button>
+            </form>
             <h2 className='white'>You can also search with the map</h2>
           </div>
           <div>
-            <h2 className='readexpro rp2 white'>OR</h2>
-          </div>
-          <div>
             <h2 className='readexpro white rp1'>ADD A NEW PLACE</h2>
-            <button onClick={openModal} className='h-b readexpro r1'>ADD +</button>
+            <br />
+            <button onClick={openModal} className='h-b5 readexpro r1'>ADD A NEW PLACE &#10133;</button>
             <Modal
               isOpen={modalIsOpen}
               style={customStyles}
@@ -173,7 +194,7 @@ export const Places = () => {
         <h1 className='readexpro rp2 bold top-rated'>Top Rated</h1>
         <div className='places-display'>
           <Map />
-          <ul className='place-list'>
+          <div className='place-list'>
               {places.map((place) => (
                   <div className="place-entry" key={place._id}>
                       <div className='entry-format'>
@@ -200,7 +221,7 @@ export const Places = () => {
                       </div>
                   </div>
               ))}
-          </ul>
+          </div>
       </div>
     </div>
   );

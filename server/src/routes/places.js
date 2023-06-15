@@ -16,6 +16,26 @@ router.get("/", async (req, res) => {
     }
 });
 
+/* Retrieve Places based on a search query */
+router.get("/searchquery/:query", async (req, res) => {
+  try {
+    const { query } = req.params;
+    const regex = new RegExp(query, "i");
+    const response = await PlacesModel.find({
+      $or: [
+        { name: { $regex: regex } },
+        { address: { $regex: regex } },
+        { description: { $regex: regex } },
+        // add more fields as needed
+      ]
+    });
+    res.json(response);
+  } catch(err) {
+    res.json(err);
+  }
+});
+
+
 /* Post a new Place */
 router.post("/", async (req, res) => {
     const recipe = new PlacesModel(req.body);
