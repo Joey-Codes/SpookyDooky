@@ -108,13 +108,13 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
           <h2 className='readexpro form-font mr'>CATEGORY -</h2>
           <button
             name="category"
-            value="Paranormal"
+            value="Ghosts"
             onClick={handleCategoryChange}
             className={`h-b4 readexpro rp1 bold mr ${
-              selectedCategory === 'Paranormal' ? 'active' : ''
+              selectedCategory === 'Ghosts' ? 'active' : ''
             }`}
           >
-            PARANORMAL
+            GHOSTS
           </button>
                 <button 
                   name="category" 

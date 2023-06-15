@@ -55,6 +55,22 @@
   justify-content: space-between;
 }
 
+.ghosts-color {
+  background-color: red;
+}
+
+.aliens-color {
+  background-color: orange;
+}
+
+.cryptids-color {
+  background-color: blue;
+}
+
+.unexplained-color {
+  background-color: green;
+}
+
 .chungus {
   display: flex;
   flex-direction: row;
@@ -119,12 +135,17 @@
   background-color: white;
   border-radius: 20px;
   padding: 10px;
+  cursor: pointer;
+}
+
+.h-b4:hover {
+  background-color: rgb(255, 205, 205);
 }
 
 .h-b4.active {
   background-color: red;
   color: white;
-  border: rgb(160, 0, 0);
+  border: none;
 }
 
 

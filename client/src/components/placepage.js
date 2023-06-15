@@ -12,6 +12,7 @@ const userID = useGetUserID();
 const { placeId } = useParams();
 const [place, setPlace] = useState(null);
 const [reviews, setReviews] = useState(null);
+const [activeFilter, setActiveFilter] = useState('');
 const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const closeModal = () => {
@@ -22,21 +23,32 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
     setModalIsOpen(true);
   };
 
-    useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const placeResponse = await axios.get(`http://localhost:3001/places/${placeId}`);
-        setPlace(placeResponse.data);
-    
-        const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews/toprated`);
-        setReviews(reviewsResponse.data); 
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const placeResponse = await axios.get(`http://localhost:3001/places/${placeId}`);
+      setPlace(placeResponse.data);
+  
+      const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews`);
+      setReviews(reviewsResponse.data); 
+    } catch (err) {
+      console.error(err);
+    }
+  };
     
     fetchData();
   }, [placeId]);
+
+
+  const fetchBySorted = async (filter) => {
+    try {
+      const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews/${filter}`);
+      setReviews(reviewsResponse.data);
+      setActiveFilter(filter);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (!place || !reviews) {
     return <div>Loading...</div>
@@ -72,10 +84,30 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
             </div>
             <div className="filters">
               <h2 className="readexpro rp1 white mr">SORT BY</h2>
-              <button className='h-b4 readexpro rp1 bold mr'>TOP RATED</button>
-              <button className='h-b4 readexpro rp1 bold mr'>LOWEST RATED</button>
-              <button className='h-b4 readexpro rp1 bold mr'>MOST LIKED</button>
-              <button className='h-b4 readexpro rp1 bold'>MOST DISLIKED</button>
+              <button
+        onClick={() => fetchBySorted('toprated')}
+        className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'toprated' ? 'active' : ''}`}
+      >
+        TOP RATED
+      </button>
+      <button
+        onClick={() => fetchBySorted('lowestrated')}
+        className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'lowestrated' ? 'active' : ''}`}
+      >
+        LOWEST RATED
+      </button>
+      <button
+        onClick={() => fetchBySorted('mostliked')}
+        className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'mostliked' ? 'active' : ''}`}
+      >
+        MOST LIKED
+      </button>
+      <button
+        onClick={() => fetchBySorted('mostdisliked')}
+        className={`h-b4 readexpro rp1 bold ${activeFilter === 'mostdisliked' ? 'active' : ''}`}
+      >
+        MOST DISLIKED
+      </button>
             </div>
           </div>
         </div>
@@ -92,7 +124,9 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
                 starDimension="40px" // Adjust the size of the stars
                 starSpacing="2px" // Adjust the spacing between stars
               />
-              <h2 className='h-b2 h-b2a readexpro rp1'>{review.category}</h2>
+              <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
+                {review.category}
+              </h2>
               <div className='chungus'> 
                 <h2 className='mr'>&#128077;</h2>
                 <p className='readexpro rp1 likes'>{review.likes}</p>

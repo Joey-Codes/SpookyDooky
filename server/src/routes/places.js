@@ -6,6 +6,7 @@ import { ReviewModel } from "../models/Reviews.js";
 
 const router = express.Router();
 
+/* Retrieve all Places */
 router.get("/", async (req, res) => {
     try {
         const response = await PlacesModel.find({});
@@ -15,6 +16,7 @@ router.get("/", async (req, res) => {
     }
 });
 
+/* Post a new Place */
 router.post("/", async (req, res) => {
     const recipe = new PlacesModel(req.body);
     try {
@@ -25,6 +27,7 @@ router.post("/", async (req, res) => {
     }
 });
 
+/* Retrieve specific Place by ID */
 router.get("/:id", async (req, res) => {
     try {
       const place = await PlacesModel.findById(req.params.id).exec();
@@ -34,7 +37,7 @@ router.get("/:id", async (req, res) => {
     }
   });
   
-
+/* Retrieve all Reviews associated with Place */
   router.get("/:id/reviews", async (req, res) => {
     try {
       const reviews = await ReviewModel.find({ placeId: req.params.id }).populate('placeId');
@@ -44,18 +47,41 @@ router.get("/:id", async (req, res) => {
     }
   });
 
-  router.get("/:id/reviews/toprated", async (req, res) => {
+  /* Retrieve all Reviews associated with Place sorted by filter */
+  router.get("/:id/reviews/:filter", async (req, res) => {
     try {
-      const reviews = await ReviewModel.find({ placeId: req.params.id })
+      const { id, filter } = req.params;
+      let sortCondition;
+  
+      switch (filter) {
+        case 'toprated':
+          sortCondition = { rating: -1 };
+          break;
+        case 'lowestrated':
+          sortCondition = { rating: 1 };
+          break;
+        case 'mostliked':
+          sortCondition = { likes: -1 };
+          break;
+        case 'mostdisliked':
+          sortCondition = { dislikes: -1 };
+          break;
+        default:
+          sortCondition = { rating: -1 };
+          break;
+      }
+  
+      const reviews = await ReviewModel.find({ placeId: id })
         .populate('placeId')
-        .sort({ rating: -1 }); // Sort by rating in descending order
+        .sort(sortCondition);
   
       res.send(reviews);
     } catch (err) {
       res.status(500).send(err);
     }
-  });
+  });  
 
+  /* Retrieve Place by 'name' field */
   router.get("/search/:name", async (req, res) => {
     try {
       const name = req.params.name;
@@ -66,7 +92,8 @@ router.get("/:id", async (req, res) => {
       res.status(500).send(err);
     }
   });  
-
+  
+  /* Retrieve Place by 'address' field */
   router.get("/search/address/:address", async (req, res) => {
     try {
       const address = req.params.address;
@@ -78,6 +105,7 @@ router.get("/:id", async (req, res) => {
     }
   });  
 
+  /* Delete Place by ID */
   router.delete("/delete/:id", async (req, res) => {
   try {
     const place = await PlacesModel.findByIdAndDelete(req.params.id).exec();
