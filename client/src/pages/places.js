@@ -22,6 +22,7 @@ const customStyles = {
 
 export const Places = () => {
   const userID = useGetUserID();
+  const [filter, setFilter] = useState("All Places");
   const [places, setPlaces] = useState([]);
   const [newPlaceId, setNewPlaceId] = useState('');
   const [query, setQuery] = useState('');
@@ -40,10 +41,15 @@ export const Places = () => {
   });
 
   const handleQuerySearch = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault(); 
     try {
       const response = await axios.get(`http://localhost:3001/places/searchquery/${query}`)
       setPlaces(response.data);
+      console.log(response.data);
+      setFilter("Search Results");
+      if (response.data.length === 0) {
+        setFilter("No Results!");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -96,6 +102,20 @@ export const Places = () => {
   const handleExistingPlaceClick = () => {
     navigate(`/places/${placeExists[0]._id}`);
   }
+
+  const fetchByFilter = async (filter) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/places/sorted/${filter}`);
+      setPlaces(response.data);
+      if (filter === "toprated") {
+        setFilter("Top Rated");
+      } else if (filter === "lowestrated") {
+        setFilter("Lowest Rated");
+      } 
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     const fetchPlaces = async () => {
@@ -154,7 +174,13 @@ export const Places = () => {
             <h2 className='white'>You can also search with the map</h2>
           </div>
           <div>
-            <h2 className='readexpro white rp1'>ADD A NEW PLACE</h2>
+            <h1 className='readexpro white rp1'>SORT BY</h1>
+            <br />
+            <button onClick={() => fetchByFilter('toprated')} className='h-b5 readexpro r1 mr'>Top Rated</button>
+            <button  onClick={() => fetchByFilter('lowestrated')} className='h-b5 readexpro r1'>Lowest Rated</button>
+          </div>
+          <div>
+            <h2 className='readexpro white rp1'>IF PLACE DOESN'T EXIST YET, ADD IT HERE</h2>
             <br />
             <button onClick={openModal} className='h-b5 readexpro r1'>ADD A NEW PLACE &#10133;</button>
             <Modal
@@ -182,7 +208,7 @@ export const Places = () => {
                 <br />
                 <button onClick={() => {
                   closeModal();
-                }} className='h-b h-b3a readexpro rp1'>CANCEL</button>
+                }} className='h-b3 readexpro rp1'>CANCEL</button>
               </div>
             </Modal>
           </div>
@@ -191,7 +217,10 @@ export const Places = () => {
     )}
         </div>
         <br />
-        <h1 className='readexpro rp2 bold top-rated'>Top Rated</h1>
+        <h1 className='readexpro rp2 bold filter'>{filter}</h1>
+        {filter === "No Results!" && (
+          <h2 className='readexpro filter'>Try checking your spelling!</h2>
+        )}
         <div className='places-display'>
           <Map />
           <div className='place-list'>
@@ -211,7 +240,7 @@ export const Places = () => {
                               />
                               <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
                             </div>
-                            <h2 className='readexpro italic white'>Address- {place.address}</h2>
+                            <h2 className='readexpro italic white'>{place.address}</h2>
                             <h2 className='readexpro white'>Description- {place.description}</h2>
                           </div>
                           <div className='place-image'>

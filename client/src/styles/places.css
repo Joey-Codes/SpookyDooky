@@ -3,7 +3,6 @@
   background-image: url('../images/ghost-background1.png');
   flex-direction: row;
   align-items: center;
-  height: 30vh;
   justify-content: space-evenly;
 }
 
@@ -11,7 +10,7 @@
   font-size: 25px;
 }
 
-.top-rated {
+.filter {
   margin-left: 40%;
   margin-bottom: 3%;
 }
@@ -91,19 +90,51 @@
 
 @media (max-width: 768px) {
   .places-title {
-    height: 10vh;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search {
+    font-size: 20px;
+  }
+
+  .filter {
+    margin-left: 0;
+  }
+
+  .map-container {
+    max-width: 100%;
+  }
+
+  .places-display {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .place-list {
+    flex-basis: 100%;
+  }
+
+  .entry-format {
+    flex-direction: column;
+    align-items: center;
   }
 
   .place-info {
     width: 100%;
+    text-align: center;
   }
 
   .place-image {
     margin-left: 0;
+    margin-top: 20px;
+    height: auto;
+    width: 100%;
   }
 
   .test {
-    width: 100%;
+    width: 80%;
   }
 
   .place-entry {

@@ -10,3 +10,5 @@ const PlacesSchema = new mongoose.Schema({
 });
 
 export const PlacesModel = mongoose.model("places", PlacesSchema); 
+
+PlacesModel.createIndexes({ name: "text", address: "text", description: "text" });

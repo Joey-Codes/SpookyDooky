@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useGetUserID } from '../hooks/useGetUserID';
 import StarRatings from 'react-star-ratings';
@@ -8,12 +8,17 @@ import "../styles/placepage.css";
 
 
 export const PlacePage = () => {
+const navigate = useNavigate();
 const userID = useGetUserID();
 const { placeId } = useParams();
 const [place, setPlace] = useState(null);
 const [reviews, setReviews] = useState(null);
 const [activeFilter, setActiveFilter] = useState('');
 const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const handleBackClick = () => {
+   navigate('/places');
+  }
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -56,6 +61,9 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <div>
+      <div className='back-button'>
+        <button onClick={handleBackClick} className='h-b6 readexpro'>&#8592;</button>
+      </div>
       <div className="placepage-title flex">
         <h1 className='readexpro rp2'>{place.name}</h1>
         <h3 className='readexpro red'>{place.description}</h3>
@@ -74,7 +82,7 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
               <h2 className='bangers b2 white h-b3a'>Scariness Rating</h2>
               <StarRatings
                 className="star-rating"
-                rating={3.21837} // Replace with your actual rating value
+                rating={place.rating} // Replace with your actual rating value
                 starRatedColor="red" // Customize the color of the filled stars
                 starEmptyColor="lightgray" // Customize the color of the empty stars
                 starDimension="50px" // Adjust the size of the stars
@@ -125,7 +133,7 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
                 starSpacing="2px" // Adjust the spacing between stars
               />
               <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
-                {review.category}
+                {review.category} 
               </h2>
               <div className='chungus'> 
                 <h2 className='mr'>&#128077;</h2>

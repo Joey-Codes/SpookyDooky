@@ -35,6 +35,31 @@ router.get("/searchquery/:query", async (req, res) => {
   }
 });
 
+/* Retrieve all Places sorted by filter */
+router.get("/sorted/:filter", async (req, res) => {
+  try {
+    const { filter } = req.params;
+    let sortCondition;
+  
+    switch (filter) {
+      case 'toprated':
+        sortCondition = { rating: -1 };
+        break;
+      case 'lowestrated':
+        sortCondition = { rating: 1 };
+        break;
+      default:
+        sortCondition = { rating: -1 };
+        break;
+    }
+  
+    const places = await PlacesModel.find().sort(sortCondition);
+    res.json(places);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 
 /* Post a new Place */
 router.post("/", async (req, res) => {
@@ -55,7 +80,7 @@ router.get("/:id", async (req, res) => {
     } catch (err) {
       return res.status(500).send(err);
     }
-  });
+  }); 
   
 /* Retrieve all Reviews associated with Place */
   router.get("/:id/reviews", async (req, res) => {

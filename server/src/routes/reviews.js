@@ -5,6 +5,7 @@ import { verifyToken } from "./users.js";
 
 const router = express.Router();
 
+/* Retrieve all Reviews */
 router.get("/", async (req, res) => {
     try {
         const response = await ReviewModel.find({});
@@ -14,6 +15,7 @@ router.get("/", async (req, res) => {
     }
 });
 
+/* Post a new Review */
 router.post("/", async (req, res) => {
     const review = new ReviewModel(req.body);
     try {
