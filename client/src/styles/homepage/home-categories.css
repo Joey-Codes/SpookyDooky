@@ -1,7 +1,7 @@
 .home-categories {
     background-color: black;
     background-image: url('../../images/ghost-background1.png');
-    padding-top: 50px;
+    padding-top: 150px;
     padding-bottom: 50px;
     align-items: center;
 }
@@ -24,6 +24,20 @@
     position: relative;
     transition: all 0.5s ease;
 }
+
+.fade-right {
+    animation: fadeRight 1s ease-out forwards;
+}
+  
+@keyframes fadeRight {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
 
 .h-b2:hover {
     animation: shake 0.5s;

@@ -1,15 +1,30 @@
+import { useState } from 'react';
 import '../../styles/homepage/home-categories.css';
 import { Link } from 'react-router-dom';
+import { Waypoint } from 'react-waypoint';
 
 export const HomeCategories = () => {
+  const [fadeRight, setFadeRight] = useState(false);
+  const [fadeRight2, setFadeRight2] = useState(false);
+  const [fadeRight3, setFadeRight3] = useState(false);
+  const [fadeRight4, setFadeRight4] = useState(false);
+
   return (
     <div className="home-categories flex">
-      <div className="test">
-        <button className='h-b2 h-b2a bangers b2'>PARANORMAL &#x1F47B;</button>
-        <button className='h-b2 h-b2b bangers b2'>ALIENS &#x1F47D;</button>
-        <button className='h-b2 h-b2c bangers b2'>CRYPTIDS &#x1F479;</button>
-        <button className='h-b2 h-b2d bangers b2'>UNEXPLAINED &#x2754;</button>
-      </div>
+        <div className="test">
+          <Waypoint onEnter={() => setFadeRight(true)}>
+            <button className={`h-b2 h-b2a bangers b2 ${fadeRight ? 'fade-right' : ''}`}>PARANORMAL &#x1F47B;</button>
+          </Waypoint>
+          <Waypoint onEnter={() => setFadeRight2(true)}>
+            <button className={`h-b2 h-b2b bangers b2 ${fadeRight2 ? 'fade-right' : ''}`}>ALIENS &#x1F47D;</button>
+          </Waypoint>
+          <Waypoint onEnter={() => setFadeRight3(true)}>
+            <button className={`h-b2 h-b2c bangers b2 ${fadeRight3 ? 'fade-right' : ''}`}>CRYPTIDS &#x1F479;</button>
+          </Waypoint>
+          <Waypoint onEnter={() => setFadeRight4(true)}>
+            <button className={`h-b2 h-b2d bangers b2 ${fadeRight4 ? 'fade-right' : ''}`}>UNEXPLAINED &#x2754;</button>
+          </Waypoint>
+        </div>
       <div>
         <h1 className='readexpro rp2 white'>PICK FROM</h1>
         <h1 className='readexpro rp2 white'>DIFFERENT</h1>

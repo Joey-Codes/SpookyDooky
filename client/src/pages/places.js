@@ -111,6 +111,8 @@ export const Places = () => {
         setFilter("Top Rated");
       } else if (filter === "lowestrated") {
         setFilter("Lowest Rated");
+      } else if (filter === "mostreviewed") {
+        setFilter("Most Reviewed");
       } 
     } catch (err) {
       console.error(err);
@@ -159,28 +161,41 @@ export const Places = () => {
           <div>
             <br />
             <br />
-            <br />
             <h1 className='readexpro white rp1'>SEARCH FOR A PLACE &#x1F50D;</h1>
             <br />
             <form onSubmit={handleQuerySearch}>
               <input
-                className='h-b5 search'
+                className='h-b5 readexpro search'
                 type='text'
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
               />
-              <button type='submit' className='h-b5 readexpro search'>Go</button>
+              <button type='submit' className='h-b5 readexpro search'>GO</button>
             </form>
             <h2 className='white'>You can also search with the map</h2>
           </div>
           <div>
+            <br />
+            <br />
             <h1 className='readexpro white rp1'>SORT BY</h1>
             <br />
-            <button onClick={() => fetchByFilter('toprated')} className='h-b5 readexpro r1 mr'>Top Rated</button>
-            <button  onClick={() => fetchByFilter('lowestrated')} className='h-b5 readexpro r1'>Lowest Rated</button>
+            <div>
+              <button onClick={() => fetchByFilter('toprated')} className='h-b5 readexpro r1 mr'>Top Rated</button>
+              <button  onClick={() => fetchByFilter('lowestrated')} className='h-b5 readexpro r1'>Lowest Rated</button>
+            </div>
+            <br />
+            <div>
+              <button  onClick={() => fetchByFilter('mostreviewed')} className='h-b5 readexpro r1 mr'>Most Reviewed</button>
+              <select className='h-b5 readexpro r1' name="dog-names" id="dog-names">
+                <option className='readexpro' value="rigatoni">CA</option> 
+                <option value="dave">NV</option> 
+                <option value="pumpernickel">HI</option> 
+                <option value="reeses">AK</option> 
+              </select>
+            </div>
           </div>
           <div>
-            <h2 className='readexpro white rp1'>IF PLACE DOESN'T EXIST YET, ADD IT HERE</h2>
+            <h2 className='readexpro white rp1'>IF PLACE DOESN'T EXIST, ADD IT HERE</h2>
             <br />
             <button onClick={openModal} className='h-b5 readexpro r1'>ADD A NEW PLACE &#10133;</button>
             <Modal

@@ -1,6 +1,5 @@
 .home-featured {
     background-color: black;
-    background-image: url('../../images/ghost-background1.png');
     flex-direction: column;
     text-align: center;
     align-items: center;
@@ -19,14 +18,14 @@
     opacity: 0;
 }
 
-.fade-in {
-    animation: fadeIn 2s ease-out forwards;
+.fade-up {
+    animation: fadeUp 2s ease-out forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(30%);
+        transform: translateY(80%);
     }
     to {
         opacity: 1;

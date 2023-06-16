@@ -45,8 +45,11 @@ router.get("/sorted/:filter", async (req, res) => {
       case 'toprated':
         sortCondition = { rating: -1 };
         break;
-      case 'lowestrated':
+      case 'lowestratedx`':
         sortCondition = { rating: 1 };
+        break;
+      case 'mostreviewed`':
+        sortCondition = { numRatings: -1 };
         break;
       default:
         sortCondition = { rating: -1 };

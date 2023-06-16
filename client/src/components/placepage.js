@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useGetUserID } from '../hooks/useGetUserID';
 import StarRatings from 'react-star-ratings';
@@ -62,7 +62,7 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div>
       <div className='back-button'>
-        <button onClick={handleBackClick} className='h-b6 readexpro'>&#8592;</button>
+        <button onClick={handleBackClick} className='h-b6 red readexpro'>&#129044;</button>
       </div>
       <div className="placepage-title flex">
         <h1 className='readexpro rp2'>{place.name}</h1>
@@ -124,6 +124,7 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
       <ul className='review-list'>
         {reviews.map((review) => (
           <div className="review-entry" key={review._id}>
+            <h2>{review.createdAt}</h2>
             <div className='rating-top-portion'>
               <StarRatings
                 rating={review.rating} // Replace with your actual rating value

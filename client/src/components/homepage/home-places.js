@@ -1,9 +1,12 @@
 import '../../styles/homepage/home-places.css';
 import glasses_ghost from '../../images/glasses_ghost.png';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Waypoint } from 'react-waypoint';
 
 export const HomePlaces = () => {
+  const [fadeLeft, setFadeLeft] = useState(false);
+
   return (
     <div className='home-places flex'>
       <div className='left-side ls2'>
@@ -15,11 +18,13 @@ export const HomePlaces = () => {
           <button className='h-b rammettoone r1'>GO!</button>
         </Link>
       </div>
-      <div className='home-places-right'>
-        <img src={glasses_ghost} alt="Placeholder 1" className='sample-place'/>
-        <img src={glasses_ghost} alt="Placeholder 2" className='sample-place'/>
-        <img src={glasses_ghost} alt="Placeholder 3" className='sample-place'/>
-      </div>
+      <Waypoint onEnter={() => setFadeLeft(true)}>
+         <div className='home-places-right'>
+          <img src={glasses_ghost} alt="Placeholder 1" className={`sample-place ${fadeLeft ? 'fade-left1' : ''}`}  />
+          <img src={glasses_ghost} alt="Placeholder 2" className={`sample-place ${fadeLeft ? 'fade-left2' : ''}`}  />
+          <img src={glasses_ghost} alt="Placeholder 3" className={`sample-place ${fadeLeft ? 'fade-left3' : ''}`}  />
+         </div>
+      </Waypoint>
     </div>
   );
 }

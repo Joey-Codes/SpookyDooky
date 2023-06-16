@@ -14,8 +14,8 @@ export const HomeIntro = () => {
         <h1 className='chango c1 red'> DOOKY</h1>
         <h2 className='readexpro rp1 white'>FIND AND RATE SPOOKY PLACES</h2>
         <br />
-        <Link to="/auth">
-          <button className='h-b rammettoone r1'>SIGN UP</button>
+        <Link to="/places">
+          <button className='h-b rammettoone r1'>LET'S GO!</button>
         </Link>
         <br />
         <br />
