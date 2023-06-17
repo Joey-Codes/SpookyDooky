@@ -158,5 +158,11 @@
   border: none;
 }
 
+.vote {
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
 
   

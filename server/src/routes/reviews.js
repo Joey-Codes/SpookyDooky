@@ -26,4 +26,45 @@ router.post("/", async (req, res) => {
     }
 });
 
+/* Increment a review's like by 1 */
+router.put('/:id/like', async (req, res) => {
+    try {
+      const reviewId = req.params.id;
+      const review = await ReviewModel.findById(reviewId);
+  
+      if (!review) {
+        return res.status(404).json({ error: 'Review not found' });
+      }
+  
+      review.likes += 1;
+      await review.save();
+  
+      return res.json({ message: 'Like added successfully', review });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+/* Increment a review's like by 1 */
+router.put('/:id/dislike', async (req, res) => {
+    try {
+      const reviewId = req.params.id;
+      const review = await ReviewModel.findById(reviewId);
+  
+      if (!review) {
+        return res.status(404).json({ error: 'Review not found' });
+      }
+  
+      review.dislikes += 1;
+      await review.save();
+  
+      return res.json({ message: 'Like added successfully', review });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+
 export {router as reviewsRouter};

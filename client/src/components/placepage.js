@@ -16,6 +16,8 @@ const [reviews, setReviews] = useState(null);
 const [activeFilter, setActiveFilter] = useState('');
 const [modalIsOpen, setModalIsOpen] = useState(false);
 
+console.log(userID);
+
   const handleBackClick = () => {
    navigate('/places');
   }
@@ -52,6 +54,39 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
       setActiveFilter(filter);
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  
+  const handleLike = async (reviewId) => {
+    if (userID == null ) {
+      alert("You must be logged in to like a review!");
+    }
+    if (userID != null) {
+      try {
+        console.log(reviewId);
+        await axios.put(`http://localhost:3001/reviews/${reviewId}/like`);
+        const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews`);
+        setReviews(reviewsResponse.data);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
+  const handleDislike = async (reviewId) => {
+    if (userID == null) {
+      alert("You must be logged in to dislike a review!");
+    }
+    if (userID != null) {
+      try {
+        console.log(reviewId);
+        await axios.put(`http://localhost:3001/reviews/${reviewId}/dislike`);
+        const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews`);
+        setReviews(reviewsResponse.data);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -137,11 +172,11 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
                 {review.category} 
               </h2>
               <div className='chungus'> 
-                <h2 className='mr'>&#128077;</h2>
+                <button onClick={() => handleLike(review._id)} className='vote mr'>&#128077;</button>
                 <p className='readexpro rp1 likes'>{review.likes}</p>
               </div>
               <div className='chungus'>
-                <h2 className='mr'>&#128078;</h2>
+                <button onClick={() => handleDislike(review._id)} className='vote mr'>&#128078;</button>
                 <p className='readexpro rp1 '>{review.dislikes}</p>
               </div>
             </div>
