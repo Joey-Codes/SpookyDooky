@@ -58,13 +58,14 @@ export const Places = () => {
   const encodedPlaceAddress = encodeURIComponent(newPlace.address);
 
   const handlePlaceSelect = (place) => {
+    console.log(place);
     setNewPlace(prevState => ({
       ...prevState,
       name: place.name,
-      address: place.formatted_address
+      address: place.formatted_address,
     }));
-  };  
-
+  };
+  
   const createPlace = async (event) => {
     event.preventDefault();
     try {
@@ -259,7 +260,7 @@ export const Places = () => {
                             <h2 className='readexpro white'>Description- {place.description}</h2>
                           </div>
                           <div className='place-image'>
-                            <img className="test" alt='place-pic'></img>
+                            <img className="test" alt='place-pic' />
                           </div>
                           <br />
                       </div>

@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { ReviewModel } from "../models/Reviews.js";
+import { PlacesModel } from "../models/Places.js";
 import { verifyToken } from "./users.js";
 
 const router = express.Router();
@@ -26,7 +27,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-/* Increment a review's like by 1 */
+/* Increment a review's likes by 1 */
 router.put('/:id/like', async (req, res) => {
     try {
       const reviewId = req.params.id;
@@ -46,7 +47,7 @@ router.put('/:id/like', async (req, res) => {
     }
   });
 
-/* Increment a review's like by 1 */
+/* Increment a review's dislikes by 1 */
 router.put('/:id/dislike', async (req, res) => {
     try {
       const reviewId = req.params.id;
@@ -65,6 +66,43 @@ router.put('/:id/dislike', async (req, res) => {
       return res.status(500).json({ error: 'Server error' });
     }
   });
+
+  /* Delete a review given its ID */
+  router.delete('/delete/:id', async (req, res) => {
+    const reviewId = req.params.id;
+  
+    try {
+      // Find the review by ID
+      const review = await ReviewModel.findById(reviewId);
+  
+      if (!review) {
+        return res.status(404).json({ error: 'Review not found' });
+      }
+  
+      // Get the placeId associated with the review
+      const placeId = review.placeId;
+  
+      // Delete the review
+      await review.deleteOne();
+  
+      // Update the place information
+      const averageRating = await ReviewModel.aggregate([
+        { $match: { placeId } },
+        { $group: { _id: null, averageRating: { $avg: '$rating' } } },
+      ]);
+  
+      const place = await PlacesModel.findById(placeId);
+      place.rating = averageRating.length > 0 ? averageRating[0].averageRating : 0;
+      place.numRatings = await ReviewModel.countDocuments({ placeId });
+      await place.save();
+  
+      return res.status(200).json({ message: 'Review deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
 
 
 export {router as reviewsRouter};

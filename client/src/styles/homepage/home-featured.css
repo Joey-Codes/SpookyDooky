@@ -19,7 +19,7 @@
 }
 
 .fade-up {
-    animation: fadeUp 1s ease-out forwards;
+    animation: fadeUp 1.5s ease-out forwards;
 }
 
 @keyframes fadeUp {
