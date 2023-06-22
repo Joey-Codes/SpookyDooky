@@ -16,6 +16,17 @@
    width: 20%;
 }
 
+.community-section:hover {
+  background-color: black;
+}
+
+.community-section:hover .community-example {
+  content: url("../../images/glasses_ghost.png");
+}
+
+.community-section:hover h2 {
+}
+
 .ct1 {
     font-size: 40px;
 }
@@ -64,4 +75,6 @@
     opacity: 0;
   }
 }
+
+
 

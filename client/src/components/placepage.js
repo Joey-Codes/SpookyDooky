@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useGetUserID } from '../hooks/useGetUserID';
 import StarRatings from 'react-star-ratings';
 import { ReviewModal } from './reviewmodal';
-import { format } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import "../styles/placepage.css";
 
 export const PlacePage = () => {
@@ -154,23 +155,40 @@ export const PlacePage = () => {
               </button>
               <button
                 onClick={() => fetchBySorted('mostdisliked')}
-                className={`h-b4 readexpro rp1 bold ${activeFilter === 'mostdisliked' ? 'active' : ''}`}
+                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'mostdisliked' ? 'active' : ''}`}
               >
                 MOST DISLIKED
+              </button>
+              <button
+                onClick={() => fetchBySorted('newest')}
+                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'newest' ? 'active' : ''}`}
+              >
+                NEWEST
+              </button>
+              <button
+                onClick={() => fetchBySorted('oldest')}
+                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'oldest' ? 'active' : ''}`}
+              >
+                OLDEST
               </button>
             </div>
           </div>
         </div>
       </div>
-      <h2>Reviews:</h2>
+      <br />
+      <br />
       {reviews.length === 0 ? (
-        <p>There are no reviews yet! Be the first!</p>
+        <div>
+          <br />
+          <h1 className='review-entry flex readexpro rp2'>There are no reviews yet! Be the first!</h1>
+          <br />
+        </div>
       ) : (
         <ul className='review-list'>
           {reviews.map((review) => (
             <div className="review-entry" key={review._id}>
-              <h2>{format(new Date(review.createdAt), 'MMM d, yyyy')}</h2>
-              <div className='rating-top-portion'>
+              <h2>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
+            <div className='rating-top-portion'>
                 <StarRatings
                   rating={review.rating} // Replace with your actual rating value
                   starRatedColor="red" // Customize the color of the filled stars

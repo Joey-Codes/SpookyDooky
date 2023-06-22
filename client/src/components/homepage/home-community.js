@@ -1,10 +1,11 @@
 import React from "react";
 import "../../styles/homepage/home-community.css";
 import glasses_ghost from "../../images/glasses_ghost.png";
+import weightlifting_ghost from "../../images/weightlifting_ghost.png";
 
 export const HomeCommunity = () => {
   return (
-    <div className="home-community lightning-container">
+    <div className="home-community">
       <h1 className="readexpro rp2">JOIN OUR COMMUNITY</h1>
       <br />
       <br />

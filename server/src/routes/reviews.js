@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { ReviewModel } from "../models/Reviews.js";
 import { PlacesModel } from "../models/Places.js";
 import { verifyToken } from "./users.js";
+import { UserModel } from "../models/Users.js";
 
 const router = express.Router();
 
@@ -66,6 +67,33 @@ router.put('/:id/dislike', async (req, res) => {
       return res.status(500).json({ error: 'Server error' });
     }
   });
+
+  router.get('/owner/:reviewId', async (req, res) => {
+    try {
+      const { reviewId } = req.params;
+  
+      // Find the review by reviewId
+      const review = await ReviewModel.findById(reviewId);
+  
+      if (!review) {
+        return res.status(404).json({ message: 'Review not found' });
+      }
+  
+      // Find the user by userId associated with the review
+      const user = await UserModel.findById(review.userId);
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Return the username
+      res.json({ username: user.username });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
 
   /* Delete a review given its ID */
   router.delete('/delete/:id', async (req, res) => {

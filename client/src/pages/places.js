@@ -37,7 +37,8 @@ export const Places = () => {
     rating: 1,
     numRatings: 0,
     address: "",
-    description: "",
+    website: "",
+    img: ""
   });
 
   const handleQuerySearch = async (event) => {
@@ -63,6 +64,8 @@ export const Places = () => {
       ...prevState,
       name: place.name,
       address: place.formatted_address,
+      website: place.website,
+      img: place.photos ? place.photos[0].getUrl() : null
     }));
   };
   
@@ -257,10 +260,14 @@ export const Places = () => {
                               <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
                             </div>
                             <h2 className='readexpro italic white'>{place.address}</h2>
-                            <h2 className='readexpro white'>Description- {place.description}</h2>
+                            {place.website && (
+                              <a className='readexpro place-link' href={place.website} target='_blank' rel="noreferrer">
+                                Website
+                              </a>
+                            )}
                           </div>
                           <div className='place-image'>
-                            <img className="test" alt='place-pic' />
+                            <img className='img' src={place.img} alt='place-pic' />
                           </div>
                           <br />
                       </div>

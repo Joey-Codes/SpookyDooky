@@ -54,7 +54,7 @@ export const About = () => {
                 <div>
                     <h2 className='readexpro'>The next part of a review is it category. All reviews 
                         all categorized by the type of phenomena it describes. The four categories -
-                        Paranormal, Aliens, Cryptids, and Unexplained are explained below.
+                        Ghosts, Aliens, Cryptids, and Unexplained are explained below.
                     </h2>
                     <br />
                     <div className='about-row'>

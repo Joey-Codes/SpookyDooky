@@ -13,7 +13,7 @@ export const HomeCategories = () => {
     <div className="home-categories flex">
         <div className="test">
           <Waypoint onEnter={() => setFadeRight(true)}>
-            <button className={`h-b2 h-b2a bangers b2 ${fadeRight ? 'fade-right' : ''}`}>PARANORMAL &#x1F47B;</button>
+            <button className={`h-b2 h-b2a bangers b2 ${fadeRight ? 'fade-right' : ''}`}>GHOSTS &#x1F47B;</button>
           </Waypoint>
           <Waypoint onEnter={() => setFadeRight2(true)}>
             <button className={`h-b2 h-b2b bangers b2 ${fadeRight2 ? 'fade-right' : ''}`}>ALIENS &#x1F47D;</button>

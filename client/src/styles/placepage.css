@@ -102,12 +102,14 @@
 }
 
 .review-entry {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 1%;
-    margin-bottom: 5vh;
-    width: 75%;
-  }
+  box-shadow: 5px 5px #fa3838;
+  background-color: rgb(255, 222, 222); 
+  border: 1px solid #fa3838;
+  border-radius: 10px;
+  padding: 1%;
+  margin-bottom: 5vh;
+  width: 75%;
+}
 
 .filters {
   display: flex;
