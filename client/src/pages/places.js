@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import StarRatings from 'react-star-ratings';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { SearchBar } from '../components/searchbar';
 import { Map } from '../components/map';  
 import { ReviewModal } from '../components/reviewmodal';
@@ -21,12 +21,13 @@ const customStyles = {
 };
 
 export const Places = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const userID = useGetUserID();
   const [filter, setFilter] = useState("All Places");
   const [places, setPlaces] = useState([]);
   const [newPlaceId, setNewPlaceId] = useState('');
   const [query, setQuery] = useState('');
-  const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [reviewModalIsOpen, setReviewModalIsOpen] = useState(false);
   const [result, setResult] = useState('');
@@ -42,15 +43,15 @@ export const Places = () => {
   });
 
   const handleQuerySearch = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
+    if (query === "") {
+      return; // No query provided, return early
+    } 
     try {
-      const response = await axios.get(`http://localhost:3001/places/searchquery/${query}`)
+      navigate(`/places?query=${encodeURIComponent(query)}`);
+      const response = await axios.get(`http://localhost:3001/places/searchquery/${query}`);
       setPlaces(response.data);
-      console.log(response.data);
-      setFilter("Search Results");
-      if (response.data.length === 0) {
-        setFilter("No Results!");
-      }
+      setFilter(response.data.length > 0 ? "Search Results" : "No Results!");
     } catch (err) {
       console.log(err);
     }
@@ -124,17 +125,27 @@ export const Places = () => {
   };
 
   useEffect(() => {
+    const queryParam = new URLSearchParams(location.search).get("query");
+  
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/places");
+        let response;
+        if (queryParam) {
+          response = await axios.get(`http://localhost:3001/places/searchquery/${queryParam}`);
+          setFilter(response.data.length > 0 ? "Search Results" : `No Results for ${queryParam}!`);
+        } else {
+          response = await axios.get("http://localhost:3001/places");
+          setFilter("All Places");
+        }
         setPlaces(response.data);
       } catch (err) {
         console.log(err);
       }
     };
-
+  
     fetchPlaces();
-  }, []);
+  }, [location.search, query]);  
+  
 
   useEffect(() => {
     if (encodedPlaceAddress && isInitialSelection) {
@@ -217,12 +228,11 @@ export const Places = () => {
                 <h1 className='readexpro bold'>{newPlace.name}</h1>
                 <h2 className='readexpro italic'>{newPlace.address}</h2>
                 <h2 className='readexpro red'>{result}</h2>
-                {result === "There are already reviews for this place!" && (
+                {result === "There are already reviews for this place!" ? (
                   <button className='h-b3 readexpro form-font' onClick={handleExistingPlaceClick}>Go to {newPlace.name} page</button>
-                )}
-                {result === "There are no reviews for this place yet! Be the first!" && (
+                ) : result === "There are no reviews for this place yet! Be the first!" ? (
                   <button onClick={createPlace} className='h-b3 readexpro form-font'>Add The First Review!</button>
-                )}
+                ) : null}
                 <br />
                 <br />
                 <button onClick={() => {

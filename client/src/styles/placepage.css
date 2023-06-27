@@ -1,11 +1,21 @@
 .placepage-title {
-  background-color: aqua;
-  flex-direction: column;
+  background-color: rgb(0, 0, 0);
+  background-image: url('../images/ghost-background1.png');
+  flex-direction: row;
   align-items: center;
 } 
 
+.title-image-section {
+  margin-right: 5%;
+}
+
+.title-image {
+  max-width: 700px;
+  max-height: 500px;
+}
+
 .back-button {
-  background-color: aqua;
+  margin-right: 5%;
 }
 
 .h-b6 {
@@ -102,9 +112,9 @@
 }
 
 .review-entry {
-  box-shadow: 5px 5px #fa3838;
-  background-color: rgb(255, 222, 222); 
-  border: 1px solid #fa3838;
+  box-shadow: 5px 5px #000000;
+  background-color: rgb(194, 194, 194); 
+  border: 1px solid #000000;
   border-radius: 10px;
   padding: 1%;
   margin-bottom: 5vh;

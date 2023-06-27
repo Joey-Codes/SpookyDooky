@@ -13,16 +13,16 @@ export const HomeCategories = () => {
     <div className="home-categories flex">
         <div className="test">
           <Waypoint onEnter={() => setFadeRight(true)}>
-            <button className={`h-b2 h-b2a bangers b2 ${fadeRight ? 'fade-right' : ''}`}>GHOSTS &#x1F47B;</button>
+            <button className={`h-b2 h-b2a hc bangers b2 ${fadeRight ? 'fade-right' : ''}`}>GHOSTS &#x1F47B;</button>
           </Waypoint>
           <Waypoint onEnter={() => setFadeRight2(true)}>
-            <button className={`h-b2 h-b2b bangers b2 ${fadeRight2 ? 'fade-right' : ''}`}>ALIENS &#x1F47D;</button>
+            <button className={`h-b2 h-b2b hc bangers b2 ${fadeRight2 ? 'fade-right' : ''}`}>ALIENS &#x1F47D;</button>
           </Waypoint>
           <Waypoint onEnter={() => setFadeRight3(true)}>
-            <button className={`h-b2 h-b2c bangers b2 ${fadeRight3 ? 'fade-right' : ''}`}>CRYPTIDS &#x1F479;</button>
+            <button className={`h-b2 h-b2c hc bangers b2 ${fadeRight3 ? 'fade-right' : ''}`}>CRYPTIDS &#x1F479;</button>
           </Waypoint>
           <Waypoint onEnter={() => setFadeRight4(true)}>
-            <button className={`h-b2 h-b2d bangers b2 ${fadeRight4 ? 'fade-right' : ''}`}>UNEXPLAINED &#x2754;</button>
+            <button className={`h-b2 h-b2d hc bangers b2 ${fadeRight4 ? 'fade-right' : ''}`}>UNEXPLAINED &#x2754;</button>
           </Waypoint>
         </div>
       <div>

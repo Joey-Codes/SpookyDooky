@@ -9,8 +9,11 @@ export const HomeFeatured = () => {
 
   return (
     <div className='home-featured flex'>
-      <div>
-        <h1 className='readexpro rp2 red'>REVIEWS</h1>
+      <br />
+      <br />
+      <br />
+      <div className='hf-title'>
+        <h1 className='readexpro rp2 red mr'>REVIEWS</h1>
         <h1 className='readexpro rp2 white'>FOR ALL THINGS SPOOKY</h1>
       </div>
       <br />

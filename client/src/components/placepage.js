@@ -8,7 +8,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import "../styles/placepage.css";
 
-export const PlacePage = () => {
+export const PlacePage = ({ query }) => {
   const navigate = useNavigate();
   const userID = useGetUserID();
   const { placeId } = useParams();
@@ -105,12 +105,22 @@ export const PlacePage = () => {
   return (
     <div>
       <div className='back-button'>
-        <button onClick={handleBackClick} className='h-b6 red readexpro'>&#129044;</button>
+        
       </div>
       <div className="placepage-title flex">
-        <h1 className='readexpro rp2'>{place.name}</h1>
-        <h3 className='readexpro red'>{place.description}</h3>
-        <h3 className='readexpro red'>{place.address}</h3>
+      <button onClick={handleBackClick} className='h-b6 readexpro white back-button'>&#129044;</button>
+        <div className='title-image-section'>
+          <img src={place.img} alt='place-pic' className='title-image'/>
+        </div>
+        <div>
+          <h1 className='readexpro rp2 red'>{place.name}</h1>
+          <h2 className='readexpro white'>{place.address}</h2>
+          {place.website && (
+            <a className='readexpro white' href={place.website} target='_blank' rel="noreferrer">
+              Visit Website
+            </a>
+          )}
+        </div>
       </div>
       <div className='placepage-middle flex'>
         <div className='place-options'>
@@ -127,7 +137,7 @@ export const PlacePage = () => {
                 className="star-rating"
                 rating={place.rating} // Replace with your actual rating value
                 starRatedColor="red" // Customize the color of the filled stars
-                starEmptyColor="lightgray" // Customize the color of the empty stars
+                starEmptyColor="white" // Customize the color of the empty stars
                 starDimension="50px" // Adjust the size of the stars
                 starSpacing="2px" // Adjust the spacing between stars
               />
@@ -187,12 +197,12 @@ export const PlacePage = () => {
         <ul className='review-list'>
           {reviews.map((review) => (
             <div className="review-entry" key={review._id}>
-              <h2>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
+              <h2 className='italic'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
             <div className='rating-top-portion'>
                 <StarRatings
                   rating={review.rating} // Replace with your actual rating value
                   starRatedColor="red" // Customize the color of the filled stars
-                  starEmptyColor="lightgray" // Customize the color of the empty stars
+                  starEmptyColor="white" // Customize the color of the empty stars
                   starDimension="40px" // Adjust the size of the stars
                   starSpacing="2px" // Adjust the spacing between stars
                 />

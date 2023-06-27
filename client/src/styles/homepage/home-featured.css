@@ -6,6 +6,11 @@
     position: relative;
   }
 
+.hf-title {
+    display: flex;
+    flex-direction: row;
+}
+
 .rp2 {
     font-size: 65px;
 }
