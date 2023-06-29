@@ -108,12 +108,6 @@ router.get("/:id", async (req, res) => {
         case 'lowestrated':
           sortCondition = { rating: 1 };
           break;
-        case 'mostliked':
-          sortCondition = { likes: -1 };
-          break;
-        case 'mostdisliked':
-          sortCondition = { dislikes: -1 };
-          break;
         case 'newest':
           sortCondition = { createdAt: -1 };
           break;

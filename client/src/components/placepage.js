@@ -66,47 +66,12 @@ export const PlacePage = ({ query }) => {
     }
   };
 
-  const handleLike = async (reviewId) => {
-    if (userID == null) {
-      alert("You must be logged in to like a review!");
-    }
-    if (userID != null) {
-      try {
-        console.log(reviewId);
-        await axios.put(`http://localhost:3001/reviews/${reviewId}/like`);
-        const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews`);
-        setReviews(reviewsResponse.data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  };
-
-  const handleDislike = async (reviewId) => {
-    if (userID == null) {
-      alert("You must be logged in to dislike a review!");
-    }
-    if (userID != null) {
-      try {
-        console.log(reviewId);
-        await axios.put(`http://localhost:3001/reviews/${reviewId}/dislike`);
-        const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews`);
-        setReviews(reviewsResponse.data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  };
-
   if (!place || !reviews) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <div className='back-button'>
-        
-      </div>
       <div className="placepage-title flex">
       <button onClick={handleBackClick} className='h-b6 readexpro white back-button'>&#129044;</button>
         <div className='title-image-section'>
@@ -116,7 +81,7 @@ export const PlacePage = ({ query }) => {
           <h1 className='readexpro rp2 red'>{place.name}</h1>
           <h2 className='readexpro white'>{place.address}</h2>
           {place.website && (
-            <a className='readexpro white' href={place.website} target='_blank' rel="noreferrer">
+            <a className='readexpro' href={place.website} target='_blank' rel="noreferrer">
               Visit Website
             </a>
           )}
@@ -158,18 +123,6 @@ export const PlacePage = ({ query }) => {
                 LOWEST RATED
               </button>
               <button
-                onClick={() => fetchBySorted('mostliked')}
-                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'mostliked' ? 'active' : ''}`}
-              >
-                MOST LIKED
-              </button>
-              <button
-                onClick={() => fetchBySorted('mostdisliked')}
-                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'mostdisliked' ? 'active' : ''}`}
-              >
-                MOST DISLIKED
-              </button>
-              <button
                 onClick={() => fetchBySorted('newest')}
                 className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'newest' ? 'active' : ''}`}
               >
@@ -209,14 +162,6 @@ export const PlacePage = ({ query }) => {
                 <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
                   {review.category}
                 </h2>
-                <div className='chungus'>
-                  <button onClick={() => handleLike(review._id)} className='vote mr'>&#128077;</button>
-                  <p className='readexpro rp1 likes'>{review.likes}</p>
-                </div>
-                <div className='chungus'>
-                  <button onClick={() => handleDislike(review._id)} className='vote mr'>&#128078;</button>
-                  <p className='readexpro rp1 '>{review.dislikes}</p>
-                </div>
               </div>
               <p className='readexpro rp1'>{review.description}</p>
               <button onClick={() => handleDeleteReview(review._id)}>&#128465;</button>

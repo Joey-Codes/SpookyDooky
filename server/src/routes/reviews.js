@@ -28,71 +28,32 @@ router.post("/", async (req, res) => {
     }
 });
 
-/* Increment a review's likes by 1 */
-router.put('/:id/like', async (req, res) => {
-    try {
-      const reviewId = req.params.id;
-      const review = await ReviewModel.findById(reviewId);
-  
-      if (!review) {
-        return res.status(404).json({ error: 'Review not found' });
-      }
-  
-      review.likes += 1;
-      await review.save();
-  
-      return res.json({ message: 'Like added successfully', review });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Server error' });
-    }
-  });
 
-/* Increment a review's dislikes by 1 */
-router.put('/:id/dislike', async (req, res) => {
-    try {
-      const reviewId = req.params.id;
-      const review = await ReviewModel.findById(reviewId);
-  
-      if (!review) {
-        return res.status(404).json({ error: 'Review not found' });
-      }
-  
-      review.dislikes += 1;
-      await review.save();
-  
-      return res.json({ message: 'Like added successfully', review });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Server error' });
-    }
-  });
+router.get('/owner/:reviewId', async (req, res) => {
+  try {
+    const { reviewId } = req.params;
 
-  router.get('/owner/:reviewId', async (req, res) => {
-    try {
-      const { reviewId } = req.params;
-  
-      // Find the review by reviewId
-      const review = await ReviewModel.findById(reviewId);
-  
-      if (!review) {
-        return res.status(404).json({ message: 'Review not found' });
-      }
-  
-      // Find the user by userId associated with the review
-      const user = await UserModel.findById(review.userId);
-  
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
-      // Return the username
-      res.json({ username: user.username });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Internal server error' });
+    // Find the review by reviewId
+    const review = await ReviewModel.findById(reviewId);
+
+    if (!review) {
+      return res.status(404).json({ message: 'Review not found' });
     }
-  });
+
+    // Find the user by userId associated with the review
+    const user = await UserModel.findById(review.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Return the username
+    res.json({ username: user.username });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 
   /* Delete a review given its ID */

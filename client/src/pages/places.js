@@ -33,13 +33,16 @@ export const Places = () => {
   const [result, setResult] = useState('');
   const [placeExists, setPlaceExists] = useState('');
   const [isInitialSelection, setIsInitialSelection] = useState(false);
+  const [selectedPlace, setSelectedPlace] = useState(null);
   const [newPlace, setNewPlace] = useState({
     name: "",
     rating: 1,
     numRatings: 0,
     address: "",
     website: "",
-    img: ""
+    img: "",
+    lat: 0,
+    long: 0
   });
 
   const handleQuerySearch = async (event) => {
@@ -60,13 +63,14 @@ export const Places = () => {
   const encodedPlaceAddress = encodeURIComponent(newPlace.address);
 
   const handlePlaceSelect = (place) => {
-    console.log(place);
     setNewPlace(prevState => ({
       ...prevState,
       name: place.name,
       address: place.formatted_address,
       website: place.website,
-      img: place.photos ? place.photos[0].getUrl() : null
+      img: place.photos ? place.photos[0].getUrl() : null,
+      lat: place.geometry.location.lat(),
+      long: place.geometry.location.lng()
     }));
   };
   
@@ -107,6 +111,10 @@ export const Places = () => {
   const handleExistingPlaceClick = () => {
     navigate(`/places/${placeExists[0]._id}`);
   }
+
+  const handleMapViewClick = (place) => {
+    setSelectedPlace(place);
+  };
 
   const fetchByFilter = async (filter) => {
     try {
@@ -187,7 +195,7 @@ export const Places = () => {
               />
               <button type='submit' className='h-b5 readexpro search'>GO</button>
             </form>
-            <h2 className='white'>You can also search with the map</h2>
+            <h2 className='white'>You can also view all places on the map</h2>
           </div>
           <div>
             <br />
@@ -210,7 +218,7 @@ export const Places = () => {
             </div>
           </div>
           <div>
-            <h2 className='readexpro white rp1'>IF PLACE DOESN'T EXIST, ADD IT HERE</h2>
+            <h2 className='readexpro white rp1'>IF A PLACE DOESN'T EXIST, ADD IT HERE</h2>
             <br />
             <button onClick={openModal} className='h-b5 readexpro r1'>ADD A NEW PLACE &#10133;</button>
             <Modal
@@ -246,13 +254,13 @@ export const Places = () => {
     )}
         </div>
         <br />
-        <h1 className='readexpro rp2 bold filter'>{filter}</h1>
-        {filter === "No Results!" && (
-          <h2 className='readexpro filter'>Try checking your spelling!</h2>
-        )}
         <div className='places-display'>
-          <Map />
+          <Map mapViewClick={selectedPlace}/>
           <div className='place-list'>
+            <h1 className='readexpro rp2 bold filter'>{filter}</h1>
+              {filter === `No Results for ${query}!` && (
+                <h2 className='readexpro filter'>Try checking your spelling!</h2>
+              )}
               {places.map((place) => (
                   <div className="place-entry" key={place._id}>
                       <div className='entry-format'>
@@ -275,6 +283,7 @@ export const Places = () => {
                                 Website
                               </a>
                             )}
+                            <button className="readexpro h-b6 aqua" style={{fontSize: "25px"}} onClick={() => handleMapViewClick(place)}>|&nbsp;&nbsp;Map View</button>
                           </div>
                           <div className='place-image'>
                             <img className='img' src={place.img} alt='place-pic' />

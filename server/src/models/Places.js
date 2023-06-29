@@ -7,6 +7,8 @@ const PlacesSchema = new mongoose.Schema({
     address: { type: String, required: true, unique: true },
     img: { type: String },
     website: { type: String },
+    lat: { type: Number },
+    long: { type: Number },
 });
 
 

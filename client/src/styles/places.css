@@ -12,12 +12,11 @@
 }
 
 .filter {
-  margin-left: 40%;
   margin-bottom: 3%;
 }
 
 .map-container {
-  max-width: 30%;
+  max-width: 100%;
 }
 
 .places-display {
