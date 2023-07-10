@@ -3,3 +3,10 @@
     height: 1000px; 
     width: 750px; 
   }
+
+.map-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}

@@ -5,23 +5,29 @@
     align-items: center;
     position: relative;
   }
-
-.hf-title {
+  
+  .hf-title {
     display: flex;
     flex-direction: row;
-}
-
-.rp2 {
+  }
+  
+  .rp2 {
     font-size: 65px;
-}
+  }
+  
+  .each-slide-effect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slide-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+  }
 
-.sample-review {
-    background-color: white;
-    height: 450px;
-    width: 300px;
-    margin: 50px 50px;
-    opacity: 0;
-}
 
 .fade-up {
     animation: fadeUp 1.5s ease-out forwards;
@@ -37,3 +43,5 @@
         transform: translateY(0%);
     }
 }
+
+  

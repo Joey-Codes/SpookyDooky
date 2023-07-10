@@ -150,21 +150,26 @@ export const PlacePage = ({ query }) => {
         <ul className='review-list'>
           {reviews.map((review) => (
             <div className="review-entry" key={review._id}>
-              <h2 className='italic'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
-            <div className='rating-top-portion'>
+              <div className='rating-top-portion'>
                 <StarRatings
                   rating={review.rating} // Replace with your actual rating value
                   starRatedColor="red" // Customize the color of the filled stars
-                  starEmptyColor="white" // Customize the color of the empty stars
+                  starEmptyColor="lightgray" // Customize the color of the empty stars
                   starDimension="40px" // Adjust the size of the stars
                   starSpacing="2px" // Adjust the spacing between stars
                 />
                 <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
                   {review.category}
                 </h2>
+                <h2 className='italic'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
               </div>
               <p className='readexpro rp1'>{review.description}</p>
-              <button onClick={() => handleDeleteReview(review._id)}>&#128465;</button>
+              <br />
+              {userID === review.userId && userID !== null && (
+                <button className="h-b3 rp1" onClick={() => handleDeleteReview(review._id)}>
+                  Delete Review
+                </button>
+              )}
             </div>
           ))}
         </ul>

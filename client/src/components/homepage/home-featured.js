@@ -1,48 +1,44 @@
-import React, { useState } from 'react';
-import '../../styles/homepage/home-featured.css';
-import glasses_ghost from '../../images/glasses_ghost.png';
+import React from 'react';
+import { Slide } from 'react-slideshow-image';
 import { Link } from 'react-router-dom';
-import { Waypoint } from 'react-waypoint';
+import 'react-slideshow-image/dist/styles.css';
+import sample_review from '../../images/sample-review.png';
+import '../../styles/homepage/home-featured.css';
+
+const slideImages = [
+  {
+    url: sample_review
+  },
+  {
+    url: sample_review
+  },
+  {
+    url: sample_review
+  }
+];
 
 export const HomeFeatured = () => {
-  const [fadeUp, setFadeUp] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const handlePrevSlide = () => {
-    setCurrentSlide(prevSlide => (prevSlide === 0 ? 2 : prevSlide - 1));
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlide(prevSlide => (prevSlide === 2 ? 0 : prevSlide + 1));
-  };
-
   return (
-    <div className='home-featured flex'>
+    <div className="home-featured">
       <br />
       <br />
-      <br />
-      <div className='hf-title'>
-        <h1 className='readexpro rp2 red mr'>REVIEWS</h1>
-        <h1 className='readexpro rp2 white'>FOR ALL THINGS SPOOKY</h1>
+      <div className="hf-title flex">
+        <h1 className="readexpro rp2 red mr">REVIEWS</h1>
+        <h1 className="readexpro rp2 white">FOR ALL THINGS SPOOKY</h1>
       </div>
       <br />
-      <Waypoint onEnter={() => setFadeUp(true)}>
-        <div className="slideshow-container">
-          <img src={glasses_ghost} alt="Placeholder 1" className={`sample-review ${fadeUp ? 'fade-up' : ''} ${currentSlide === 0 ? 'active' : ''}`} />
-          <img src={glasses_ghost} alt="Placeholder 2" className={`sample-review ${fadeUp ? 'fade-up' : ''} ${currentSlide === 1 ? 'active' : ''}`} />
-          <img src={glasses_ghost} alt="Placeholder 3" className={`sample-review ${fadeUp ? 'fade-up' : ''} ${currentSlide === 2 ? 'active' : ''}`} />
-          <div className="arrow-container">
-            <button className="arrow left" onClick={handlePrevSlide}>
-              &lt;
-            </button>
-            <button className="arrow right" onClick={handleNextSlide}>
-              &gt;
-            </button>
+      <br />
+      <Slide autoplay={true} duration={3000}>
+        {slideImages.map((slideImage, index) => (
+          <div key={index} className="each-slide-effect">
+            <img src={slideImage.url} alt="sample review" className='slide-image' />
           </div>
-        </div>
-      </Waypoint>
+        ))}
+      </Slide>
+      <br />
+      <br />
       <Link to="/places">
-        <button className='h-b rammettoone r1'>MORE REVIEWS</button>
+        <button className="h-b rammettoone r1">MORE REVIEWS</button>
       </Link>
       <br />
       <br />

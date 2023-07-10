@@ -108,9 +108,9 @@
 }
 
 .review-entry {
-  box-shadow: 5px 5px #000000;
-  background-color: rgb(194, 194, 194); 
-  border: 1px solid #000000;
+  box-shadow: 3px 4px #9b9b9b;
+  background-color: rgb(255, 255, 255); 
+  border: 1px solid #9b9b9b;
   border-radius: 10px;
   padding: 1%;
   margin-bottom: 5vh;
