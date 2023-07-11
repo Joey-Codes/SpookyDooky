@@ -13,6 +13,7 @@ const app = express();
 const password = process.env.MONGODB_PASSWORD;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use("/auth", userRouter);

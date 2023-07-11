@@ -28,7 +28,7 @@ export const HomeSearch = () => {
           GO
         </button>
       </form>
-      <h2 className="readexpro italic">Search for a place or city</h2>
+      <h2 className="readexpro red italic">Search for a specific place or area</h2>
     </div>
   );
 };

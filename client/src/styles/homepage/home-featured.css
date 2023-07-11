@@ -4,6 +4,8 @@
     text-align: center;
     align-items: center;
     position: relative;
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
   
   .hf-title {
@@ -26,6 +28,10 @@
     align-items: center;
     justify-content: center;
     background-position: center;
+  }
+
+  .more-reviews {
+    margin-top: 3%;
   }
 
 

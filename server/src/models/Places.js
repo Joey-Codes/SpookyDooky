@@ -9,6 +9,7 @@ const PlacesSchema = new mongoose.Schema({
     website: { type: String },
     lat: { type: Number },
     long: { type: Number },
+    createdAt: { type: Date, default: Date.now },
 });
 
 

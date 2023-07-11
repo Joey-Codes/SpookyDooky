@@ -27,6 +27,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     description: "",
     userId: userID,
     placeId: placeId,
+    img: null
   });
 
   const handleCategoryChange = (event) => {
@@ -47,9 +48,10 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    // Do something with the selected file
-    console.log('Selected file:', file);
+    setNewReview({ ...newReview, img: file });
   };
+
+  console.log(newReview);
 
    const deletePlace = async () => {
     try {

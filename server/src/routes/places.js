@@ -51,6 +51,9 @@ router.get("/sorted/:filter", async (req, res) => {
       case 'mostreviewed':
         sortCondition = { numRatings: -1 };
         break;
+      case 'recentlyadded':
+        sortCondition = { createdAt: -1 };
+        break;
       default:
         sortCondition = { rating: -1 };
         break;

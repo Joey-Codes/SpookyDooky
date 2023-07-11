@@ -5,15 +5,100 @@
 }
 
 .about-text {
-    margin-left: 15%;
-    margin-right: 15%;
+    padding-left: 15%;
+    padding-right: 15%;
 }
-
 
 .about-row {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.about-intro {
+    margin-bottom: 150px;
+}
+
+.location-title {
+    margin-bottom: 50px;
+}
+
+.introduction {
+    position: relative;
+}
+
+.locations {
+    background-color: rgb(255, 0, 0);
+    position: relative;
+}
+
+.location-text {
+    margin-bottom: 150px;
+}
+
+.review-title {
+    margin-top: 50px;
+}
+
+.custom-shape-divider-bottom-1689047801 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1689047801 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 120px;
+}
+
+.custom-shape-divider-bottom-1689047801 .shape-fill {
+    fill: #FF0000;
+}
+
+/** For tablet devices **/
+@media (min-width: 768px) and (max-width: 1023px) {
+    .custom-shape-divider-bottom-1689047801 svg {
+        width: calc(189% + 1.3px);
+        height: 149px;
+    }
+}
+
+.custom-shape-divider-bottom-1689050720 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1689050720 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1689050720 .shape-fill {
+    fill: #000000;
+}
+
+/** For tablet devices **/
+@media (min-width: 768px) and (max-width: 1023px) {
+    .custom-shape-divider-bottom-1689050720 svg {
+        width: calc(225% + 1.3px);
+        height: 21px;
+    }
+}
+
+.reviews {
+    background-color: black;
 }
 
 .category-fit {

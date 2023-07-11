@@ -17,16 +17,16 @@ router.get("/", async (req, res) => {
     }
 });
 
-/* Post a new Review */
-router.post("/", async (req, res) => {
-    const review = new ReviewModel(req.body);
-    try {
-        const response = await review.save();
-        res.json(response);
-    } catch(err) {
-        res.json(err);
-    }
-});
+  /* Post a new Review */
+  router.post("/", async (req, res) => {
+      const review = new ReviewModel(req.body);
+      try {
+          const response = await review.save();
+          res.json(response);
+      } catch(err) {
+          res.json(err);
+      }
+  });
 
 
 router.get('/owner/:reviewId', async (req, res) => {

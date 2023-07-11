@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState} from 'react';
+import { Waypoint } from 'react-waypoint';
 import { Slide } from 'react-slideshow-image';
 import { Link } from 'react-router-dom';
 import 'react-slideshow-image/dist/styles.css';
@@ -18,10 +19,10 @@ const slideImages = [
 ];
 
 export const HomeFeatured = () => {
+  const [fadeUp, setFadeUp] = useState(false);
+
   return (
     <div className="home-featured">
-      <br />
-      <br />
       <div className="hf-title flex">
         <h1 className="readexpro rp2 red mr">REVIEWS</h1>
         <h1 className="readexpro rp2 white">FOR ALL THINGS SPOOKY</h1>
@@ -30,18 +31,16 @@ export const HomeFeatured = () => {
       <br />
       <Slide autoplay={true} duration={3000}>
         {slideImages.map((slideImage, index) => (
-          <div key={index} className="each-slide-effect">
+           <Waypoint onEnter={() => setFadeUp(true)}>
+          <div key={index} className={`each-slide-effect ${fadeUp ? 'fade-up' : ''}`}>
             <img src={slideImage.url} alt="sample review" className='slide-image' />
           </div>
+          </Waypoint>
         ))}
       </Slide>
-      <br />
-      <br />
       <Link to="/places">
-        <button className="h-b rammettoone r1">MORE REVIEWS</button>
+        <button className="h-b rammettoone r1 more-reviews">MORE REVIEWS</button>
       </Link>
-      <br />
-      <br />
     </div>
   );
 };

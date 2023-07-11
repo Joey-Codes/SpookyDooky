@@ -126,6 +126,8 @@ export const Places = () => {
         setFilter("Lowest Rated");
       } else if (filter === "mostreviewed") {
         setFilter("Most Reviewed");
+      } else if (filter === "recentlyadded") {
+        setFilter("Recently Added");
       } 
     } catch (err) {
       console.error(err);
@@ -204,17 +206,12 @@ export const Places = () => {
             <br />
             <div>
               <button onClick={() => fetchByFilter('toprated')} className='h-b5 readexpro r1 mr'>Top Rated</button>
-              <button  onClick={() => fetchByFilter('lowestrated')} className='h-b5 readexpro r1'>Lowest Rated</button>
+              <button  onClick={() => fetchByFilter('mostreviewed')} className='h-b5 readexpro r1'>Most Reviewed</button>
             </div>
             <br />
             <div>
-              <button  onClick={() => fetchByFilter('mostreviewed')} className='h-b5 readexpro r1 mr'>Most Reviewed</button>
-              <select className='h-b5 readexpro r1' name="dog-names" id="dog-names">
-                <option className='readexpro' value="rigatoni">CA</option> 
-                <option value="dave">NV</option> 
-                <option value="pumpernickel">HI</option> 
-                <option value="reeses">AK</option> 
-              </select>
+              <button  onClick={() => fetchByFilter('lowestrated')} className='h-b5 readexpro r1 mr'>Lowest Rated</button>
+              <button  onClick={() => fetchByFilter('recentlyadded')} className='h-b5 readexpro r1'>Recently Added</button>
             </div>
           </div>
           <div>
@@ -283,7 +280,7 @@ export const Places = () => {
                                 Website
                               </a>
                             )}
-                            <button className="readexpro h-b6 aqua" style={{fontSize: "25px"}} onClick={() => handleMapViewClick(place)}>|&nbsp;&nbsp;Map View</button>
+                            <button className="readexpro h-b6 blue" style={{fontSize: "25px"}} onClick={() => handleMapViewClick(place)}>|&nbsp;&nbsp;Map View</button>
                           </div>
                           <div className='place-image'>
                             <img className='img' src={place.img} alt='place-pic' />

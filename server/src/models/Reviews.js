@@ -7,6 +7,7 @@ const ReviewSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
     placeId: { type: mongoose.Schema.Types.ObjectId, ref: "places" },
     createdAt: { type: Date, default: Date.now },
+    img: { type: String } 
 });
 
 ReviewSchema.post('save', async function () {

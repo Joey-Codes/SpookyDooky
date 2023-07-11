@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/navbar.css';
  
 export const Navbar = () => {
-    const [activeTab, setActiveTab] = useState('');
+    const [activeTab, setActiveTab] = useState("home");
 
     const handleTabClick = (tab) => {
       setActiveTab(tab);
@@ -13,12 +13,22 @@ export const Navbar = () => {
   
     const [cookies, setCookies] = useCookies(["access_token"]);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const logout = () => {
         setCookies("access_token", "")
         window.localStorage.removeItem("userID");
         navigate("/auth");
     };
+
+    useEffect(() => {
+      if (location.pathname === '/places') {
+        setActiveTab('places');
+      } else if (location.pathname === '/about') {
+        setActiveTab('about');
+      }
+    }, [location.pathname]);
+
     return (
         <div className='navbar carterone'>
         <div className="left-links chango">OO</div>
