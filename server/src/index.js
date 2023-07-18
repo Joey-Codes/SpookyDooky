@@ -28,13 +28,15 @@ app.use(
     saveUninitialized: false,
     cookie: {
       path: '/',
-      httpOnly: true,
-      secure: 'false',
-      sameSite: 'lax',
     },
   })
 );
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// Initialize Passport
+app.use(passport.initialize());
 
 passport.use(
   new GoogleStrategy(
@@ -61,8 +63,7 @@ passport.use(
 
         await newUser.save();
 
-        const token = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET)
-        done(null, { newUser, token });
+        done(null, newUser);
       } catch (error) {
         console.log(error);
         done(error, null);
@@ -71,11 +72,7 @@ passport.use(
   )
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 passport.serializeUser(async (user, done) => {
-  console.log("Serialize called")
   done(null, user.id);
 });
 
@@ -93,17 +90,9 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: '/home',   
-    failureRedirect: '/login', 
-  }),
-/*   (req, res) => {
-    const { token } = req.user;
-    res.cookie('access_token', token, {
-      path: '/',
-      sameSite: 'none',
-    });
-    res.redirect('http://localhost:3000');
-  } */
+    successRedirect: '/home',
+    failureRedirect: '/login',
+  })
 );
 
 app.get('/home', (req, res) => {
@@ -111,19 +100,10 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/auth/logout', (req, res) => {
-    req.session.destroy((err) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({ error: 'An error occurred' });
-      }
-
-      res.clearCookie('connect.sid');
-      return res.sendStatus(200);
-    });
-  });
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+  // Perform any necessary logout logic
+  // You can clear any stored tokens or perform other tasks as needed
+  res.redirect('http://localhost:3000');
+});
 
 app.use('/auth', userRouter);
 app.use('/places', placesRouter);
