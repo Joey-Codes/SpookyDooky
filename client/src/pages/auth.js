@@ -1,18 +1,17 @@
-import { useState } from "react";
-import axios from "axios";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
-    return (
+  return (
     <div className='auth'>
-        <Login />
-        <Register />
+      <GoogleLoginButton />
     </div>
-    );
+  );
 };
 
-const Login = () => {
+/* const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -20,8 +19,9 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
         try {
             const response = await axios.post("http://localhost:3001/auth/login", { 
                 username, 
@@ -34,9 +34,10 @@ const Login = () => {
         } catch(err) {
             console.error(err);
         }
-    }
-    return (
-        <Form 
+  };
+
+  return (
+    <Form 
             username={username} 
             setUsername={setUsername} 
             password={password} 
@@ -44,36 +45,36 @@ const Login = () => {
             label="Login"
             onSubmit={onSubmit}
         />
-    );
+  );
 };
 
 const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const onSubmit = async (event) =>{
-        event.preventDefault();
-        try {
-            await axios.post("http://localhost:3001/auth/register", { 
-                username, 
-                password
-        });
-        alert("Registration Completed! Now login.")
-        } catch (err) {
-            console.error(err);
-        }
-    };
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try {
+        await axios.post("http://localhost:3001/auth/register", { 
+            username, 
+            password
+    });
+    alert("Registration Completed! Now login.")
+    } catch (err) {
+        console.error(err);
+    }
+  };
 
-    return (
-        <Form 
-            username={username} 
-            setUsername={setUsername} 
-            password={password} 
-            setPassword={setPassword}
-            label="Register"
-            onSubmit={onSubmit}
-        />
-    );
+  return (
+    <Form 
+    username={username} 
+    setUsername={setUsername} 
+    password={password} 
+    setPassword={setPassword}
+    label="Register"
+    onSubmit={onSubmit}
+/>
+  );
 };
 
 const Form = ({ username, setUsername, password, setPassword, label, onSubmit }) => {
@@ -104,4 +105,13 @@ const Form = ({ username, setUsername, password, setPassword, label, onSubmit })
         </form>
     </div>
     );
-};
+}; */
+
+const GoogleLoginButton = () => {
+  
+  return (
+    <a href="http://localhost:3001/auth/google" className="google-login-button h-b3">
+      Login with Google
+    </a>
+  );
+  };  
