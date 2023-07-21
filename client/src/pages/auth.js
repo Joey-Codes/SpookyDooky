@@ -1,13 +1,16 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
-
 export const Auth = () => {
   return (
     <div className='auth'>
       <GoogleLoginButton />
     </div>
+  );
+};
+
+const GoogleLoginButton = () => {
+  return (
+    <a href="http://localhost:3001/auth/google" className="google-login-button h-b3">
+      Login with Google
+    </a>
   );
 };
 
@@ -107,11 +110,3 @@ const Form = ({ username, setUsername, password, setPassword, label, onSubmit })
     );
 }; */
 
-const GoogleLoginButton = () => {
-  
-  return (
-    <a href="http://localhost:3001/auth/google" className="google-login-button h-b3">
-      Login with Google
-    </a>
-  );
-  };  

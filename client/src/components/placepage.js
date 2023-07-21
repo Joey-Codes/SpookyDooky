@@ -17,8 +17,6 @@ export const PlacePage = ({ query }) => {
   const [activeFilter, setActiveFilter] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  console.log(userID);
-
   const handleBackClick = () => {
     navigate('/places');
   };

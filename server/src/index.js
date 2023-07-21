@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
+import axios from 'axios';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import session from 'express-session';
 import { UserModel } from './models/Users.js';
@@ -21,22 +22,24 @@ app.use(cors({
   credentials: true,
 }));
 
+
 app.use(
   session({
     secret: 'fjaieofjewoifjewfejwiofjoe',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: {
       path: '/',
+      httpOnly: true, 
+      secure: process.env.NODE_ENV === 'production', 
     },
   })
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-// Initialize Passport
 app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(
   new GoogleStrategy(
@@ -90,19 +93,33 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    successRedirect: '/home',
+    successRedirect: '/success',
     failureRedirect: '/login',
   })
 );
 
-app.get('/home', (req, res) => {
-  res.redirect('http://localhost:3000');
+app.get('/success', (req, res) => {
+  try {
+    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET);
+    res.redirect(`http://localhost:3000/?token=${token}`);
+  } catch (error) {
+    console.log(error);
+    res.redirect('/login');
+  }
 });
 
+
 app.get('/auth/logout', (req, res) => {
-  // Perform any necessary logout logic
-  // You can clear any stored tokens or perform other tasks as needed
-  res.redirect('http://localhost:3000');
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).json({ message: 'Failed to log out' });
+    } else {
+      res.clearCookie('connect.sid');
+
+      res.status(200).json({ message: 'Logged out successfully' });
+    }
+  });
 });
 
 app.use('/auth', userRouter);

@@ -20,7 +20,8 @@ function App() {
         <Route path="/create-recipe" element={<CreateRecipe/>} />
         <Route path="/about" element={<About />} />
         <Route path="/places" element={<Places />} />
-        <Route path="/places/:placeId" element={<PlacePage />} />     
+        <Route path="/places/:placeId" element={<PlacePage />} />    
+        <Route path="/profile" element={<About /> } /> 
       </Routes>
       <Footer />
     </Router>

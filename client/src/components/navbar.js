@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import '../styles/navbar.css';
 import axios from 'axios';
 
@@ -11,19 +11,32 @@ export const Navbar = () => {
     setActiveTab(tab);
   };
 
-  const [cookies, ,] = useCookies(['connect.sid']);
+  const [jwtToken, setJwtToken] = useState(Cookies.get('jwtToken') || '');
   const navigate = useNavigate();
   const location = useLocation();
 
   const logout = async () => {
     try {
-      await axios.get('http://localhost:3001/auth/logout');
-      navigate('/auth');
+      await axios.get('http://localhost:3001/auth/logout', { withCredentials: true });
+      Cookies.remove('jwtToken');
+      setJwtToken('');
+      navigate('/');
     } catch (err) {
       console.log(err);
     }
   };
 
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const token = searchParams.get('token');
+
+    if (token) {
+      Cookies.set('jwtToken', token);
+      setJwtToken(token);
+    } else {
+      setJwtToken('');
+    }
+  }, []);
 
   useEffect(() => {
     if (location.pathname === '/places') {
@@ -58,9 +71,18 @@ export const Navbar = () => {
         >
           ABOUT
         </Link>
+        {jwtToken ? (
+          <Link
+            to="/profile"
+            className={activeTab === 'profile' ? 'active' : ''}
+            onClick={() => handleTabClick('profile')}
+          >
+            PROFILE
+          </Link>
+        ) : null}
       </div>
       <div className="right-links">
-        {!cookies['connect.sid'] ? (
+        {!jwtToken ? (
           <Link
             to="/auth"
             className={`login ${activeTab === 'login' ? 'active' : ''}`}
@@ -69,10 +91,12 @@ export const Navbar = () => {
             LOG IN
           </Link>
         ) : (
-          <>
-            <Link to="/saved-recipes">Saved Recipes</Link>
-            <button onClick={logout}>Logout</button>
-          </>
+          <Link
+            onClick={logout}
+            className={`login ${activeTab === 'logout' ? 'active' : ''}`}
+          >
+            LOG OUT
+          </Link>
         )}
       </div>
     </div>
