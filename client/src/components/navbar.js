@@ -26,6 +26,8 @@ export const Navbar = () => {
     }
   };
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const token = searchParams.get('token');
@@ -33,8 +35,20 @@ export const Navbar = () => {
     if (token) {
       Cookies.set('jwtToken', token);
       setJwtToken(token);
+
+      axios.get('http://localhost:3001/auth/verifytoken', { withCredentials: true })
+        .then(response => {
+          const { userId } = response.data;
+          localStorage.setItem('userID', userId);
+          setLoading(false);
+        })
+        .catch (error => {
+          console.log(error);
+          setLoading(false);
+        });
     } else {
       setJwtToken('');
+      setLoading(false);
     }
   }, []);
 
@@ -46,6 +60,10 @@ export const Navbar = () => {
     }
   }, [location.pathname]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <div className="navbar carterone">
       <div className="left-links chango">OO</div>

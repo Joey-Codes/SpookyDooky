@@ -4,9 +4,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import axios from 'axios';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import session from 'express-session';
+import cookieParser from 'cookie-parser';
 import { UserModel } from './models/Users.js';
 import { placesRouter } from './routes/places.js';
 import { userRouter } from './routes/users.js';
@@ -16,6 +16,7 @@ dotenv.config();
 
 const app = express();
 const password = process.env.MONGODB_PASSWORD;
+app.use(cookieParser());
 
 app.use(cors({
   origin: 'http://localhost:3000',
@@ -88,43 +89,13 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', {
-    successRedirect: '/success',
-    failureRedirect: '/login',
-  })
-);
-
-app.get('/success', (req, res) => {
-  try {
-    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET);
-    res.redirect(`http://localhost:3000/?token=${token}`);
-  } catch (error) {
-    console.log(error);
-    res.redirect('/login');
-  }
-});
-
-
-app.get('/auth/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
-      res.status(500).json({ message: 'Failed to log out' });
-    } else {
-      res.clearCookie('connect.sid');
-
-      res.status(200).json({ message: 'Logged out successfully' });
-    }
-  });
-});
-
 app.use('/auth', userRouter);
 app.use('/places', placesRouter);
 app.use('/reviews', reviewsRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'src', 'index.js'));
+});
 
 mongoose.connect(`mongodb+srv://admin:${password}@data.emedzou.mongodb.net/Data?retryWrites=true&w=majority`);
 

@@ -73,14 +73,9 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     event.preventDefault();
     try {
       await axios.post("http://localhost:3001/reviews", newReview);
-      const currentPath = window.location.pathname;
-      const targetPath = `/places/${placeId}`;
-  
-      if (currentPath === targetPath) {
-        window.location.reload(); // Reload the page
-      } else {
-        navigate(targetPath); // Navigate to the page
-      }
+      window.location.reload();
+      closeModal();
+      navigate(`/places/${placeId}`);
     } catch (err) {
       console.log(err);
     }
