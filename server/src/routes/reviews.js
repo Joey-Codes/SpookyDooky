@@ -2,7 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import { ReviewModel } from "../models/Reviews.js";
 import { PlacesModel } from "../models/Places.js";
-import { verifyToken } from "./users.js";
 import { UserModel } from "../models/Users.js";
 
 const router = express.Router();
@@ -33,21 +32,18 @@ router.get('/owner/:reviewId', async (req, res) => {
   try {
     const { reviewId } = req.params;
 
-    // Find the review by reviewId
     const review = await ReviewModel.findById(reviewId);
 
     if (!review) {
       return res.status(404).json({ message: 'Review not found' });
     }
 
-    // Find the user by userId associated with the review
     const user = await UserModel.findById(review.userId);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Return the username
     res.json({ username: user.username });
   } catch (err) {
     console.error(err);
@@ -61,20 +57,16 @@ router.get('/owner/:reviewId', async (req, res) => {
     const reviewId = req.params.id;
   
     try {
-      // Find the review by ID
       const review = await ReviewModel.findById(reviewId);
   
       if (!review) {
         return res.status(404).json({ error: 'Review not found' });
       }
   
-      // Get the placeId associated with the review
       const placeId = review.placeId;
   
-      // Delete the review
       await review.deleteOne();
   
-      // Update the place information
       const averageRating = await ReviewModel.aggregate([
         { $match: { placeId } },
         { $group: { _id: null, averageRating: { $avg: '$rating' } } },

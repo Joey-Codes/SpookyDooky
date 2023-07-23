@@ -66,3 +66,66 @@
   border-radius: 10px;
   padding: 5px 10px;
 }
+
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none; /* Hide the hamburger button for larger screens */
+  cursor: pointer;
+}
+
+.bar {
+  width: 40px;
+  height: 3px;
+  background-color: white;
+  margin: 10px 0;
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+  display: none; /* Hide the mobile menu by default */
+}
+
+/* Show the mobile menu when it's open */
+.mobile-menu.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 90px;
+  right: 0;
+  background-color: rgb(15, 15, 15);
+  width: 100%;
+  padding: 20px;
+  z-index: 1;
+}
+
+
+/* Media query for mobile screens */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block; /* Show the hamburger button for smaller screens */
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+
+  /* Hide the main links and right login button for smaller screens */
+  .main-links,
+  .right-links {
+    display: none !important;
+  }
+
+  /* Ensure the mobile menu appears below the navbar on smaller screens */
+  .navbar {
+    position: relative;
+  }
+
+  /* Show the two OOs on the left for mobile screens and align them to the left */
+  .left-links {
+    left: 0px;
+  }
+
+  .mobile-menu.open {
+    justify-content: flex-end;
+  }
+}

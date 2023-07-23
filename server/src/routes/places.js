@@ -26,7 +26,6 @@ router.get("/searchquery/:query", async (req, res) => {
         { name: { $regex: regex } },
         { address: { $regex: regex } },
         { description: { $regex: regex } },
-        // add more fields as needed
       ]
     });
     res.json(response);
@@ -138,7 +137,6 @@ router.get("/:id", async (req, res) => {
       const name = req.params.name;
       const places = await PlacesModel.find({ name: { $eq: name } });
       res.send(places);
-      console.log("Response sent successfully"); // Check if this gets logged
     } catch (err) {
       res.status(500).send(err);
     }
@@ -161,10 +159,8 @@ router.get("/:id", async (req, res) => {
   try {
     const place = await PlacesModel.findByIdAndDelete(req.params.id).exec();
     if (!place) {
-      // If the document doesn't exist, return an appropriate response
       return res.status(404).send("Place not found");
     }
-    // If the document is successfully deleted, return a success message or appropriate response
     return res.send("Place deleted successfully");
   } catch (err) {
     return res.status(500).send(err);

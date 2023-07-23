@@ -26,6 +26,16 @@ export const Navbar = () => {
     }
   };
 
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+  }
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -67,54 +77,44 @@ export const Navbar = () => {
   return (
     <div className="navbar carterone">
       <div className="left-links chango">OO</div>
+  
+      {/* Hamburger Button */}
+      <div className="hamburger" onClick={toggleMobileMenu}>
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
+  
       <div className="main-links">
-        <Link
-          to="/"
-          className={activeTab === 'home' ? 'active' : ''}
-          onClick={() => handleTabClick('home')}
-        >
-          HOME
-        </Link>
-        <Link
-          to="/places"
-          className={activeTab === 'places' ? 'active' : ''}
-          onClick={() => handleTabClick('places')}
-        >
-          PLACES
-        </Link>
-        <Link
-          to="/about"
-          className={activeTab === 'about' ? 'active' : ''}
-          onClick={() => handleTabClick('about')}
-        >
-          ABOUT
-        </Link>
+        {/* Links for larger screens */}
+        <Link to="/" className={activeTab === 'home' ? 'active' : ''} onClick={() => handleTabClick('home')}>HOME</Link>
+        <Link to="/places" className={activeTab === 'places' ? 'active' : ''} onClick={() => handleTabClick('places')}>PLACES</Link>
+        <Link to="/about" className={activeTab === 'about' ? 'active' : ''} onClick={() => handleTabClick('about')}>ABOUT</Link>
         {jwtToken ? (
-          <Link
-            to="/profile"
-            className={activeTab === 'profile' ? 'active' : ''}
-            onClick={() => handleTabClick('profile')}
-          >
-            PROFILE
-          </Link>
+          <Link to="/profile" className={activeTab === 'profile' ? 'active' : ''} onClick={() => handleTabClick('profile')}>PROFILE</Link>
         ) : null}
       </div>
+  
       <div className="right-links">
         {!jwtToken ? (
-          <Link
-            to="/auth"
-            className={`login ${activeTab === 'login' ? 'active' : ''}`}
-            onClick={() => handleTabClick('login')}
-          >
-            LOG IN
-          </Link>
+          <Link to="/auth" className={`login ${activeTab === 'login' ? 'active' : ''}`} onClick={() => handleTabClick('login')}>LOG IN</Link>
         ) : (
-          <Link
-            onClick={logout}
-            className={`login ${activeTab === 'logout' ? 'active' : ''}`}
-          >
-            LOG OUT
-          </Link>
+          <Link onClick={logout} className={`login ${activeTab === 'logout' ? 'active' : ''}`}>LOG OUT</Link>
+        )}
+      </div>
+  
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        <Link to="/" onClick={() => { handleTabClick('home'); handleLinkClick() } }>HOME</Link>
+        <Link to="/places" onClick={() => { handleTabClick('places'); handleLinkClick() } }>PLACES</Link>
+        <Link to="/about" onClick={() => { handleTabClick('about'); handleLinkClick() } }>ABOUT</Link>
+        {jwtToken ? (
+          <Link to="/profile" onClick={() => { handleTabClick('profile'); handleLinkClick() } }>PROFILE</Link>
+        ) : null}
+        {!jwtToken ? (
+          <Link to="/auth" onClick={() => { handleTabClick('login'); handleLinkClick() } }>LOG IN</Link>
+        ) : (
+          <Link onClick={logout}>LOG OUT</Link>
         )}
       </div>
     </div>

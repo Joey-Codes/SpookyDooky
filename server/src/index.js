@@ -93,9 +93,9 @@ app.use('/auth', userRouter);
 app.use('/places', placesRouter);
 app.use('/reviews', reviewsRouter);
 
-app.get('*', (req, res) => {
+/* app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'src', 'index.js'));
-});
+}); */
 
 mongoose.connect(`mongodb+srv://admin:${password}@data.emedzou.mongodb.net/Data?retryWrites=true&w=majority`);
 
