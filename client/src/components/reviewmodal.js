@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
+import '../styles/reviewmodal.css'
 
 const customStyles = {
   content: {

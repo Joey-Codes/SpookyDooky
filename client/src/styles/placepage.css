@@ -173,4 +173,60 @@
   cursor: pointer;
 }
 
+/* Mobile styles */
+@media (max-width: 767px) {
+  .placepage-title {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .title-image-section {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .place-options {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .modal-form {
+    align-items: center;
+  }
+
+  .form-font {
+    font-size: 25px;
+  }
+
+  .description-field {
+    width: 90%;
+    height: 120px;
+    font-size: 20px;
+  }
+
+  .review-entry {
+    width: 95%;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mr {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .ml {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .vote {
+    font-size: 25px;
+  }
+}
+
   

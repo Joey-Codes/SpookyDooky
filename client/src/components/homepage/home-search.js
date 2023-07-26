@@ -20,6 +20,7 @@ export const HomeSearch = () => {
       <form onSubmit={handleQuerySearch}>
         <input
           className="readexpro home-searchbar"
+          placeholder="Search for a place..."
           type="text"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
@@ -28,7 +29,6 @@ export const HomeSearch = () => {
           GO
         </button>
       </form>
-      <h2 className="readexpro red italic">Search for a specific place or keyword</h2>
     </div>
   );
 };

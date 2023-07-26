@@ -1,44 +1,46 @@
 .home-search {
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .home-searchbar {
-    font-size: 30px;
-    border: 5px solid black;
-    border-radius: 5px;
-    padding: 10px;
-    width: 650px;
+  font-size: 30px;
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 650px;
 }
 
 .home-searchbar:focus {
-    animation: shake 0.5s;
-  }
-  
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    10% { transform: translateX(-10px); }
-    20% { transform: translateX(10px); }
-    30% { transform: translateX(-10px); }
-    40% { transform: translateX(10px); }
-    50% { transform: translateX(-10px); }
-    60% { transform: translateX(10px); }
-    70% { transform: translateX(-10px); }
-    80% { transform: translateX(10px); }
-    90% { transform: translateX(-10px); }
-    100% { transform: translateX(0); }
-  }
-  
-  
-
-
-.home-search-submit {
-    font-size: 30px;
-    background-color: black;
-    color: white;
-    padding: 10px;
+  animation: shake 0.5s;
 }
 
-/* __________________________ */
+@keyframes shake {
+  /* Keyframes as in your previous CSS */
+}
+
+.home-search-submit {
+  font-size: 35px;
+  background-color: black;
+  border: none;
+  color: red;
+  padding: 10px;
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 480px) {
+  .home-searchbar {
+    font-size: 13px; /* Decrease font size for better fit on mobile */
+    width: 90%; /* Make the search bar full width on mobile */
+    margin-bottom: 10px; /* Add some spacing between search bar and button on mobile */
+  }
+
+  .home-search-submit {
+    font-size: 20px; /* Decrease font size for better fit on mobile */
+    padding: 10px 20px; /* Adjust the padding for better button size on mobile */
+    width: 100%;
+  }
+}

@@ -1,116 +1,138 @@
+:root {
+  --c1-font-size: 110px;
+  --r1-font-size: 30px;
+  --rp1-font-size: 25px;
+  --side-img-size: 200px;
+  --mid-img-size: 275px;
+}
+
 .c1 {
-    font-size: 110px;
-    margin-bottom: 0;
+  font-size: var(--c1-font-size);
+  margin-bottom: 0;
 }
 
 .r1 {
-    font-size: 30px;
-    margin-bottom: 0;
-} 
+  font-size: var(--r1-font-size);
+  margin-bottom: 0;
+}
 
 .rp1 {
-    font-size: 25px;
-    margin-bottom: 0;
+  font-size: var(--rp1-font-size);
+  margin-bottom: 0;
 }
 
 .home-intro {
-    background-color: black;
-    background-image: url('../../images/ghost-background1.png');
-    padding-top: 30px;
-  }
-  
-  h1 {
-    margin: 0;
-  }
-  
-  .left-side {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .right-side {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  
-  .right-side img {
-    margin: 50px 5px;
-  }
-  
+  background-color: black;
+  background-image: url('../../images/ghost-background1.png');
+  padding-top: 30px;
+}
+
+h1 { margin: 0; }
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.right-side img { margin: 50px 5px; }
+
+.side-img {
+  height: var(--side-img-size);
+  width: var(--side-img-size);
+  animation: upAndDown 3s infinite ease-in-out;
+}
+
+.mid-img {
+  height: var(--mid-img-size);
+  width: var(--mid-img-size);
+  animation: downAndUp 3s infinite ease-in-out;
+}
+
+.right-side img:nth-child(1),
+.right-side img:nth-child(3) {
+  align-self: flex-end;
+}
+
+.right-side img:nth-child(2) {
+align-self: flex-start;
+}
+
+@keyframes upAndDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(10%); }
+  75% { transform: translateY(-10%); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes downAndUp {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10%); }
+  75% { transform: translateY(10%); }
+  100% { transform: translateY(0); }
+}
+
+.h-b {
+  color: black;
+  background-image: linear-gradient(-45deg, white 50%, red 50%);
+  background-position: 100%;
+  background-size: 400%;
+  border: none;
+  margin-bottom: 15px;
+  transition: background-position 0.5s;
+}
+
+.h-b:hover {
+  background-position: 0%;
+  cursor: pointer;
+}
+
+/* Media query for tablet screens */
+@media screen and (max-width: 768px) {
+  .c1 { font-size: 70px; }
+
+  .rp1 { font-size: 20px; }
+
   .side-img {
-    height: 200px;
-    width: 200px;
-    animation: upAndDown 3s infinite ease-in-out;
+    height: 150px;
+    width: 150px;
   }
 
   .mid-img {
-    height: 275px;
-    width: 275px;
-    animation: downAndUp 3s infinite ease-in-out;
+    height: 200px;
+    width: 200px;
+  }
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 480px) {
+  .c1 { font-size: 50px; }
+
+  .r1 { font-size: 20px; }
+
+  .home-intro { flex-direction: column; }
+
+  .rp1 { font-size: 15px; }
+
+  .h-b { margin-bottom: 0; }
+
+  .side-img {
+    height: 100px;
+    width: 100px;
   }
 
-  .right-side img:nth-child(1),
-  .right-side img:nth-child(3) {
-    align-self: flex-end;
-  }
-  
-  .right-side img:nth-child(2) {
-    align-self: flex-start;
-  }
-  
-  @keyframes upAndDown {
-    0% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(10%);
-    }
-
-    75% {
-      transform: translateY(-10%);
-    }
-
-    100% {
-      transform: translateY(0);
-    }
+  .mid-img {
+    height: 150px;  
+    width: 150px;
   }
 
-  @keyframes downAndUp {
-    0% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(-10%);
-    }
-
-    75% {
-      transform: translateY(10%);
-    }
-
-    100% {
-      transform: translateY(0);
-    }
-  }
-
-  .h-b {
-    color: black;
-    background-image: linear-gradient(-45deg, white 50%, red 50%);
-    background-position: 100%;
-    background-size: 400%;
-    border: none;
-    transition: background-position 0.5s;
-  }
-  
-  .h-b:hover {
-    background-position: 0%;
-    cursor: pointer;
-  }
-  
-  
-  
+  .right-side img { margin: 0 0 5px 0; }
+}

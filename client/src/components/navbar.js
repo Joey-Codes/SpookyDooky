@@ -76,13 +76,13 @@ export const Navbar = () => {
   
   return (
     <div className="navbar carterone">
-      <div className="left-links chango">OO</div>
+      <div className={`chango left-links ${mobileMenuOpen ? 'open' : ''}`}>OO</div>
   
       {/* Hamburger Button */}
-      <div className="hamburger" onClick={toggleMobileMenu}>
-        <div className="bar"></div>
-        <div className="bar"></div>
-        <div className="bar"></div>
+      <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}>
+        <div className="bar bar1"></div>
+        <div className="bar bar2"></div>
+        <div className="bar bar3"></div>
       </div>
   
       <div className="main-links">

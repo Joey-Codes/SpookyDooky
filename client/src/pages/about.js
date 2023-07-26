@@ -8,8 +8,8 @@ export const About = () => {
         <br />
         <br />
         <div className='about-row'>
-          <h1 className='readexpro rp2 italic mr'>ABOUT</h1>
-          <h1 className='readexpro rp2 red italic'>SPOOKY DOOKY</h1>
+          <h1 className='readexpro italic mr about-title'>ABOUT</h1>
+          <h1 className='readexpro red italic about-title'>SPOOKY DOOKY</h1>
         </div>
         <br />
         <br />
@@ -18,7 +18,7 @@ export const About = () => {
             Spooky Dooky allows anyone to rate spooky places and share their experiences with different types of phenomena. You can choose to review places anonymously or create an account to keep track of all your reviews. Also note that the site is intended for real experiences, and while we cannot verify the truthfulness of reviews, we ask that users not fabricate stories or images.
           </h2>
           <br />
-          <div class="custom-shape-divider-bottom-1689047801">
+          <div class="wave1">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
               <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
             </svg>
@@ -39,7 +39,7 @@ export const About = () => {
               You can find a location to review in the 'Places' tab, where you can use the search bar to quickly find a place or use the filters to look for specific categories, such as locations by rating or geographic area.
             </h2>
             <br />
-            <div class="custom-shape-divider-bottom-1689050720">
+            <div class="wave2">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
     </svg>

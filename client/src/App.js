@@ -8,6 +8,7 @@ import { Places } from './pages/places';
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
 import { PlacePage } from './components/placepage';
+import { Profile } from './pages/profile';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/places" element={<Places />} />
         <Route path="/places/:placeId" element={<PlacePage />} />    
-        <Route path="/profile" element={<About /> } /> 
+        <Route path="/profile" element={<Profile /> } /> 
       </Routes>
       <Footer />
     </Router>

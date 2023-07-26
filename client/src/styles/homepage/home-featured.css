@@ -1,53 +1,56 @@
 .home-featured {
-    background-color: black;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    position: relative;
-    padding-top: 5%;
-    padding-bottom: 5%;
-  }
-  
+  background-color: black;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.hf-title {
+  display: flex;
+  flex-direction: column; /* For mobile, display the title vertically */
+  align-items: center; /* Center the title vertically on mobile */
+}
+
+.rp2 {
+  font-size: 65px;
+}
+
+.each-slide-effect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+}
+
+.more-reviews {
+  margin-top: 3%;
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 480px) {
   .hf-title {
-    display: flex;
-    flex-direction: row;
+    margin-bottom: 20px; /* Add some spacing below the title on mobile */
   }
-  
+
   .rp2 {
-    font-size: 65px;
+    font-size: 40px; /* Decrease font size for better fit on mobile */
   }
-  
-  .each-slide-effect {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+
   .slide-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-position: center;
+    height: 80px; /* Adjust the height of slide images on mobile */
+    width: 250px; /* Adjust the width of slide images on mobile */
   }
 
   .more-reviews {
-    margin-top: 3%;
+    margin-top: 5%; /* Increase the top margin of the button on mobile */
   }
-
-
-.fade-up {
-    animation: fadeUp 1.5s ease-out forwards;
 }
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(80%);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-}
-
-  

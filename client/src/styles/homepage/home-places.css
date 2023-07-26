@@ -30,79 +30,64 @@
 }
 
 
-.fade-left1 {
-    animation: fadeLeft 4s ease-out forwards;
-}
-
-.fade-left2 {
-    animation: fadeLeft 4.5s ease-out forwards;
-}
-
-.fade-left3 {
-    animation: fadeLeft 5s ease-out forwards;
-}
+.fade-left1 { animation: fadeLeft 4s ease-out forwards; }
+.fade-left2 { animation: fadeLeft 4.5s ease-out forwards; }
+.fade-left3 { animation: fadeLeft 5s ease-out forwards; }
   
 @keyframes fadeLeft {
-    from {
-        transform: translateX(800%);
-    }
-    50% {
-        transform: translateX(-10%);
-    }
-    65% {
-        transform: translateX(5%);
-    }
-    80% {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(0%);
-    }
+    from { transform: translateX(800%); }
+    50% { transform: translateX(-10%); }
+    65% { transform: translateX(5%); }
+    80% { transform: translateX(0%); }
+    to { transform: translateX(0%); }
 }
 
-.fade-left-full {
-    animation: fadeLeftFull 1.8s ease-out forwards;
-}
+.fade-left-full { animation: fadeLeftFull 1.8s ease-out forwards; }
     
 @keyframes fadeLeftFull {
-    from {
-        opacity: 0;
-        transform: translateX(1000%);
-    }
-    1% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 1;
-    }
-    99% {
-        transform: translateX(0%);
-    }
-    to {
-        opacity: 0;
-    }
+    from { opacity: 0; transform: translateX(1000%); }
+    1% { opacity: 1; }
+    50% { opacity: 1; }
+    99% { transform: translateX(0%); }
+    to { opacity: 0; }
 }
 
-.fade-down {
-    animation: fadeDown 3s ease-out forwards;
-}
+.fade-down { animation: fadeDown 3s ease-out forwards; }
 
 @keyframes fadeDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-    49% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-100%);
-    }
-    60% {
-        transform: translateY(0%);
-    }
-    to {
-        transform: translateY(0%);
-    }
+    0% { opacity: 0; transform: translateY(-100%); }
+    49% { opacity: 0; }
+    50% { opacity: 1; transform: translateY(-100%); }
+    60% { transform: translateY(0%); }
+    to { transform: translateY(0%); }
 }
+
+@media screen and (max-width: 1024px) {
+    .left-side {
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .moving-ghost {
+        height: 0px;
+        width: 0px;
+    }
+
+    .sample-place {
+        height: 200px;
+        width: 200px;
+        align-items: center;
+        margin-left: 25%;
+        margin-top: 10px;
+    }
+    
+    .home-places {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .home-places-right {
+        padding-left: 0;
+    }
+ }
+

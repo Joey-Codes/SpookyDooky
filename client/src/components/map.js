@@ -7,11 +7,17 @@ import StarRatings from "react-star-ratings";
 
 const libraries = ["places"];
 
-export const Map = ({ mapViewClick }) => {
+export const Map = ({ mapViewClick, showMap }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
     libraries,
   });
+
+  const[mapVisibility, setMapVisibility] = useState(showMap);
+
+  useEffect(() => {
+    setMapVisibility(showMap);
+  }, [showMap]);
 
   const [center, setCenter] = useState({ lat: 27, lng: -100 });
   const [mapZoom, setMapZoom] = useState(4);
@@ -56,7 +62,7 @@ export const Map = ({ mapViewClick }) => {
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
-    <div className="map-container">
+    <div className={`map-container ${mapVisibility ? 'show-map' : ''}`}>
       <GoogleMap
         zoom={mapZoom}
         center={center}

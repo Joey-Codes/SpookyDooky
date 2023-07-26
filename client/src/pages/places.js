@@ -34,6 +34,16 @@ export const Places = () => {
   const [placeExists, setPlaceExists] = useState('');
   const [isInitialSelection, setIsInitialSelection] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
+  const [showMap, setShowMap] = useState(true);
+
+  const handleShowMap = () => {
+    if (showMap === true) {
+      setShowMap(false);
+    } else {
+      setShowMap(true);
+    }  
+  };
+
   const [newPlace, setNewPlace] = useState({
     name: "",
     rating: 1,
@@ -186,7 +196,7 @@ export const Places = () => {
           <div>
             <br />
             <br />
-            <h1 className='readexpro white rp1'>SEARCH FOR A PLACE &#x1F50D;</h1>
+            <h1 className='readexpro white rp1 mrp1'>SEARCH FOR A PLACE &#x1F50D;</h1>
             <br />
             <form onSubmit={handleQuerySearch}>
               <input
@@ -197,12 +207,13 @@ export const Places = () => {
               />
               <button type='submit' className='h-b5 readexpro search'>GO</button>
             </form>
-            <h2 className='white'>You can also view all places on the map</h2>
+            <h2 className='readexpro white mrp1'>You can also find places with the map</h2>
+            <button onClick={handleShowMap} className='only-on-mobile h-b5 readexpro r1'>{showMap ? 'Show Map' : 'Hide Map'}</button>
           </div>
           <div>
             <br />
             <br />
-            <h1 className='readexpro white rp1'>SORT BY</h1>
+            <h1 className='readexpro white rp1 mrp1'>SORT BY</h1>
             <br />
             <div>
               <button onClick={() => fetchByFilter('toprated')} className='h-b5 readexpro r1 mr'>Top Rated</button>
@@ -215,7 +226,7 @@ export const Places = () => {
             </div>
           </div>
           <div>
-            <h2 className='readexpro white rp1'>IF A PLACE DOESN'T EXIST, ADD IT HERE</h2>
+            <h2 className='readexpro white rp1 mrp1'>IF A PLACE DOESN'T EXIST, ADD IT HERE</h2>
             <br />
             <button onClick={openModal} className='h-b5 readexpro r1'>ADD A NEW PLACE &#10133;</button>
             <Modal
@@ -252,7 +263,7 @@ export const Places = () => {
         </div>
         <br />
         <div className='places-display'>
-          <Map mapViewClick={selectedPlace}/>
+            <Map mapViewClick={selectedPlace} showMap={showMap} />
           <div className='place-list'>
             <h1 className='readexpro rp2 bold filter'>{filter}</h1>
               {filter === `No Results for ${query}!` && (

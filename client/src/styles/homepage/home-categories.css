@@ -54,6 +54,45 @@
 .h-b2c { background-color: blue; }
 .h-b2d { background-color: green; }
 
-
+/* Media query for mobile screens */
+@media screen and (max-width: 768px) {
+    .home-categories {
+      padding-top: 100px;
+      padding-bottom: 30px;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .test {
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+  
+    .hc {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .b2 {
+      font-size: 35px;
+    }
+  
+    .h-b2 {
+      padding: 0 25px;
+    }
+  
+    .fade-right {
+      animation: fadeRightMobile 1s ease-out forwards;
+    }
+  
+    @keyframes fadeRightMobile {
+      from {
+        transform: translateX(-50%);
+      }
+      to {
+        transform: translateX(0%);
+      }
+    }
+  }
 
 

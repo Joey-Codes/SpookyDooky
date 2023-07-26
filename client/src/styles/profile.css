@@ -1,0 +1,19 @@
+.react-tabs__tab-list {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Example custom styling for the active tab */
+  .react-tabs__tab--selected {
+    background-color: #fff;
+    border-bottom: 2px solid red;
+    color: red;
+  }
+  
+  /* Example custom styling for the TabPanel */
+  .react-tabs__tab-panel {
+    padding: 20px;
+  }

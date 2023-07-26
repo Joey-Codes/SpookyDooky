@@ -2,7 +2,6 @@ import '../../styles/homepage/home-places.css';
 import glasses_ghost from '../../images/glasses_ghost.png';
 import ghosts from '../../images/ghosts.png'
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Waypoint } from 'react-waypoint';
 
 export const HomePlaces = () => {
@@ -18,9 +17,9 @@ export const HomePlaces = () => {
         <h1 className='readexpro rp2 white'>NEW</h1>
         <h1 className='readexpro rp2 red'>PLACES</h1>
         <br />
-        <Link to="/places">
+{/*         <Link to="/places">
           <button className='h-b rammettoone r1'>GO!</button>
-        </Link>
+        </Link> */}
       </div>
       <Waypoint onEnter={() => { setFadeLeft(true); setFadeLeftFull(true); setFadeDown(true); }}>
          <div className='home-places-right'>

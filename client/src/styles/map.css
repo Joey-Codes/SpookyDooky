@@ -1,12 +1,25 @@
+@media (min-width: 769px ) {
 .map-container {
     margin-left: 1%;
     height: 1000px; 
     width: 750px; 
   }
+}
 
 .map-flex {
   display: flex;
   flex-direction: row;
   align-items: center;
   text-align: center;
+}
+
+ @media (max-width: 768px) {
+  .show-map {
+    display: none;
+  }
+
+  .map-container {
+    height: 300px;
+    width: 100%;
+  }
 }

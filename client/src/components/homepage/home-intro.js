@@ -17,8 +17,6 @@ export const HomeIntro = () => {
         <Link to="/places">
           <button className='h-b rammettoone r1'>LET'S GO!</button>
         </Link>
-        <br />
-        <br />
       </div>
       <div className='right-side'>
         <img src={ghost} alt="ghost" className="side-img"/>

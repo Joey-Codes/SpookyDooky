@@ -72,14 +72,22 @@
 .hamburger {
   display: none; /* Hide the hamburger button for larger screens */
   cursor: pointer;
+  align-items: center;
 }
 
 .bar {
-  width: 40px;
   height: 3px;
   background-color: white;
   margin: 10px 0;
+  width: 40px;
+  transition: width 0.5s, background-color 1s;
 }
+
+.hamburger.open .bar { background-color: red; }
+.hamburger.open .bar1 { width: 40px; }
+.hamburger.open .bar2 { width: 30px; }
+.hamburger.open .bar3 { width: 20px; }
+.left-links.open { color: red; }
 
 /* Mobile menu styles */
 .mobile-menu {
@@ -90,10 +98,11 @@
 .mobile-menu.open {
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: absolute;
   top: 90px;
   right: 0;
-  background-color: rgb(15, 15, 15);
+  background-color: rgb(26, 26, 26);
   width: 100%;
   padding: 20px;
   z-index: 1;
@@ -115,14 +124,13 @@
     display: none !important;
   }
 
-  /* Ensure the mobile menu appears below the navbar on smaller screens */
   .navbar {
-    position: relative;
+    position: relative; /* Set the navbar to fixed position */
   }
 
-  /* Show the two OOs on the left for mobile screens and align them to the left */
-  .left-links {
-    left: 0px;
+  .navbar .left-links {
+    margin-right: 80%;
+    font-size: 35px;
   }
 
   .mobile-menu.open {
