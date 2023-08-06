@@ -45,6 +45,30 @@ export const PlacePage = ({ query }) => {
     fetchData();
   }, [placeId]);
 
+  const [reviewOwners, setReviewOwners] = useState({});
+  
+  useEffect(() => {
+    const fetchReviewOwners = async () => {
+      try {
+        const reviewOwners = [];
+        for (const review of reviews) {
+          if (review.userId === null) {
+            reviewOwners.push('Anonymous');
+          } else {
+            const response = await axios.get(`http://localhost:3001/auth/find/${review.userId}`);
+            reviewOwners.push(response.data.name);
+          }
+        }
+        setReviewOwners(reviewOwners);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+    fetchReviewOwners();
+  }, [reviews]);
+  
+
   const fetchBySorted = async (filter) => {
     try {
       const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews/${filter}`);
@@ -76,10 +100,10 @@ export const PlacePage = ({ query }) => {
           <img src={place.img} alt='place-pic' className='title-image'/>
         </div>
         <div>
-          <h1 className='readexpro rp2 red'>{place.name}</h1>
-          <h2 className='readexpro white'>{place.address}</h2>
+          <h1 className='readexpro rp2 red mobile-name'>{place.name}</h1>
+          <h2 className='readexpro white mobile-add'>{place.address}</h2>
           {place.website && (
-            <a className='readexpro' href={place.website} target='_blank' rel="noreferrer">
+            <a className='readexpro mobile-web blue' href={place.website} target='_blank' rel="noreferrer">
               Visit Website
             </a>
           )}
@@ -87,7 +111,7 @@ export const PlacePage = ({ query }) => {
       </div>
       <div className='placepage-middle flex'>
         <div className='place-options'>
-          <button onClick={() => openModalWithPlaceName(place.name)} className='h-b3 h-b3a readexpro rp3 bold'>
+          <button onClick={() => openModalWithPlaceName(place.name)} className='h-b3 h-b3a readexpro rp3 bold mobile-review'>
             Review This Place
           </button>
           <ReviewModal isOpen={modalIsOpen} closeModal={closeModal} placeId={placeId} userID={userID} placeName={place.name} />
@@ -101,34 +125,34 @@ export const PlacePage = ({ query }) => {
                 rating={place.rating} // Replace with your actual rating value
                 starRatedColor="red" // Customize the color of the filled stars
                 starEmptyColor="white" // Customize the color of the empty stars
-                starDimension="50px" // Adjust the size of the stars
+                starDimension="5vh" // Adjust the size of the stars
                 starSpacing="2px" // Adjust the spacing between stars
               />
-              <h2 className='readexpro rp3 white ml'>({place.numRatings})</h2>
+              <h2 className='readexpro rp3 white ml mobile-rating'>({place.numRatings})</h2>
             </div>
             <div className="filters">
-              <h2 className="readexpro rp1 white mr">SORT BY</h2>
+              <h2 className="readexpro rp1 white mr mobile-filter">SORT BY</h2>
               <button
                 onClick={() => fetchBySorted('toprated')}
-                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'toprated' ? 'active' : ''}`}
+                className={`h-b4 readexpro rp1 bold mr mobile-filter ${activeFilter === 'toprated' ? 'active' : ''}`}
               >
                 TOP RATED
               </button>
               <button
                 onClick={() => fetchBySorted('lowestrated')}
-                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'lowestrated' ? 'active' : ''}`}
+                className={`h-b4 readexpro rp1 bold mr mobile-filter ${activeFilter === 'lowestrated' ? 'active' : ''}`}
               >
                 LOWEST RATED
               </button>
               <button
                 onClick={() => fetchBySorted('newest')}
-                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'newest' ? 'active' : ''}`}
+                className={`h-b4 readexpro rp1 bold mr mobile-filter ${activeFilter === 'newest' ? 'active' : ''}`}
               >
                 NEWEST
               </button>
               <button
                 onClick={() => fetchBySorted('oldest')}
-                className={`h-b4 readexpro rp1 bold mr ${activeFilter === 'oldest' ? 'active' : ''}`}
+                className={`h-b4 readexpro rp1 bold mr mobile-filter ${activeFilter === 'oldest' ? 'active' : ''}`}
               >
                 OLDEST
               </button>
@@ -146,21 +170,22 @@ export const PlacePage = ({ query }) => {
         </div>
       ) : (
         <ul className='review-list'>
-          {reviews.map((review) => (
+          {reviews.map((review, index) => (
             <div className="review-entry" key={review._id}>
               <div className='rating-top-portion'>
-                <StarRatings
-                  rating={review.rating} // Replace with your actual rating value
-                  starRatedColor="red" // Customize the color of the filled stars
-                  starEmptyColor="lightgray" // Customize the color of the empty stars
-                  starDimension="40px" // Adjust the size of the stars
-                  starSpacing="2px" // Adjust the spacing between stars
-                />
+                <h2 className='readexpro'>{reviewOwners[index]}</h2>
                 <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
                   {review.category}
                 </h2>
-                <h2 className='italic'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
+                <h2 className='italic mobile-date'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
               </div>
+              <StarRatings
+                  rating={review.rating} // Replace with your actual rating value
+                  starRatedColor="red" // Customize the color of the filled stars
+                  starEmptyColor="lightgray" // Customize the color of the empty stars
+                  starDimension="4vh" // Adjust the size of the stars
+                  starSpacing="2px" // Adjust the spacing between stars
+                />
               <p className='readexpro rp1'>{review.description}</p>
               <br />
               {userID === review.userId && userID !== null && (

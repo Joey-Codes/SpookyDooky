@@ -1,6 +1,5 @@
 .places-title {
   background-color: rgb(255, 54, 54);
-  background-image: url('../images/ghost-background1.png');
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;

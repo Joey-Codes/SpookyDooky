@@ -154,6 +154,25 @@ router.get("/:id", async (req, res) => {
     }
   });  
 
+
+// Find Place given placeId
+router.get('/find/:placeId', async (req, res) => {
+  try {
+    const placeId = req.params.placeId;
+    const place = await PlacesModel.findById(placeId);
+
+    if (!place) {
+      return res.status(404).json({ message: 'Place not found' });
+    }
+
+    // Return only the name value of the place
+    res.status(200).json({ name: place.name });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
   /* Delete Place by ID */
   router.delete("/delete/:id", async (req, res) => {
   try {

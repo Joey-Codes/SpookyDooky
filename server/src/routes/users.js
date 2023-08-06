@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from 'jsonwebtoken';
 import passport from "passport";
-
+import { UserModel } from "../models/Users.js";
 
 const router = express.Router();
 
@@ -40,6 +40,37 @@ router.get('/logout', (req, res) => {
     }
   });
 });
+
+/* Given review's userId retrieve the user's name */
+router.get('/find/:userId', async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.userId, { name: 1, _id: 0 });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Split the full name into an array of first name and last name
+    const fullName = user.name.split(' ');
+    let firstName = fullName[0];
+    let lastName = '';
+    
+    // If there's more than one word, take the first letter of the second word as the last initial
+    if (fullName.length > 1) {
+      lastName = fullName[1].charAt(0).toUpperCase() + '.';
+    }
+
+    // Combine the first name and last initial to get "Bob S."
+    const name = `${firstName} ${lastName}`;
+
+    // Send the modified data in the response
+    res.json({ name });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 
 router.get("/verifytoken", (req, res) =>  {
   const token = req.cookies.jwtToken;

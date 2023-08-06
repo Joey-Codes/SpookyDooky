@@ -52,7 +52,6 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     setNewReview({ ...newReview, img: file });
   };
 
-  console.log(newReview);
 
    const deletePlace = async () => {
     try {

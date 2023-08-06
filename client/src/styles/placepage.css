@@ -175,9 +175,53 @@
 
 /* Mobile styles */
 @media (max-width: 767px) {
+  .back-button {
+    display: flex;
+    justify-content: flex-start;
+  }
+
   .placepage-title {
     flex-direction: column;
     padding: 10px;
+  }
+
+  .title-image {
+    max-height: 300px;
+    max-width: 100%;
+  }
+
+  .h-b3a {
+    margin-right: 0;
+  }
+
+  .mobile-name {
+    text-align: center;
+  }
+
+  .mobile-add {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .mobile-web {
+    display: flex;
+    justify-content: center;
+    color: aqua;
+    font-size: 20px;
+  }
+
+  .mobile-rating {
+    font-size: 20px;
+  }
+
+  .mobile-review {
+    font-size: 30px;
+  }
+
+  .scariness-rating {
+    margin-right: 0px;
+    font-size: 30px;
+    flex-direction: column;
   }
 
   .title-image-section {
@@ -205,17 +249,29 @@
     font-size: 20px;
   }
 
+  .review-list {
+    margin-left: 0%;
+    padding-left: 0;
+  }
+
   .review-entry {
     width: 95%;
   }
 
   .filters {
     flex-direction: column;
-    align-items: center;
+  }
+
+  .mobile-filter:nth-child(-n + 3) {
+     flex-basis: 33.33%;
+  }
+
+  .mobile-date {
+    font-size: 16px;
   }
 
   .mr {
-    margin-right: 0;
+    margin-right: 10px;
     margin-bottom: 10px;
   }
 

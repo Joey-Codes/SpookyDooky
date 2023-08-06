@@ -33,7 +33,7 @@
 /* Media query for mobile screens */
 @media screen and (max-width: 480px) {
   .home-searchbar {
-    font-size: 13px; /* Decrease font size for better fit on mobile */
+    font-size: 20px; /* Decrease font size for better fit on mobile */
     width: 90%; /* Make the search bar full width on mobile */
     margin-bottom: 10px; /* Add some spacing between search bar and button on mobile */
   }

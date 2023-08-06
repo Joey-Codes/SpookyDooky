@@ -1,19 +1,27 @@
-.react-tabs__tab-list {
-    display: flex;
-    justify-content: space-evenly;
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  /* Example custom styling for the active tab */
-  .react-tabs__tab--selected {
-    background-color: #fff;
-    border-bottom: 2px solid red;
-    color: red;
-  }
-  
-  /* Example custom styling for the TabPanel */
-  .react-tabs__tab-panel {
-    padding: 20px;
-  }
+/* Add .profile-tabs before .react-tabs__tab-list to increase specificity */
+.profile-tabs .react-tabs__tab-list {
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid rgb(34, 34, 34);
+  font-family: 'Readexpro';
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Add .profile-tabs before .react-tabs__tab--selected to increase specificity */
+.profile-tabs .react-tabs__tab--selected {
+  background: rgb(34, 34, 34); /* Set the background of the selected tab to black */
+  color: white; /* Set the text color of the selected tab to white */
+  border-radius: 5px 5px 0 0;
+  border-bottom: 0;
+}
+
+/* Add .profile-tabs before .react-tabs__tab-panel to increase specificity */
+.profile-tabs .react-tabs__tab-panel {
+  padding: 20px;
+  background: rgb(34, 34, 34); /* Set the background of the active tab panel to black */
+  color: black; /* Set the text color of the active tab panel to white */
+  margin: 0;
+  border-top: none; /* Add this line to remove the top border */
+}

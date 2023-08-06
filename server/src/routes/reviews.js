@@ -27,7 +27,26 @@ router.get("/", async (req, res) => {
       }
   });
 
+  /* Given a userID retrieve all the user's reviews */
+  router.get('/find/:userID', async (req, res) => {
+    const userID = req.params.userID;
+  
+    try {
+      const reviews = await ReviewModel.find({ userId: userID });
+  
+      if (reviews.length === 0) {
+        return res.status(404).json({ message: 'No reviews found for the provided userID.' });
+      }
+  
+      res.status(200).json(reviews);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
+
+/* Given a reviewID find its User Owner */
 router.get('/owner/:reviewId', async (req, res) => {
   try {
     const { reviewId } = req.params;
