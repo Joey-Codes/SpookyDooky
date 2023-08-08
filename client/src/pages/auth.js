@@ -6,11 +6,11 @@ export const Auth = () => {
     <div className='auth'>
       <div className='auth-container'>
         <div className="chango rp2">OO</div>
-        <h2 className='rp1'>Create an account to keep track of your reviews!</h2>
+        <h2 className='auth-text readexpro red'>Create an account to keep track of your reviews!</h2>
         <br />
         <GoogleLoginButton />
         <br />
-        <h2 className='rp1'>If you already have an account, you can login with the same link</h2>
+        <h2 className='auth-text readexpro'>If you already have an account, you can login with the same link</h2>
       </div>
     </div>
   );
@@ -18,7 +18,7 @@ export const Auth = () => {
 
 const GoogleLoginButton = () => {
   return (
-    <a href="http://localhost:3001/auth/google" className="google-button readexpro rp1">
+    <a href="http://localhost:3001/auth/google" className="google-button readexpro">
       Sign In With Google
       <img src={google_icon} alt='google icon' className='google-icon' />
     </a>

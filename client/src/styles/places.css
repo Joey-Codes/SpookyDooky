@@ -116,6 +116,7 @@
   .filter {
     margin-left: 0;
     text-align: center;
+    font-size: 50px;
   }
 
   .place-entry {
@@ -134,6 +135,14 @@
   .entry-format {
     flex-direction: column;
     align-items: center;
+  }
+
+  .name {
+    font-size: 30px;
+  }
+
+  .address {
+    font-size: 25px;
   }
 
   .place-info {

@@ -173,7 +173,6 @@
   cursor: pointer;
 }
 
-/* Mobile styles */
 @media (max-width: 767px) {
   .back-button {
     display: flex;

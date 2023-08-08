@@ -285,7 +285,7 @@ export const Places = () => {
                               />
                               <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
                             </div>
-                            <h2 className='readexpro italic white'>{place.address}</h2>
+                            <h2 className='readexpro italic white address'>{place.address}</h2>
                             {place.website && (
                               <a className='readexpro place-link' href={place.website} target='_blank' rel="noreferrer">
                                 Website

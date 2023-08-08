@@ -55,8 +55,12 @@ export const PlacePage = ({ query }) => {
           if (review.userId === null) {
             reviewOwners.push('Anonymous');
           } else {
-            const response = await axios.get(`http://localhost:3001/auth/find/${review.userId}`);
-            reviewOwners.push(response.data.name);
+            try {
+              const response = await axios.get(`http://localhost:3001/auth/find/${review.userId}`);
+              reviewOwners.push(response.data.name);
+            } catch (err) {
+            reviewOwners.push('Anonymous');
+            }
           }
         }
         setReviewOwners(reviewOwners);

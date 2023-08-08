@@ -1,5 +1,6 @@
 import '../styles/profile.css'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Modal from 'react-modal';
 import { useGetUserID } from '../hooks/useGetUserID';
 import 'react-tabs/style/react-tabs.css';
 import { useEffect, useState } from 'react';
@@ -9,12 +10,39 @@ import { enUS } from 'date-fns/locale';
 import axios from 'axios';
 import '../styles/profile.css';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    background: 'black',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 export const Profile = () => {
   const userID = useGetUserID();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
 
   const handleDeleteReview = (reviewId) => {
     try {
       axios.delete(`http://localhost:3001/reviews/delete/${reviewId}`);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDeleteClick = () => {
+    setIsOpen(true);
+  }
+
+  const handleDeleteUser = () => {
+    try {
+      axios.delete(`http://localhost:3001/auth/delete/${userID}`);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -64,6 +92,10 @@ export const Profile = () => {
     </TabList>
 
     <TabPanel>
+    <div style={{height:'600px'}}>
+    {myReviews.length === 0 ? (
+          <h2 className='readexpro white'>You have no reviews yet!</h2>
+      ) : (
       <ul className='review-list'>
         {myReviews.map((review, index) => (
               <div className="review-entry" key={review._id}>
@@ -83,20 +115,43 @@ export const Profile = () => {
                 </div>
                 <p className='readexpro rp1'>{review.description}</p>
                 <br />
-                  <button className="h-b3 rp1" onClick={() => handleDeleteReview(review._id)}>
+                  <button className="h-b3 rp1" onClick={() => setIsOpen2(true)}>
                     Delete Review
                   </button>
+                  <Modal isOpen={isOpen2} style={customStyles}>
+                    <h2 className='readexpro white'>Are you sure you wish to delete this review?</h2>
+                    <div className='flex'>
+                      <button className='h-b3 readexpro rp1 mr' onClick={() => setIsOpen2(false)}>Cancel</button>
+                      <button className='h-b3 readexpro rp1' onClick={() => handleDeleteReview(review._id)}>Yes</button>
+                    </div>
+                  </Modal>
               </div>
             ))}
       </ul>
+      )}
+    </div>
     </TabPanel>
     <TabPanel>
-      <h2 className='readexpro white'>Delete my Account</h2>
-      <h3 className='readexpro white'>Warning: This action is irreversible and cannot be undone!</h3>
-      <button className='h-b3 rp1 readexpro white'>Delete Account</button>
       <br />
-      <h2 className='readexpro white'>Questions? Contact</h2>
-      <h3 className='readexpro white'>email:</h3>
+      <br />
+      <div className='setting'>
+        <h2 className='readexpro'>DELETE MY ACCOUNT</h2>
+        <h3 className='readexpro'>Warning: This action is irreversible and cannot be undone!</h3>
+        <h3 className='readexpro'>Note: If you delete your account, your existing reviews will not be automatically deleted and will still be visible. </h3>
+        <h3 className='readexpro'>If you wish to delete them, please do so in the 'My Reviews' tab before deleting your account.</h3>
+        <button className='h-b3 rp1 readexpro' onClick={handleDeleteClick}>Delete Account</button>
+        <Modal isOpen={isOpen} style={customStyles}>
+            <h2 className='readexpro white'>Choose 'YES' to confirm you want to delete your account. No takebacks!</h2>
+            <div className='flex'>
+              <button className='h-b3 readexpro rp1 mr' onClick={() => setIsOpen(false)}>Cancel</button>
+              <button className='h-b3 readexpro rp1' onClick={handleDeleteUser}>Yes</button>
+            </div>
+        </Modal>
+      </div>
+      <div className='setting'>      
+        <h2 className='readexpro'>GOT QUESTIONS OR FEEDBACK? CONTACT US @</h2>
+        <h3 className='readexpro'>email: spookydooky35@gmail.com</h3>
+      </div>
     </TabPanel>
   </Tabs>
   </div>

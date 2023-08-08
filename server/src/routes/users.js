@@ -71,6 +71,27 @@ router.get('/find/:userId', async (req, res) => {
   }
 });
 
+router.delete("/delete/:userId", async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Use the findByIdAndDelete method to remove the user by ID
+    const deletedUser = await UserModel.findByIdAndDelete(userId);
+
+    if (!deletedUser) {
+      // If the user with the given ID doesn't exist, return a 404 response
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Return a success message with the deleted user data
+    res.json({ message: "User deleted successfully", deletedUser });
+  } catch (err) {
+    // If there's an error, handle it and send a 500 response
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 
 router.get("/verifytoken", (req, res) =>  {
   const token = req.cookies.jwtToken;
