@@ -33,6 +33,7 @@
   .locations {
     background-color: rgb(255, 0, 0);
     position: relative;
+    height: 550px;
   }
   
   .location-text {
@@ -121,12 +122,22 @@
       font-size: 20px;
     }
 
+    .category-text {
+      font-size: 20px;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+
     .about-title {
       font-size: 30px;
     }
   
     .about-intro {
       margin-bottom: 50px;
+    }
+
+    .about-row {
+      flex-direction: column;
     }
   
     .location-title {

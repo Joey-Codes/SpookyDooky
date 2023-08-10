@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
-import axios from "axios";
 import '../styles/map.css';
 import StarRatings from "react-star-ratings";
 
 const libraries = ["places"];
 
-export const Map = ({ mapViewClick, showMap }) => {
+export const Map = ({ mapViewClick, showMap, mapPlaces }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_KEY,
     libraries,
   });
 
-  const[mapVisibility, setMapVisibility] = useState(showMap);
+  const [mapVisibility, setMapVisibility] = useState(showMap);
+  const [mapMarkers, setMapMarkers] = useState(mapPlaces);
+
+  useEffect(() => {
+    setMapMarkers(mapPlaces);
+  }, [mapPlaces]);
 
   useEffect(() => {
     setMapVisibility(showMap);
@@ -21,21 +25,7 @@ export const Map = ({ mapViewClick, showMap }) => {
 
   const [center, setCenter] = useState({ lat: 27, lng: -100 });
   const [mapZoom, setMapZoom] = useState(4);
-  const [places, setPlaces] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
-
-  useEffect(() => {
-    const fetchPlaces = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/places");
-        setPlaces(response.data);
-      } catch (error) {
-        console.log("Error fetching places:", error);
-      }
-    };
-
-    fetchPlaces();
-  }, []);
 
   useEffect(() => {
     if (mapViewClick) {
@@ -68,21 +58,20 @@ export const Map = ({ mapViewClick, showMap }) => {
         center={center}
         mapContainerClassName="map-container"
       >
-        {places.map((place) => (
+        {mapMarkers.map((marker) => (
           <Marker
-            key={place._id}
-            position={{ lat: place.lat, lng: place.long }}
-            onClick={() => handleMarkerClick(place)}
+            key={marker._id}
+            position={{ lat: marker.lat, lng: marker.long }}
+            onClick={() => handleMarkerClick(marker)}
           />
         ))}
-
         {selectedMarker && (
           <InfoWindow
             position={{ lat: selectedMarker.lat, lng: selectedMarker.long }}
             onCloseClick={() => setSelectedMarker(null)}
           >
             <div>
-              <button onClick={handlePlaceClick} className="readexpro bold h-b5 flex">{selectedMarker.name}</button>
+              <button onClick={handlePlaceClick} className="readexpro bold rp1 h-b5 flex aqua " style={{border:'none'}}>{selectedMarker.name}</button>
               <br />
               <div className="map-flex">
                 <StarRatings

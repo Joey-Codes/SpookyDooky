@@ -92,7 +92,7 @@ export const Profile = () => {
     </TabList>
 
     <TabPanel>
-    <div style={{height:'600px'}}>
+    <div style={{'min-height':'600px'}}>
     {myReviews.length === 0 ? (
           <h2 className='readexpro white'>You have no reviews yet!</h2>
       ) : (
@@ -150,7 +150,7 @@ export const Profile = () => {
       </div>
       <div className='setting'>      
         <h2 className='readexpro'>GOT QUESTIONS OR FEEDBACK? CONTACT US @</h2>
-        <h3 className='readexpro'>email: spookydooky35@gmail.com</h3>
+        <h3 className='readexpro'>Email: spookydooky35@gmail.com</h3>
       </div>
     </TabPanel>
   </Tabs>

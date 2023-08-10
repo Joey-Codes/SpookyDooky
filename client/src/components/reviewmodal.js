@@ -13,8 +13,12 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    maxWidth: '90%', // Adjust the maximum width to fit smaller screens
+    maxHeight: '90vh', // Limit the maximum height to the viewport height
+    overflow: 'auto', // Enable scrolling if the modal content overflows
   },
 };
+
 
 export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) => {
   const navigate = useNavigate();
@@ -93,6 +97,8 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
         <h1 className='readexpro rp2 red'>{placeName}</h1>
         <br />
         <br />
+        <div className='readexpro italic'>Note: If you wish to keep track of all your reviews, please sign in.</div>
+        <div className='readexpro italic'>Otherwise, this review will be labeled as from 'Anonymous'.</div>
         <div className='modal-row'>
           <h2 className='readexpro form-font mr'>SCARINESS RATING -</h2>
           <StarRatings

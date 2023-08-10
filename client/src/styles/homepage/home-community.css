@@ -23,15 +23,7 @@
 
 .ct1 {
     font-size: 40px;
-}
-
-.community-section:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.community-section:nth-child(2) {
-  animation-delay: 0.2s;
-}
+} 
 
 .left-popin {
   animation: leftPopInAnimation 0.5s;
@@ -39,14 +31,12 @@
 
 @keyframes leftPopInAnimation {
   0% {
-    transform: translateY(50%);
+    transform: translateX(50%);
     opacity: 0;
-    filter: blur(4px);
   }
   100% {
     transform: translateX(0);
     opacity: 1;
-    filter: blur(0);
   }
 }
 
@@ -60,7 +50,7 @@
   .community-section {
     padding: 5%;
     margin: 5% 5%;
-    width: 90%;
+    width: 70%;
   }
 
   .ct1 {
@@ -69,7 +59,7 @@
 
   .community-example {
     height: 150px;
-    width: 120px;
+    width: 90px;
   }
 
   .flex {

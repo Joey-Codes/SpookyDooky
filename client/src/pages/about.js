@@ -24,19 +24,16 @@ export const About = () => {
             </svg>
           </div>
         </div>
-        <div className='locations about-text'>
-            <h1 className='readexpro rp2 italic white location-title'>FINDING A LOCATION</h1>
-            <h2 className='readexpro white'>
+        <div className='locations'>
+            <h1 className='readexpro rp2 italic white location-title about-title'>FINDING A LOCATION</h1>
+            <h2 className='readexpro white about-text'>
               You can find a location to review in the 'Places' tab, where you can use the search bar to quickly find a place or use the filters to look for specific categories, such as locations by rating or geographic area.
             </h2>
-            <h2 className='readexpro white'>
+            <h2 className='readexpro white about-text'>
               If you would like to add a new place to review, click on the 'Add' button and search for a location. If the location already has reviews, you will be redirected to its specific page.
             </h2>
-            <h2 className='readexpro white'>
-              You can find a location to review in the 'Places' tab, where you can use the search bar to quickly find a place or use the filters to look for specific categories, such as locations by rating or geographic area.
-            </h2>
-            <h2 className='readexpro white location-text'>
-              You can find a location to review in the 'Places' tab, where you can use the search bar to quickly find a place or use the filters to look for specific categories, such as locations by rating or geographic area.
+            <h2 className='readexpro white about-text'>
+              When it comes to franchises like McDonalds, make sure to type the address after the name to ensure you have selected the right place, as all McDonalds have the same place name.
             </h2>
             <br />
             <div class="wave2">
@@ -46,10 +43,10 @@ export const About = () => {
 </div>
         </div>
       </div>
-      <div className='reviews about-text'>
+      <div className='reviews'>
         <div>
-          <h1 className='readexpro rp2 white italic review-title'>CREATING REVIEWS</h1>
-          <h2 className='readexpro white'>
+          <h1 className='readexpro rp2 white italic review-title about-title'>CREATING REVIEWS</h1>
+          <h2 className='readexpro white about-text'>
             The first aspect of a review is its Spookiness Rating. This is a subjective measure, from 1 to 5 stars, of how scary you found the location to be, which contributes to its overall score.
           </h2>
           <StarRatings
@@ -57,7 +54,7 @@ export const About = () => {
             rating={5} // Replace with your actual rating value
             starRatedColor="red" // Customize the color of the filled stars
             starEmptyColor="lightgray" // Customize the color of the empty stars
-            starDimension="80px" // Adjust the size of the stars
+            starDimension="70px" // Adjust the size of the stars
             starSpacing="2px" // Adjust the spacing between stars
           />
         </div>
@@ -65,41 +62,41 @@ export const About = () => {
         <br />
         <br />
         <div>
-          <h2 className='readexpro white'>
+          <h2 className='readexpro white -text about-text '>
             The next part of a review is its category. All reviews are categorized by the type of phenomena they describe. The four categories - Ghosts, Aliens, Cryptids, and Unexplained - are explained below.
           </h2>
           <br />
           <div className='about-row'>
             <button className='h-b2 h-b2a bangers b2 mr category-fit'>Ghosts &#x1F47B;</button>
-            <h2 className='readexpro text white'>
+            <h2 className='readexpro text white category-text'>
               This includes ghosts, spirits, poltergeists, and any other related entities. It also includes any type of phenomena usually associated with hauntings.
             </h2>
           </div>
           <br />
           <div className='about-row'>
             <button className='h-b2 h-b2b bangers b2 mr category-fit'>ALIENS &#x1F47D;</button>
-            <h2 className='readexpro text white'>
+            <h2 className='readexpro text white category-text'>
               This includes things like suspected alien encounters, alien abductions, UFO sightings or encounters, and any other related direct or indirect phenomena.
             </h2>
           </div>
           <br />
           <div className='about-row'>
             <button className='h-b2 h-b2c bangers b2 mr category-fit'>CRYPTIDS &#x1F479;</button>
-            <h2 className='readexpro text white'>
+            <h2 className='readexpro text white category-text'>
               This includes animals or creatures not yet officially confirmed to exist, often being the subject of legends and myths. Some notable examples include Bigfoot, the Yeti, Chupacabra, and Mothman.
             </h2>
           </div>
           <br />
           <div className='about-row'>
             <button className='h-b2 h-b2d bangers b2 mr category-fit'>UNEXPLAINED &#x2754;</button>
-            <h2 className='readexpro text white'>
+            <h2 className='readexpro text white category-text'>
               This category includes anything paranormal that does not fit into any of the categories listed above. Any phenomena that seems to defy logical or natural explanations can belong to this category.
             </h2>
           </div>
           <br />
           <br />
           <br />
-          <h2 className='readexpro white'>
+          <h2 className='readexpro white about-text'>
             All reviews include a description of the experience, which can be as detailed as you like. Additionally, you can also add photos to the review if there is a specific phenomenon you believe you have captured.
           </h2>
         </div>

@@ -36,6 +36,24 @@ export const Places = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [showMap, setShowMap] = useState(true);
 
+  useEffect(() => {
+    // Check if the navigation has already occurred in this session
+    const hasNavigated = localStorage.getItem("hasNavigated");
+
+    if (!hasNavigated) {
+      // Mark the navigation as occurred in the current session
+      localStorage.setItem("hasNavigated", "true");
+
+      // Navigate to the /about page
+      navigate("/");
+      
+      // After a brief delay, navigate back to the /places page
+      setTimeout(() => {
+        navigate("/places");
+      }, 200); // Adjust the delay time as needed
+    }
+  }, [navigate]); 
+
   const handleShowMap = () => {
     if (showMap === true) {
       setShowMap(false);
@@ -64,9 +82,16 @@ export const Places = () => {
       navigate(`/places?query=${encodeURIComponent(query)}`);
       const response = await axios.get(`http://localhost:3001/places/searchquery/${query}`);
       setPlaces(response.data);
-      setFilter(response.data.length > 0 ? "Search Results" : "No Results!");
+      setFilter(response.data.length > 0 ? `Search Results` : `No Results!`);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleQuerySearch(event);
     }
   };
 
@@ -152,7 +177,7 @@ export const Places = () => {
         let response;
         if (queryParam) {
           response = await axios.get(`http://localhost:3001/places/searchquery/${queryParam}`);
-          setFilter(response.data.length > 0 ? "Search Results" : `No Results for ${queryParam}!`);
+          setFilter(response.data.length > 0 ? `Search Results` : `No Results!`);
         } else {
           response = await axios.get("http://localhost:3001/places");
           setFilter("All Places");
@@ -198,15 +223,14 @@ export const Places = () => {
             <br />
             <h1 className='readexpro white rp1 mrp1'>SEARCH FOR A PLACE &#x1F50D;</h1>
             <br />
-            <form onSubmit={handleQuerySearch}>
               <input
                 className='h-b5 readexpro search'
                 type='text'
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
+                onKeyDown={handleKeyDown}
               />
-              <button type='submit' className='h-b5 readexpro search'>GO</button>
-            </form>
+              <button type='button' className='h-b5 readexpro search' onClick={handleQuerySearch}>Search</button>
             <h2 className='readexpro white mrp1'>You can also find places with the map</h2>
             <button onClick={handleShowMap} className='only-on-mobile h-b5 readexpro r1'>{showMap ? 'Show Map' : 'Hide Map'}</button>
           </div>
@@ -263,12 +287,9 @@ export const Places = () => {
         </div>
         <br />
         <div className='places-display'>
-            <Map mapViewClick={selectedPlace} showMap={showMap} />
+        <Map mapViewClick={selectedPlace} showMap={showMap} mapPlaces={places} />
           <div className='place-list'>
             <h1 className='readexpro rp2 bold filter'>{filter}</h1>
-              {filter === `No Results for ${query}!` && (
-                <h2 className='readexpro filter'>Try checking your spelling!</h2>
-              )}
               {places.map((place) => (
                   <div className="place-entry" key={place._id}>
                       <div className='entry-format'>

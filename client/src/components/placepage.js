@@ -93,7 +93,7 @@ export const PlacePage = ({ query }) => {
   };
 
   if (!place || !reviews) {
-    return <div>Loading...</div>;
+    return <div className='readexpro rp2' style={{minHeight:'600px'}}>Loading...</div>;
   }
 
   return (
@@ -192,11 +192,9 @@ export const PlacePage = ({ query }) => {
                 />
               <p className='readexpro rp1'>{review.description}</p>
               <br />
-              {userID === review.userId && userID !== null && (
                 <button className="h-b3 rp1" onClick={() => handleDeleteReview(review._id)}>
                   Delete Review
                 </button>
-              )}
             </div>
           ))}
         </ul>
