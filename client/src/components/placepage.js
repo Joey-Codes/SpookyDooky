@@ -93,8 +93,12 @@ export const PlacePage = ({ query }) => {
   };
 
   if (!place || !reviews) {
-    return <div className='readexpro rp2' style={{minHeight:'600px'}}>Loading...</div>;
-  }
+    return (
+      <div className='readexpro rp2 loading'>
+        Loading...
+      </div>
+    );
+      }
 
   return (
     <div>
@@ -175,7 +179,7 @@ export const PlacePage = ({ query }) => {
       ) : (
         <ul className='review-list'>
           {reviews.map((review, index) => (
-            <div className="review-entry" key={review._id}>
+            <div className="review-entry profile-review" key={review._id}>
               <div className='rating-top-portion'>
                 <h2 className='readexpro'>{reviewOwners[index]}</h2>
                 <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>

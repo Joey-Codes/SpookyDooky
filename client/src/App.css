@@ -127,6 +127,20 @@ a {
   font-weight: bold;
 }
 
+.loading {
+  height: 1000px;
+  background-color: rgb(248, 105, 105);
+  background-image: url(./images/ghost-background1.png);
+}
+
+@media (max-width: 767px) {
+  .loading {
+    height: 600px;
+    background-color: white;
+    background-image: url(./images/glasses_ghost.png);
+    background-size: cover;
+  }
+}
 
 
 

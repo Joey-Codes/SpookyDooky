@@ -235,8 +235,15 @@
   }
 
   .modal-form {
-    align-items: center;
+    display: flex;
+    text-align: center;
   }
+
+.modal-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
   .form-font {
     font-size: 25px;

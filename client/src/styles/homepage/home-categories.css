@@ -78,7 +78,8 @@
     }
   
     .h-b2 {
-      padding: 0 35px;
+      border-radius: 5px;
+      padding: 5px;
     }
   
     .fade-right {

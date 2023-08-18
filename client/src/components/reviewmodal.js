@@ -100,7 +100,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
         <div className='readexpro italic'>Note: If you wish to keep track of all your reviews, please sign in.</div>
         <div className='readexpro italic'>Otherwise, this review will be labeled as from 'Anonymous'.</div>
         <div className='modal-row'>
-          <h2 className='readexpro form-font mr'>SCARINESS RATING -</h2>
+          <h2 className='readexpro form-font mr mrp1'>SCARINESS RATING -</h2>
           <StarRatings
             rating={starRating}
             starRatedColor="red"
@@ -118,7 +118,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
             name="category"
             value="Ghosts"
             onClick={handleCategoryChange}
-            className={`h-b4 readexpro rp1 bold mr ${
+            className={`h-b4 readexpro rp1 bold mr${
               selectedCategory === 'Ghosts' ? 'active' : ''
             }`}
           >
@@ -156,15 +156,17 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
               </div>
               <br />
         <div className='modal-row'>
+          <div>
           <button onClick={() => {
             closeModal();
             deletePlace();
-          }} className='h-b3 h-b3a readexpro form-font'>
+          }} className='h-b3 h-b3a readexpro form-font mr'>
             Cancel
           </button>
           <button onClick={onSubmit} className='h-b3 readexpro form-font'>
             Add Review
           </button>
+          </div>
         </div>
       </div>
     </Modal>

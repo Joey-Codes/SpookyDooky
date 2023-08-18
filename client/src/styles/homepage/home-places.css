@@ -74,16 +74,15 @@
     }
 
     .sample-place {
+        display: flex;
         height: 200px;
         width: 200px;
         align-items: center;
-        margin-left: 25%;
         margin-top: 10px;
     }
     
     .home-places {
-        margin-top: 0;
-        margin-bottom: 0;
+        margin: 0;
     }
 
     .home-places-right {

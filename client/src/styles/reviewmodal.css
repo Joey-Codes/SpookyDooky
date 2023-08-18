@@ -1,3 +1,5 @@
 @media (max-width: 767px) {
-    /* Need to Add */
+    .form-font {
+        font-size: 15px;
+    }
 }

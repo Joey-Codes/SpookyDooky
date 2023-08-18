@@ -262,12 +262,12 @@ export const Places = () => {
                 <br />
                 <br />
                 <div>
-                  <SearchBar onPlaceSelect={handlePlaceSelect}/>
+                  <SearchBar onPlaceSelect={handlePlaceSelect} />
                 </div>
                 <br />
-                <h1 className='readexpro bold'>{newPlace.name}</h1>
-                <h2 className='readexpro italic'>{newPlace.address}</h2>
-                <h2 className='readexpro red'>{result}</h2>
+                <h1 className='readexpro bold mrp1'>{newPlace.name}</h1>
+                <h2 className='readexpro italic mrp1'>{newPlace.address}</h2>
+                <h2 className='readexpro red mrp1'>{result}</h2>
                 {result === "There are already reviews for this place!" ? (
                   <button className='h-b3 readexpro form-font' onClick={handleExistingPlaceClick}>Go to {newPlace.name} page</button>
                 ) : result === "There are no reviews for this place yet! Be the first!" ? (

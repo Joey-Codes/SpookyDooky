@@ -99,15 +99,15 @@ export const Profile = () => {
       <ul className='review-list'>
         {myReviews.map((review, index) => (
               <div className="review-entry" key={review._id}>
-                <h2 className='red readexpro italic'>Review for {placeNames[index]}</h2>
-                <div className='rating-top-portion'>
-                  <StarRatings
+                <h2 className='readexpro italic'>Your review for {placeNames[index]}</h2>
+                <StarRatings
                     rating={review.rating} // Replace with your actual rating value
                     starRatedColor="red" // Customize the color of the filled stars
                     starEmptyColor="lightgray" // Customize the color of the empty stars
-                    starDimension="40px" // Adjust the size of the stars
+                    starDimension="4vh" // Adjust the size of the stars 
                     starSpacing="2px" // Adjust the spacing between stars
                   />
+                <div className='rating-top-portion'>
                   <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
                     {review.category}
                   </h2>
