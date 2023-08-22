@@ -195,6 +195,9 @@ export const PlacePage = ({ query }) => {
                   starSpacing="2px" // Adjust the spacing between stars
                 />
               <p className='readexpro rp1'>{review.description}</p>
+              {review.img && (
+                <img className='review-img' src={review.img} alt='review-pic'/>
+              )}
               <br />
                 <button className="h-b3 rp1" onClick={() => handleDeleteReview(review._id)}>
                   Delete Review

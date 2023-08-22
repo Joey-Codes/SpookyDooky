@@ -117,6 +117,13 @@
   width: 75%;
 }
 
+.review-img {
+  max-width: 100%; /* Make sure the image doesn't exceed its container width */
+  max-height: 300px; /* Maintain aspect ratio */
+  display: block; /* Remove any default inline alignment */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
 .filters {
   display: flex;
   flex-direction: row;
@@ -262,6 +269,10 @@
 
   .review-entry {
     width: 95%;
+  }
+
+  .review-img {
+    max-height: 200px;
   }
 
   .filters {
