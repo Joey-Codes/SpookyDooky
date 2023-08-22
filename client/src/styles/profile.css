@@ -33,10 +33,6 @@
   }
 }
 
-.profile-review {
-  background-color: black;
-}
-
 .setting {
   display: flex;
   flex-direction: column;

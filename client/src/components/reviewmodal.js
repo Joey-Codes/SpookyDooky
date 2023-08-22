@@ -32,7 +32,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     description: "",
     userId: userID,
     placeId: placeId,
-    img: null
+    img: "",
   });
 
   const handleCategoryChange = (event) => {
@@ -114,37 +114,35 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
         <br />
         <div className='modal-row'>
           <h2 className='readexpro form-font mr'>CATEGORY -</h2>
-          <button
-            name="category"
-            value="Ghosts"
-            onClick={handleCategoryChange}
-            className={`h-b4 readexpro rp1 bold mr${
-              selectedCategory === 'Ghosts' ? 'active' : ''
-            }`}
-          >
-            GHOSTS
-          </button>
-                <button 
-                  name="category" 
-                  value="Aliens" 
-                  onClick={handleCategoryChange} 
-                  className={`h-b4 readexpro rp1 bold mr ${selectedCategory === 'Aliens' ? 'active' : ''}`}
-                >ALIENS
-                </button>
-                <button 
-                  name="category"
-                  value="Cryptids"
-                  onClick={handleCategoryChange}
-                  className={`h-b4 readexpro rp1 bold mr ${selectedCategory === 'Cryptids' ? 'active' : ''}`}
-                >CRYPTIDS
-                </button>
-                <button 
-                  name="category"
-                  value="Unexplained"
-                  onClick={handleCategoryChange}
-                  className={`h-b4 readexpro rp1 bold ${selectedCategory === 'Unexplained' ? 'active' : ''}`}
-                >UNEXPLAINED
-                </button>
+            <button
+              name="category"
+              value="Ghosts"
+              onClick={handleCategoryChange}
+              className={`h-b4 readexpro rp1 bold mr ${selectedCategory === 'Ghosts' ? 'active' : ''}`}
+            >
+              GHOSTS
+            </button>
+            <button 
+              name="category" 
+              value="Aliens" 
+              onClick={handleCategoryChange} 
+              className={`h-b4 readexpro rp1 bold mr ${selectedCategory === 'Aliens' ? 'active' : ''}`}
+            >ALIENS
+            </button>
+            <button 
+              name="category"
+              value="Cryptids"
+              onClick={handleCategoryChange}
+              className={`h-b4 readexpro rp1 bold mr ${selectedCategory === 'Cryptids' ? 'active' : ''}`}
+            >CRYPTIDS
+            </button>
+            <button 
+              name="category"
+              value="Unexplained"
+              onClick={handleCategoryChange}
+              className={`h-b4 readexpro rp1 bold ${selectedCategory === 'Unexplained' ? 'active' : ''}`}
+            >UNEXPLAINED
+            </button>
         </div>
                  <br />
               <h2 className='readexpro form-font'>DESCRIPTION:</h2>

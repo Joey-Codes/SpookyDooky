@@ -3,7 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import passport from 'passport';
-import jwt from 'jsonwebtoken';
+import {v2 as cloudinary } from 'cloudinary';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
@@ -89,13 +89,16 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+cloudinary.config({ 
+  cloud_name: `${process.env.CLOUDINARY_NAME}`, 
+  api_key: `${process.env.CLOUDINARY_API_KEY}`, 
+  api_secret: `${process.env.CLOUDINARY_API_SECRET}` 
+});
+
 app.use('/auth', userRouter);
 app.use('/places', placesRouter);
 app.use('/reviews', reviewsRouter);
 
-/* app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'src', 'index.js'));
-}); */
 
 mongoose.connect(`mongodb+srv://admin:${password}@data.emedzou.mongodb.net/Data?retryWrites=true&w=majority`);
 
