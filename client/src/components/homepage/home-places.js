@@ -17,15 +17,12 @@ export const HomePlaces = () => {
         <h1 className='readexpro rp2 white'>NEW</h1>
         <h1 className='readexpro rp2 red'>PLACES</h1>
         <br />
-{/*         <Link to="/places">
-          <button className='h-b rammettoone r1'>GO!</button>
-        </Link> */}
       </div>
       <Waypoint onEnter={() => { setFadeLeft(true); setFadeLeftFull(true); setFadeDown(true); }}>
          <div className='home-places-right'>
-          <img src={glasses_ghost} alt="Placeholder 1" className={`sample-place ${fadeLeft ? 'fade-left1' : ''}`}  />
-          <img src={glasses_ghost} alt="Placeholder 2" className={`sample-place ${fadeLeft ? 'fade-left2' : ''}`}  />
-          <img src={glasses_ghost} alt="Placeholder 3" className={`sample-place ${fadeLeft ? 'fade-left3' : ''}`}  />
+          <img src='https://res.cloudinary.com/duj0zlvda/image/upload/v1692673544/Places_Thumbnails/byqqxz5dhejd4n1qrnsb.jpg' alt="Placeholder 1" className={`sample-place ${fadeLeft ? 'fade-left1' : ''}`}  />
+          <img src='https://res.cloudinary.com/duj0zlvda/image/upload/v1692673544/Places_Thumbnails/byqqxz5dhejd4n1qrnsb.jpg' alt="Placeholder 2" className={`sample-place ${fadeLeft ? 'fade-left2' : ''}`}  />
+          <img src='https://res.cloudinary.com/duj0zlvda/image/upload/v1692673544/Places_Thumbnails/byqqxz5dhejd4n1qrnsb.jpg' alt="Placeholder 3" className={`sample-place ${fadeLeft ? 'fade-left3' : ''}`}  />
          </div>
       </Waypoint>
     </div>

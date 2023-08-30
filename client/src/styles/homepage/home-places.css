@@ -1,8 +1,8 @@
 .home-places {
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
-    margin: 100px 10% 100px 0;
+    margin: 100px 5% 100px 0;
 }
 
 .moving-ghost {
@@ -10,18 +10,18 @@
     background-color: white;
     height: 300px;
     width: 200px;
-    margin: 50px 50px;
+    margin: 50px 0px;
 }
 
 .home-places-right {
-    padding-left: 10%;
+    padding-left: 50px;
 }
 
 .sample-place {
     background-color: black;
-    height: 300px;
-    width: 200px;
-    margin: 50px 50px;
+    height: auto;
+    max-width: 350px;
+    margin: 50px 30px;
 }
 
 .ls2 {
@@ -73,6 +73,10 @@
         width: 0px;
     }
 
+    .ls2 {
+        padding: 20px;
+    }
+
     .sample-place {
         display: flex;
         height: 200px;
@@ -82,7 +86,7 @@
     }
     
     .home-places {
-        margin: 0;
+        margin: 0 0 0 0;
     }
 
     .home-places-right {

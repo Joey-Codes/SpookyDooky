@@ -1,7 +1,5 @@
 import express from "express";
-import mongoose from "mongoose";
 import { PlacesModel } from "../models/Places.js";
-import { verifyToken } from "./users.js";
 import { ReviewModel } from "../models/Reviews.js";
 
 const router = express.Router();
@@ -148,7 +146,6 @@ router.get("/:id", async (req, res) => {
       const address = req.params.address;
       const place = await PlacesModel.find({ address: { $eq: address} });
       res.send(place);
-      console.log("Response sent successfully");
     } catch (err) {
       res.status(500).send(err);
     }

@@ -10,8 +10,8 @@
 
 .hf-title {
   display: flex;
-  flex-direction: column; /* For mobile, display the title vertically */
-  align-items: center; /* Center the title vertically on mobile */
+  flex-direction: column; 
+  align-items: center; 
 }
 
 .rp2 {
@@ -35,22 +35,21 @@
   margin-top: 3%;
 }
 
-/* Media query for mobile screens */
 @media screen and (max-width: 480px) {
   .hf-title {
-    margin-bottom: 20px; /* Add some spacing below the title on mobile */
+    margin-bottom: 20px;
   }
 
   .rp2 {
-    font-size: 40px; /* Decrease font size for better fit on mobile */
+    font-size: 40px; 
   }
 
   .slide-image {
-    height: 80px; /* Adjust the height of slide images on mobile */
-    width: 250px; /* Adjust the width of slide images on mobile */
+    height: 80px; 
+    width: 250px; 
   }
 
   .more-reviews {
-    margin-top: 5%; /* Increase the top margin of the button on mobile */
+    margin-top: 5%; 
   }
 }

@@ -12,9 +12,7 @@
     margin-right: 10%;
 }
 
-.b2 {
-    font-size: 70px;
-}
+.b2 { font-size: 70px; }
 
 .h-b2 {
     border-radius: 15px 15px 15px 15px;
@@ -25,13 +23,9 @@
     transition: all 0.5s ease;
 }
 
-.hc {
-    width: 600px;
-}
+.hc { width: 600px; }
 
-.fade-right {
-    animation: fadeRight 1s ease-out forwards;
-}
+.fade-right { animation: fadeRight 1s ease-out forwards; }
   
 @keyframes fadeRight {
     from {
@@ -56,44 +50,40 @@
 
 /* Media query for mobile screens */
 @media screen and (max-width: 768px) {
-    .home-categories {
-      padding-top: 100px;
-      padding-bottom: 30px;
-      flex-direction: column;
-      align-items: center;
+  .home-categories {
+    padding-top: 100px;
+    padding-bottom: 30px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .test {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .hc {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .b2 { font-size: 40px; }
+
+  .h-b2 {
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .fade-right { animation: fadeRightMobile 1s ease-out forwards; }
+
+  @keyframes fadeRightMobile {
+    from {
+      transform: translateX(-50%);
     }
-  
-    .test {
-      margin-right: 0;
-      margin-bottom: 30px;
-    }
-  
-    .hc {
-      width: 100%;
-      max-width: 300px;
-    }
-  
-    .b2 {
-      font-size: 40px;
-    }
-  
-    .h-b2 {
-      border-radius: 5px;
-      padding: 5px;
-    }
-  
-    .fade-right {
-      animation: fadeRightMobile 1s ease-out forwards;
-    }
-  
-    @keyframes fadeRightMobile {
-      from {
-        transform: translateX(-50%);
-      }
-      to {
-        transform: translateX(0%);
-      }
+    to {
+      transform: translateX(0%);
     }
   }
+}
 
 

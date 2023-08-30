@@ -20,14 +20,9 @@
   content: url("../../images/glasses_ghost.png");
 }
 
+.ct1 { font-size: 40px; } 
 
-.ct1 {
-    font-size: 40px;
-} 
-
-.left-popin {
-  animation: leftPopInAnimation 0.5s;
-}
+.left-popin { animation: leftPopInAnimation 0.5s; }
 
 @keyframes leftPopInAnimation {
   0% {

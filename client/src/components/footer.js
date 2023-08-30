@@ -5,18 +5,19 @@ export const Footer = () => {
         <div className="footer">
             <div className="footer-container">
                 <div className="footer-column">
-                <h2>ABOUT</h2>
+                <h2>INFO</h2>
                 <ul>
-                    <li>Our Story</li>
+                    <li>About Spooky Dooky</li>
                 </ul>
             </div>
             <div className="footer-column">
-                <h2>INFO</h2>
+                <h2>FEATURES</h2>
                 <ul>
-                    <li>Organizations</li>
+                    <li>Organizations (Coming Soon)</li>
                 </ul>
             </div>
         </div>
+        <div className="footer-line">"Pixel Glasses Ghost" from https://www.vecteezy.com/free-vector/ghost</div>
         <div className="footer-line">&copy; 2023 Spooky Dooky. All rights reserved.</div>
         </div>
     )

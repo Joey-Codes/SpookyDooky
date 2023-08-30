@@ -33,7 +33,7 @@
   .locations {
     background-color: rgb(255, 0, 0);
     position: relative;
-    height: 550px;
+    height: 600px;
   }
   
   .location-text {
@@ -140,6 +140,10 @@
       flex-direction: column;
     }
   
+    .locations {
+      height: 700px;
+    }
+
     .location-title {
       margin-bottom: 30px;
     }

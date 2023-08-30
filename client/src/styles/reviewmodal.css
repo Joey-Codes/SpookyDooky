@@ -1,9 +1,4 @@
-.error {
-    border: 2px solid red;
-  }
-  
-
-@media (max-width: 767px) {
+  @media (max-width: 767px) {
     .form-font {
         font-size: 15px;
     }

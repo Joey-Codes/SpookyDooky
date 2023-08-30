@@ -11,11 +11,30 @@ import { UserModel } from './models/Users.js';
 import { placesRouter } from './routes/places.js';
 import { userRouter } from './routes/users.js';
 import { reviewsRouter } from './routes/reviews.js';
+import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 
 dotenv.config();
 
 const app = express();
-const password = process.env.MONGODB_PASSWORD;
+
+async function accessSecret(secretName) {
+  const client = new SecretManagerServiceClient();
+  const [version] = await client.accessSecretVersion({
+    name: secretName,
+  });
+
+  return version.payload.data.toString();
+}
+
+const mongoPassword = await accessSecret('projects/904458328495/secrets/MONGODB_PASSWORD/versions/latest');
+const googleClientId = await accessSecret('projects/904458328495/secrets/GOOGLE_CLIENT_ID/versions/latest');
+const googleClientSecret = await accessSecret('projects/904458328495/secrets/GOOGLE_CLIENT_SECRET/versions/latest');
+const sessionSecret = await accessSecret('projects/904458328495/secrets/SESSION_SECRET/versions/latest');
+const cloudinaryName = await accessSecret('projects/904458328495/secrets/CLOUDINARY_NAME/versions/latest');
+const cloudinaryApiKey = await accessSecret('projects/904458328495/secrets/CLOUDINARY_API_KEY/versions/latest');
+const cloudinaryApiSecret = await accessSecret('projects/904458328495/secrets/CLOUDINARY_API_SECRET/versions/latest');
+
+
 app.use(cookieParser());
 
 app.use(cors({
@@ -26,13 +45,13 @@ app.use(cors({
 
 app.use(
   session({
-    secret: 'fjaieofjewoifjewfejwiofjoe',
+    secret: sessionSecret,
     resave: true,
     saveUninitialized: true,
     cookie: {
       path: '/',
       httpOnly: true, 
-      secure: process.env.NODE_ENV === 'production', 
+      secure: 'production', 
     },
   })
 );
@@ -45,8 +64,8 @@ app.use(passport.session());
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientID: googleClientId,
+      clientSecret: googleClientSecret,
       callbackURL: '/auth/google/callback',
       passReqToCallback: true,
       debug: true,
@@ -90,9 +109,9 @@ passport.deserializeUser(async (id, done) => {
 });
 
 cloudinary.config({ 
-  cloud_name: `${process.env.CLOUDINARY_NAME}`, 
-  api_key: `${process.env.CLOUDINARY_API_KEY}`, 
-  api_secret: `${process.env.CLOUDINARY_API_SECRET}` 
+  cloud_name: `${cloudinaryName}`, 
+  api_key: `${cloudinaryApiKey}`, 
+  api_secret: `${cloudinaryApiSecret}` 
 });
 
 app.use('/auth', userRouter);
@@ -100,6 +119,6 @@ app.use('/places', placesRouter);
 app.use('/reviews', reviewsRouter);
 
 
-mongoose.connect(`mongodb+srv://admin:${password}@data.emedzou.mongodb.net/Data?retryWrites=true&w=majority`);
+mongoose.connect(`mongodb+srv://admin:${mongoPassword}@data.emedzou.mongodb.net/Data?retryWrites=true&w=majority`);
 
 app.listen(3001, () => console.log('SERVER STARTED!'));

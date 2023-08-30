@@ -2,6 +2,18 @@ import express from "express";
 import jwt from 'jsonwebtoken';
 import passport from "passport";
 import { UserModel } from "../models/Users.js";
+import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
+
+async function accessSecret(secretName) {
+  const client = new SecretManagerServiceClient();
+  const [version] = await client.accessSecretVersion({
+    name: secretName,
+  });
+
+  return version.payload.data.toString();
+}
+
+const jwtSecret = await accessSecret('projects/904458328495/secrets/JWT_SECRET/versions/latest');
 
 const router = express.Router();
 
@@ -20,7 +32,7 @@ router.get(
 /* Upon success */
 router.get('/success', (req, res) => {
   try {
-    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: req.user._id }, jwtSecret);
     res.redirect(`http://localhost:3000/?token=${token}`);
   } catch (error) {
     console.log(error);
@@ -101,7 +113,7 @@ router.get("/verifytoken", (req, res) =>  {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, jwtSecret);
     const userId = decoded.id;
     return res.status(200).json({ userId });
   } catch (err) {
@@ -119,7 +131,7 @@ export const verifyToken = (req, res, next) => {
     }
   
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, jwtSecret);
       req.userId = decoded.id;
       next();
     } catch (error) {

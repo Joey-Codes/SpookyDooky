@@ -1,6 +1,22 @@
 import mongoose from "mongoose";
 import axios from "axios";
 import FormData from "form-data";
+import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
+
+async function accessSecret(secretName) {
+    const client = new SecretManagerServiceClient();
+    const [version] = await client.accessSecretVersion({
+      name: secretName,
+    });
+  
+    return version.payload.data.toString();
+  }
+
+const mongoPassword = await accessSecret('projects/904458328495/secrets/MONGODB_PASSWORD/versions/latest');
+const cloudinaryName = await accessSecret('projects/904458328495/secrets/CLOUDINARY_NAME/versions/latest');
+const cloudinaryUnsignedPreset = await accessSecret('projects/904458328495/secrets/CLOUDINARY_UNSIGNED_PRESET/versions/latest');
+
+mongoose.connect(`mongodb+srv://admin:${mongoPassword}@data.emedzou.mongodb.net/Data?retryWrites=true&w=majority`);
 
 const PlacesSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -24,16 +40,18 @@ PlacesSchema.pre("save", async function(next) {
             formData.append("file", imageData, { filename: `${this.name}.jpg` });
 
             const cloudinaryResponse = await axios.post(
-                `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_NAME}/image/upload`,
+                `https://api.cloudinary.com/v1_1/${cloudinaryName}/image/upload`,
                 formData,
                 {
                     headers: formData.getHeaders(),
                     params: {
-                        upload_preset: `${process.env.CLOUDINARY_UNSIGNED_PRESET}`,
-                        folder: "Places_Thumbnails", 
+                        upload_preset: `${cloudinaryUnsignedPreset}`,
+                        folder: "Places_Thumbnails",
                     },
                 }
-            );
+            ).catch(error => {
+                console.error("Error uploading image to Cloudinary:", error);
+            });
 
             this.img = cloudinaryResponse.data.secure_url;
         } catch (error) {
@@ -46,4 +64,5 @@ PlacesSchema.pre("save", async function(next) {
 
 export const PlacesModel = mongoose.model("places", PlacesSchema);
 
-PlacesModel.createIndexes({ name: "text", address: "text", description: "text" });
+PlacesModel.createIndexes({ name: "text", address: "text" });
+
