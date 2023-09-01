@@ -33,6 +33,8 @@ const sessionSecret = await accessSecret('projects/904458328495/secrets/SESSION_
 const cloudinaryName = await accessSecret('projects/904458328495/secrets/CLOUDINARY_NAME/versions/latest');
 const cloudinaryApiKey = await accessSecret('projects/904458328495/secrets/CLOUDINARY_API_KEY/versions/latest');
 const cloudinaryApiSecret = await accessSecret('projects/904458328495/secrets/CLOUDINARY_API_SECRET/versions/latest');
+const productionBool = await accessSecret('projects/904458328495/secrets/PRODUCTION_BOOL/versions/latest');
+
 
 
 app.use(cookieParser());
@@ -51,7 +53,7 @@ app.use(
     cookie: {
       path: '/',
       httpOnly: true, 
-      secure: 'production', 
+      secure: productionBool === 'true', 
     },
   })
 );
