@@ -14,7 +14,6 @@ async function accessSecret(secretName) {
 }
 
 const jwtSecret = await accessSecret('projects/904458328495/secrets/JWT_SECRET/versions/latest');
-
 const router = express.Router();
 
 /* Redirect to Google Sign-in Page */

@@ -17,7 +17,7 @@ export const Footer = () => {
                 </ul>
             </div>
         </div>
-        <div className="footer-line">"Pixel Glasses Ghost" from https://www.vecteezy.com/free-vector/ghost</div>
+        <div className="footer-line">Ghost Vector Images used from https://www.vecteezy.com</div>
         <div className="footer-line">&copy; 2023 Spooky Dooky. All rights reserved.</div>
         </div>
     )

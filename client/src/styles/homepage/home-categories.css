@@ -1,6 +1,6 @@
 .home-categories {
-    background-color: black;
-    background-image: url('../../images/ghost-background1.png');
+  background: rgb(0,0,0);
+  background: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(98,11,11,1) 100%);
     padding-top: 150px;
     padding-bottom: 50px;
     align-items: center;

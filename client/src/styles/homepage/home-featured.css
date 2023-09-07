@@ -1,5 +1,6 @@
 .home-featured {
-  background-color: black;
+  background: rgb(0,0,0);
+background: linear-gradient(180deg, rgba(0,0,0,1) 60%, rgba(98,11,11,1) 100%);
   flex-direction: column;
   text-align: center;
   align-items: center;
@@ -45,8 +46,8 @@
   }
 
   .slide-image {
-    height: 80px; 
-    width: 250px; 
+    width: 370px;
+    height: auto;
   }
 
   .more-reviews {

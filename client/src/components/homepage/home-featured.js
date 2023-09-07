@@ -2,24 +2,51 @@ import React, { useState} from 'react';
 import { Waypoint } from 'react-waypoint';
 import { Slide } from 'react-slideshow-image';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import 'react-slideshow-image/dist/styles.css';
-import sample_review from '../../images/sample-review.png';
 import '../../styles/homepage/home-featured.css';
 
-const slideImages = [
+const slideImagesPC = [
   {
-    url: sample_review
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693619567/sample-review_m6mubp.png'
   },
   {
-    url: sample_review
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693619567/sample-review_m6mubp.png'
   },
   {
-    url: sample_review
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693619567/sample-review_m6mubp.png'
+  }
+];
+
+const slideImagesMobile = [
+  {
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693620319/sample-review2_r87pms.png'
+  },
+  {
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693620319/sample-review2_r87pms.png'
+  },
+  {
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693620319/sample-review2_r87pms.png'
   }
 ];
 
 export const HomeFeatured = () => {
   const [fadeUp, setFadeUp] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); 
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); 
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const currentSlideImages = isMobile ? slideImagesMobile : slideImagesPC;
+
 
   return (
     <div className="home-featured">
@@ -30,7 +57,7 @@ export const HomeFeatured = () => {
       <br />
       <br />
       <Slide autoplay={true} duration={3000}>
-        {slideImages.map((slideImage, index) => (
+        {currentSlideImages.map((slideImage, index) => (
            <Waypoint onEnter={() => setFadeUp(true)}>
           <div key={index} className={`each-slide-effect ${fadeUp ? 'fade-up' : ''}`}>
             <img src={slideImage.url} alt="sample review" className='slide-image' />

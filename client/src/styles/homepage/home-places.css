@@ -21,7 +21,7 @@
     background-color: black;
     height: auto;
     max-width: 350px;
-    margin: 50px 30px;
+    margin: 50px 20px;
 }
 
 .ls2 {
@@ -63,6 +63,13 @@
 }
 
 @media screen and (max-width: 1024px) {
+    .fade-left1 { animation: none; }
+    .fade-left2 { animation: none; }
+    .fade-left3 { animation: none; }
+    .fade-down { animation: none; }
+    .fade-left-full { animation: none; }
+
+
     .left-side {
         align-items: center;
         margin-bottom: 20px;

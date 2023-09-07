@@ -21,16 +21,6 @@
   background-image: url('../images/ghost-background1.png');
   margin: 0;
   background-repeat: repeat;
-  animation: scrollBackground 40s linear infinite; 
-}
-
-@keyframes scrollBackground {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 100% 100%;
-  }
 }
 
 .setting {

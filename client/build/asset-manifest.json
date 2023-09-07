@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4762730d.css",
+    "main.js": "/static/js/main.1641db5a.js",
+    "static/media/weightlifting_ghost.png": "/static/media/weightlifting_ghost.5f6f6170935dbe22af16.png",
+    "static/media/glasses_ghost.png": "/static/media/glasses_ghost.6748f47629bc6ff4959f.png",
+    "static/media/Bungee-Regular.ttf": "/static/media/Bungee-Regular.11ea3a409c6b0b432ac2.ttf",
+    "static/media/ghost-background1.png": "/static/media/ghost-background1.662590a94b104e77c7f3.png",
+    "static/media/ghosts.png": "/static/media/ghosts.04e4bc9c3a3654c3b371.png",
+    "static/media/Bangers-Regular.ttf": "/static/media/Bangers-Regular.3463d59480ad41fc1d5e.ttf",
+    "static/media/ReadexPro-Medium.ttf": "/static/media/ReadexPro-Medium.24e0f708467c96d2a196.ttf",
+    "static/media/CarterOne-Regular.ttf": "/static/media/CarterOne-Regular.e265365315443b6eca5a.ttf",
+    "static/media/Chango-Regular.ttf": "/static/media/Chango-Regular.48fcd399dbf92f451dc8.ttf",
+    "static/media/RammettoOne-Regular.ttf": "/static/media/RammettoOne-Regular.de44228b3fe0e2f09e70.ttf",
+    "static/media/LilitaOne-Regular.ttf": "/static/media/LilitaOne-Regular.6f506507b06161b73e85.ttf",
+    "static/media/google-icon.png": "/static/media/google-icon.960c670a7a8d952eba35.png",
+    "index.html": "/index.html",
+    "main.4762730d.css.map": "/static/css/main.4762730d.css.map",
+    "main.1641db5a.js.map": "/static/js/main.1641db5a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4762730d.css",
+    "static/js/main.1641db5a.js"
+  ]
+}

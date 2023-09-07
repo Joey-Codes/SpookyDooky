@@ -34,13 +34,14 @@ const cloudinaryName = await accessSecret('projects/904458328495/secrets/CLOUDIN
 const cloudinaryApiKey = await accessSecret('projects/904458328495/secrets/CLOUDINARY_API_KEY/versions/latest');
 const cloudinaryApiSecret = await accessSecret('projects/904458328495/secrets/CLOUDINARY_API_SECRET/versions/latest');
 const productionBool = await accessSecret('projects/904458328495/secrets/PRODUCTION_BOOL/versions/latest');
+const serverUrl = await accessSecret('projects/904458328495/secrets/SERVER_URL/versions/latest');
 
 
 
 app.use(cookieParser());
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://spooky-dooky-frontend.web.app',
   credentials: true,
 }));
 
@@ -68,7 +69,7 @@ passport.use(
     {
       clientID: googleClientId,
       clientSecret: googleClientSecret,
-      callbackURL: '/auth/google/callback',
+      callbackURL: `${serverUrl}/auth/google/callback`,
       passReqToCallback: true,
       debug: true,
     },
@@ -123,4 +124,6 @@ app.use('/reviews', reviewsRouter);
 
 mongoose.connect(`mongodb+srv://admin:${mongoPassword}@data.emedzou.mongodb.net/Data?retryWrites=true&w=majority`);
 
-app.listen(3001, () => console.log('SERVER STARTED!'));
+const port = process.env.PORT || 3001;
+
+app.listen(port, () => console.log(`SERVER STARTED ON PORT ${port}!`));

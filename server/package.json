@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
-  },
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },  
   "author": "",
   "license": "ISC",
   "type": "module",
@@ -23,7 +24,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.4.0",
     "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "semver": "^7.5.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.21"
