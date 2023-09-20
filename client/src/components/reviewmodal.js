@@ -96,7 +96,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
           return; // Exit the function without making the delete request
       }
   
-      await axios.delete(`http://localhost:3001/places/delete/${placeId}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/places/delete/${placeId}`);
     } catch (err) {
       console.log(err);
     }
@@ -133,7 +133,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
       }
   
       // Submit the review data to your backend
-      await axios.post("http://localhost:3001/reviews", newReview);
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/reviews`, newReview);
       const currentPath = window.location.pathname;
       const targetPath = `/places/${placeId}`;
   

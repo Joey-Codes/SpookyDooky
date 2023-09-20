@@ -29,7 +29,7 @@ export const Profile = () => {
 
   const handleDeleteReview = (reviewId) => {
     try {
-      axios.delete(`http://localhost:3001/reviews/delete/${reviewId}`);
+      axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/delete/${reviewId}`);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -42,7 +42,7 @@ export const Profile = () => {
 
   const handleDeleteUser = () => {
     try {
-      axios.delete(`http://localhost:3001/auth/delete/${userID}`);
+      axios.delete(`${process.env.REACT_APP_SERVER_URL}/auth/delete/${userID}`);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -54,7 +54,7 @@ export const Profile = () => {
   useEffect(() => {
     const fetchMyReviews = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/reviews/find/${userID}`)
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/reviews/find/${userID}`)
         setMyReviews(response.data);
       } catch (err) {
         console.log(err);
@@ -71,7 +71,7 @@ export const Profile = () => {
       try {
         const placeNames = [];
         for (const review of myReviews) {
-          const response = await axios.get(`http://localhost:3001/places/find/${review.placeId}`);
+          const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/find/${review.placeId}`);
           placeNames.push(response.data.name);
         }
         setPlaceNames(placeNames);

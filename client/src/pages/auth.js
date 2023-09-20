@@ -18,7 +18,7 @@ export const Auth = () => {
 
 const GoogleLoginButton = () => {
   return (
-    <a href="http://localhost:3001/auth/google" className="google-button readexpro">
+    <a href="https://spooky-dooky-server-gqbpmqhyva-uc.a.run.app/auth/google" className="google-button readexpro">
       Sign In With Google
       <img src={google_icon} alt='google icon' className='google-icon' />
     </a>

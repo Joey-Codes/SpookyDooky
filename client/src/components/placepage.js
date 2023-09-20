@@ -32,10 +32,10 @@ export const PlacePage = ({ query }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const placeResponse = await axios.get(`http://localhost:3001/places/${placeId}`);
+        const placeResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/${placeId}`);
         setPlace(placeResponse.data);
 
-        const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews`);
+        const reviewsResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/${placeId}/reviews`);
         setReviews(reviewsResponse.data);
       } catch (err) {
         console.error(err);
@@ -56,7 +56,7 @@ export const PlacePage = ({ query }) => {
             reviewOwners.push('Anonymous');
           } else {
             try {
-              const response = await axios.get(`http://localhost:3001/auth/find/${review.userId}`);
+              const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/find/${review.userId}`);
               reviewOwners.push(response.data.name);
             } catch (err) {
             reviewOwners.push('Anonymous');
@@ -75,7 +75,7 @@ export const PlacePage = ({ query }) => {
 
   const fetchBySorted = async (filter) => {
     try {
-      const reviewsResponse = await axios.get(`http://localhost:3001/places/${placeId}/reviews/${filter}`);
+      const reviewsResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/${placeId}/reviews/${filter}`);
       setReviews(reviewsResponse.data);
       setActiveFilter(filter);
     } catch (err) {
@@ -85,7 +85,7 @@ export const PlacePage = ({ query }) => {
 
   const handleDeleteReview = (reviewId) => {
     try {
-      axios.delete(`http://localhost:3001/reviews/delete/${reviewId}`);
+      axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/delete/${reviewId}`);
       window.location.reload();
     } catch (err) {
       console.log(err);

@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Auth } from './pages/auth';
-import { CreateRecipe } from './pages/create-recipe';
 import { Home } from './pages/home';
 import { About } from './pages/about';
 import { Places } from './pages/places';
@@ -18,7 +17,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/auth" element={<Auth/>} />
-        <Route path="/create-recipe" element={<CreateRecipe/>} />
         <Route path="/about" element={<About />} />
         <Route path="/places" element={<Places />} />
         <Route path="/places/:placeId" element={<PlacePage />} />    

@@ -80,7 +80,7 @@ export const Places = () => {
     } 
     try {
       navigate(`/places?query=${encodeURIComponent(query)}`);
-      const response = await axios.get(`http://localhost:3001/places/searchquery/${query}`);
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/searchquery/${query}`);
       setPlaces(response.data);
       setFilter(response.data.length > 0 ? `Search Results` : `No Results!`);
     } catch (err) {
@@ -112,7 +112,7 @@ export const Places = () => {
   const createPlace = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/places", newPlace);
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/places`, newPlace);
       const placeId = response.data._id; // Retrieve the _id property from the response
       setNewPlaceId(placeId); // Update the newPlaceId state with the place ID
       openReviewModal();
@@ -153,7 +153,7 @@ export const Places = () => {
 
   const fetchByFilter = async (filter) => {
     try {
-      const response = await axios.get(`http://localhost:3001/places/sorted/${filter}`);
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/sorted/${filter}`);
       setPlaces(response.data);
       if (filter === "toprated") {
         setFilter("Top Rated");
@@ -176,10 +176,10 @@ export const Places = () => {
       try {
         let response;
         if (queryParam) {
-          response = await axios.get(`http://localhost:3001/places/searchquery/${queryParam}`);
+          response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/searchquery/${queryParam}`);
           setFilter(response.data.length > 0 ? `Search Results` : `No Results!`);
         } else {
-          response = await axios.get("http://localhost:3001/places");
+          response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places`);
           setFilter("All Places");
         }
         setPlaces(response.data);
@@ -196,7 +196,7 @@ export const Places = () => {
     if (encodedPlaceAddress && isInitialSelection) {
       const fetchSelectedPlace = async () => {
         try {
-          const response = await axios.get(`http://localhost:3001/places/search/address/${encodedPlaceAddress}`);
+          const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/search/address/${encodedPlaceAddress}`);
           if (response.data.length === 0) {
             setResult("There are no reviews for this place yet! Be the first!");
           } else {

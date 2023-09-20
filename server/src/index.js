@@ -34,7 +34,6 @@ const cloudinaryName = await accessSecret('projects/904458328495/secrets/CLOUDIN
 const cloudinaryApiKey = await accessSecret('projects/904458328495/secrets/CLOUDINARY_API_KEY/versions/latest');
 const cloudinaryApiSecret = await accessSecret('projects/904458328495/secrets/CLOUDINARY_API_SECRET/versions/latest');
 const productionBool = await accessSecret('projects/904458328495/secrets/PRODUCTION_BOOL/versions/latest');
-const serverUrl = await accessSecret('projects/904458328495/secrets/SERVER_URL/versions/latest');
 
 
 
@@ -69,7 +68,7 @@ passport.use(
     {
       clientID: googleClientId,
       clientSecret: googleClientSecret,
-      callbackURL: `${serverUrl}/auth/google/callback`,
+      callbackURL: `/auth/google/callback`,
       passReqToCallback: true,
       debug: true,
     },

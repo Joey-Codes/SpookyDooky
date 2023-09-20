@@ -23,7 +23,7 @@ export const Navbar = () => {
       Cookies.set('jwtToken', token);
       setJwtToken(token);
 
-      axios.get('http://localhost:3001/auth/verifytoken', { withCredentials: true })
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/verifytoken`, { withCredentials: true })
         .then(response => {
           const { userId } = response.data;
           localStorage.setItem('userID', userId);
@@ -44,7 +44,7 @@ export const Navbar = () => {
 
   const logout = async () => {
     try {
-      await axios.get('http://localhost:3001/auth/logout', { withCredentials: true });
+      await axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/logout`, { withCredentials: true });
       Cookies.remove('jwtToken');
       localStorage.removeItem('userID');
       setJwtToken('');
