@@ -20,13 +20,13 @@ const slideImagesPC = [
 
 const slideImagesMobile = [
   {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693620319/sample-review2_r87pms.png'
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1695689034/sample-review2_mbjpx0.png'
   },
   {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693620319/sample-review2_r87pms.png'
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1695689034/sample-review2_mbjpx0.png'
   },
   {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693620319/sample-review2_r87pms.png'
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1695689034/sample-review2_mbjpx0.png'
   }
 ];
 
@@ -51,11 +51,9 @@ export const HomeFeatured = () => {
   return (
     <div className="home-featured">
       <div className="hf-title flex">
-        <h1 className="readexpro rp2 red mr">REVIEWS</h1>
+        <h1 className="readexpro rp2 red">REVIEWS</h1>
         <h1 className="readexpro rp2 white">FOR ALL THINGS SPOOKY</h1>
       </div>
-      <br />
-      <br />
       <Slide autoplay={true} duration={3000}>
         {currentSlideImages.map((slideImage, index) => (
            <Waypoint onEnter={() => setFadeUp(true)}>

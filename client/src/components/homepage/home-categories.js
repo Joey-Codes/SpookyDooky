@@ -25,7 +25,7 @@ export const HomeCategories = () => {
             <button className={`h-b2 h-b2d hc bangers b2 ${fadeRight4 ? 'fade-right' : ''}`}>UNEXPLAINED &#x2754;</button>
           </Waypoint>
         </div>
-      <div>
+      <div className='home-categories-title'>
         <h1 className='readexpro rp2 white'>PICK FROM</h1>
         <h1 className='readexpro rp2 white'>DIFFERENT</h1>
         <h1 className='readexpro rp2 red'>CATEGORIES</h1>

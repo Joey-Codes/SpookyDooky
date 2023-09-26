@@ -13,7 +13,7 @@ export const HomePlaces = () => {
     <div className='home-places flex'>
       <img src={ghosts} alt="Placeholder 1" className={`moving-ghost ${fadeLeftFull ? 'fade-left-full' : ''}`}/>
       <div className={`left-side ls2 ${fadeDown ? 'fade-down' : ''}`}>
-        <h1 className='readexpro rp2 white'>FIND</h1>
+        <h1 className='readexpro rp2 white'>DISCOVER</h1>
         <h1 className='readexpro rp2 white'>NEW</h1>
         <h1 className='readexpro rp2 red'>PLACES</h1>
         <br />

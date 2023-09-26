@@ -6,11 +6,11 @@ export const Auth = () => {
     <div className='auth'>
       <div className='auth-container'>
         <div className="chango rp2">OO</div>
-        <h2 className='auth-text readexpro red'>Create an account to keep track of your reviews!</h2>
+        <h2 className='auth-text red'>Create an account to keep track of your reviews!</h2>
         <br />
         <GoogleLoginButton />
         <br />
-        <h2 className='auth-text readexpro'>If you already have an account, you can login with the same link</h2>
+        <h2 className='auth-text'>If you already have an account, you can login with the same link</h2>
       </div>
     </div>
   );

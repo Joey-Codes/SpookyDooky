@@ -36,6 +36,7 @@ export const Places = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [showMap, setShowMap] = useState(true);
 
+
   useEffect(() => {
     // Check if the navigation has already occurred in this session
     const hasNavigated = localStorage.getItem("hasNavigated");
@@ -149,6 +150,10 @@ export const Places = () => {
 
   const handleMapViewClick = (place) => {
     setSelectedPlace(place);
+    const placesDisplayElement = document.querySelector('.places-display');
+    if (placesDisplayElement) {
+      placesDisplayElement.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const fetchByFilter = async (filter) => {
@@ -232,27 +237,26 @@ export const Places = () => {
               />
               <button type='button' className='h-b5 readexpro search' onClick={handleQuerySearch}>Search</button>
             <h2 className='readexpro white mrp1'>You can also find places with the map</h2>
-            <button onClick={handleShowMap} className='only-on-mobile h-b5 readexpro r1'>{showMap ? 'Show Map' : 'Hide Map'}</button>
+            <button onClick={handleShowMap} className='only-on-mobile h-b5 readexpro mr1 r1'>{showMap ? 'Show Map' : 'Hide Map'}</button>
           </div>
           <div>
             <br />
             <br />
             <h1 className='readexpro white rp1 mrp1'>SORT BY</h1>
             <br />
-            <div>
-              <button onClick={() => fetchByFilter('toprated')} className='h-b5 readexpro r1 mr'>Top Rated</button>
-              <button  onClick={() => fetchByFilter('mostreviewed')} className='h-b5 readexpro r1'>Most Reviewed</button>
+            <div className='filter-top-row'>
+              <button onClick={() => fetchByFilter('toprated')} className='h-b5 readexpro r1 mr1 mr'>Top Rated</button>
+              <button  onClick={() => fetchByFilter('mostreviewed')} className='h-b5 readexpro mr1 r1'>Most Reviewed</button>
             </div>
-            <br />
             <div>
-              <button  onClick={() => fetchByFilter('lowestrated')} className='h-b5 readexpro r1 mr'>Lowest Rated</button>
-              <button  onClick={() => fetchByFilter('recentlyadded')} className='h-b5 readexpro r1'>Recently Added</button>
+              <button  onClick={() => fetchByFilter('lowestrated')} className='h-b5 readexpro r1 mr1 mr'>Lowest Rated</button>
+              <button  onClick={() => fetchByFilter('recentlyadded')} className='h-b5 readexpro mr1 r1'>Recently Added</button>
             </div>
           </div>
           <div>
-            <h2 className='readexpro white rp1 mrp1'>IF A PLACE DOESN'T EXIST, ADD IT HERE</h2>
+            <h2 className='readexpro white rp1 mrp1'>CHOOSE A NEW PLACE TO REVIEW HERE</h2>
             <br />
-            <button onClick={openModal} className='h-b5 readexpro r1'>ADD A NEW PLACE &#10133;</button>
+            <button onClick={openModal} className='h-b5 readexpro mr1 r1'>REVIEW A NEW PLACE &#10133;</button>
             <Modal
               isOpen={modalIsOpen}
               style={customStyles}
@@ -289,7 +293,7 @@ export const Places = () => {
         <div className='places-display'>
         <Map mapViewClick={selectedPlace} showMap={showMap} mapPlaces={places} />
           <div className='place-list'>
-            <h1 className='readexpro rp2 bold filter'>{filter}</h1>
+            <h1 className='rp2 bold filter'>{filter}</h1>
               {places.map((place) => (
                   <div className="place-entry" key={place._id}>
                       <div className='entry-format'>
@@ -301,14 +305,14 @@ export const Places = () => {
                                 rating={place.rating} // Replace with your actual rating value
                                 starRatedColor="red" // Customize the color of the filled stars
                                 starEmptyColor="lightgray" // Customize the color of the empty stars
-                                starDimension="40px" // Adjust the size of the stars
+                                starDimension="30px" // Adjust the size of the stars
                                 starSpacing="2px" // Adjust the spacing between stars
                               />
                               <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
                             </div>
                             <h2 className='readexpro italic white address'>{place.address}</h2>
                             {place.website && (
-                              <a className='readexpro place-link' href={place.website} target='_blank' rel="noreferrer">
+                              <a className='readexpro place-link web-view' href={place.website} target='_blank' rel="noreferrer">
                                 Website
                               </a>
                             )}

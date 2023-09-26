@@ -1,6 +1,6 @@
 .home-categories {
   background: rgb(0,0,0);
-  background: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(98,11,11,1) 100%);
+  background-image: url('../../images/ghost-background1.png');
     padding-top: 150px;
     padding-bottom: 50px;
     align-items: center;
@@ -28,20 +28,20 @@
 .fade-right { animation: fadeRight 1s ease-out forwards; }
   
 @keyframes fadeRight {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0%);
-    }
+  from {
+      transform: translateX(-100%);
+  }
+  to {
+      transform: translateX(0%);
+  }
 }
   
-  @keyframes shake {
-    0% { transform: translate(0, 0); }
-    10%, 30%, 50%, 70%, 90% { transform: translate(-5px, 0); }
-    20%, 40%, 60%, 80% { transform: translate(5px, 0); }
-    100% { transform: translate(0, 0); }
-  }
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate(-5px, 0); }
+  20%, 40%, 60%, 80% { transform: translate(5px, 0); }
+  100% { transform: translate(0, 0); }
+}
 
 .h-b2a { background-color: red; }
 .h-b2b { background-color: orange; }
@@ -67,10 +67,12 @@
     max-width: 300px;
   }
 
-  .b2 { font-size: 40px; }
+  .home-categories-title { text-align: center; }
+
+  .b2 { font-size: 30px; width: 250px; }
 
   .h-b2 {
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 5px;
   }
 

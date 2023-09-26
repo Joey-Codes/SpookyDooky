@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.4762730d.css",
-    "main.js": "/static/js/main.b17f7970.js",
+    "main.css": "/static/css/main.dcb66045.css",
+    "main.js": "/static/js/main.7e580ec2.js",
     "static/media/weightlifting_ghost.png": "/static/media/weightlifting_ghost.5f6f6170935dbe22af16.png",
     "static/media/glasses_ghost.png": "/static/media/glasses_ghost.6748f47629bc6ff4959f.png",
+    "static/media/Gilroy-Bold.ttf": "/static/media/Gilroy-Bold.bf181b073b4773f45c8e.ttf",
     "static/media/Bungee-Regular.ttf": "/static/media/Bungee-Regular.11ea3a409c6b0b432ac2.ttf",
     "static/media/ghost-background1.png": "/static/media/ghost-background1.662590a94b104e77c7f3.png",
     "static/media/ghosts.png": "/static/media/ghosts.04e4bc9c3a3654c3b371.png",
@@ -15,11 +16,11 @@
     "static/media/LilitaOne-Regular.ttf": "/static/media/LilitaOne-Regular.6f506507b06161b73e85.ttf",
     "static/media/google-icon.png": "/static/media/google-icon.960c670a7a8d952eba35.png",
     "index.html": "/index.html",
-    "main.4762730d.css.map": "/static/css/main.4762730d.css.map",
-    "main.b17f7970.js.map": "/static/js/main.b17f7970.js.map"
+    "main.dcb66045.css.map": "/static/css/main.dcb66045.css.map",
+    "main.7e580ec2.js.map": "/static/js/main.7e580ec2.js.map"
   },
   "entrypoints": [
-    "static/css/main.4762730d.css",
-    "static/js/main.b17f7970.js"
+    "static/css/main.dcb66045.css",
+    "static/js/main.7e580ec2.js"
   ]
 }

@@ -71,6 +71,10 @@ export const PlacePage = ({ query }) => {
   
     fetchReviewOwners();
   }, [reviews]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
 
   const fetchBySorted = async (filter) => {
@@ -103,7 +107,7 @@ export const PlacePage = ({ query }) => {
   return (
     <div>
       <div className="placepage-title flex">
-      <button onClick={handleBackClick} className='h-b6 readexpro white back-button'>&#129044;</button>
+      <button onClick={handleBackClick} className='h-b6 readexpro white back-button'>&larr;</button>
         <div className='title-image-section'>
           <img src={place.img} alt='place-pic' className='title-image'/>
         </div>

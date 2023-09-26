@@ -17,7 +17,7 @@ export const HomeCommunity = () => {
             <img src={glasses_ghost} alt="p1" className="community-example" />
             <h2 className="carterone ct1 red">PARANORMAL INVESTIGATORS</h2>
             <p className="readexpro rp1 white">
-              CREATE AN ACCOUNT FOR YOUR ORGANIZATION AND CONNECT WITH OTHER GROUPS
+              (COMING SOON) INVESTIGATORS CAN CREATE ACCOUNTS AND CONNECT WITH OTHER GROUPS
             </p>
           </div>
         </Waypoint>
@@ -25,7 +25,7 @@ export const HomeCommunity = () => {
             <img src={glasses_ghost} alt="p2" className="community-example" />
             <h2 className="carterone ct1 red">FIND NEW PLACES TO VISIT</h2>
             <p className="readexpro rp1 white">
-              USE REVIEW LIKES AND SORTING TO FIND PLACES NEAR YOU
+              USE THE MAP AND VARIOUS FILTERS TO FIND LOCATIONS OF INTEREST NEAR YOU 
             </p>
           </div>
       </div>

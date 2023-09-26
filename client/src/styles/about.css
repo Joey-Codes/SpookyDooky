@@ -1,173 +1,151 @@
-/* Base styles for larger screens */
+html, body {
+  scroll-behavior: smooth;
+}
+
+
 .about {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+  margin-top: 5%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  scroll-behavior: smooth;
+}
   
+.about-text {
+  padding-left: 15%;
+  padding-right: 15%;
+  font-size: 25px;
+  font-family: 'Gilroy-Bold';
+}
+
+.category-text { font-size: 25px; }
+  
+.about-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.about-title { 
+  font-size: 65px; 
+  font-family: 'Gilroy-Bold'; 
+}
+  
+.about-intro { margin-bottom: 150px; }
+  
+.location-title {
+  font-family: 'Gilroy-Bold';
+  margin-bottom: 50px;
+}
+  
+.introduction { position: relative; }
+  
+.locations {
+  background-color: rgb(255, 0, 0);
+  position: relative;
+  height: 600px;
+}
+
+.location-text { margin-bottom: 150px; }
+  
+.review-title { margin-top: 50px; }
+
+.wave1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave1 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 120px;
+}
+  
+.wave1 .shape-fill { fill: #FF0000; }
+
+.wave2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.wave2 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 150px;
+}
+
+.wave2 .shape-fill { fill: #000000; }
+  
+.reviews { background-color: black; }
+
+.category-fit {
+  width: 50%;
+  white-space: nowrap;
+}
+
+.text { max-width: 65%; }
+  
+/* For mobile devices */
+@media (max-width: 767px) {
   .about-text {
-    padding-left: 15%;
-    padding-right: 15%;
-  }
-  
-  .about-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 20px;
   }
 
-  .about-title { font-size: 65px; }
-  
-  .about-intro {
-    margin-bottom: 150px;
+  .category-text {
+    font-size: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
   }
-  
-  .location-title {
-    margin-bottom: 50px;
-  }
-  
-  .introduction {
-    position: relative;
-  }
-  
-  .locations {
-    background-color: rgb(255, 0, 0);
-    position: relative;
-    height: 600px;
-  }
-  
-  .location-text {
-    margin-bottom: 150px;
-  }
-  
-  .review-title {
-    margin-top: 50px;
-  }
-  
-  .wave1 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-  }
-  
-  .wave1 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 120px;
-  }
-  
-  .wave1 .shape-fill {
-    fill: #FF0000;
-  }
-  
-  /* For tablet devices */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .wave1 svg {
-      width: calc(189% + 1.3px);
-      height: 149px;
-    }
-  }
-  
-  .wave2 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-  }
-  
+
+  .about-title { font-size: 30px; }
+
+  .about-intro { margin-bottom: 50px; }
+
+  .about-row { flex-direction: column; }
+
+  .locations { height: 800px; }
+
+  .location-title { margin-bottom: 30px; }
+
+  .location-text { margin-bottom: 50px; }
+
+  .review-title { margin-top: 30px; }
+
+  .wave1 svg,
   .wave2 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 150px;
+    width: 100%;
+    height: 30px;
   }
-  
-  .wave2 .shape-fill {
-    fill: #000000;
-  }
-  
-  /* For tablet devices */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .wave2 svg {
-      width: calc(225% + 1.3px);
-      height: 21px;
-    }
-  }
-  
-  .reviews {
-    background-color: black;
-  }
-  
-  .category-fit {
-    width: 50%;
-    white-space: nowrap;
-  }
-  
-  .text {
-    max-width: 65%;
-  }
-  
-  /* Responsive styles for mobile devices */
-  @media (max-width: 767px) {
-    .about-text {
-      padding-left: 5%;
-      padding-right: 5%;
-      font-size: 20px;
-    }
 
-    .category-text {
-      font-size: 20px;
-      margin-left: 5%;
-      margin-right: 5%;
-    }
+  .category-fit { width: 100%; }
 
-    .about-title {
-      font-size: 30px;
-    }
+  .text { max-width: 100%; }
+}
   
-    .about-intro {
-      margin-bottom: 50px;
-    }
+/* For tablet devices */
+@media (min-width: 768px) and (max-width: 1023px) {
 
-    .about-row {
-      flex-direction: column;
-    }
-  
-    .locations {
-      height: 700px;
-    }
+  .locations { height: 900px; }
 
-    .location-title {
-      margin-bottom: 30px;
-    }
-  
-    .location-text {
-      margin-bottom: 50px;
-    }
-  
-    .review-title {
-      margin-top: 30px;
-    }
-  
-    .wave1 svg,
-    .wave2 svg {
-      width: 100%;
-      height: 30px;
-    }
-  
-    .category-fit {
-      width: 100%;
-    }
-  
-    .text {
-      max-width: 100%;
-    }
+  .wave2 svg {
+    width: calc(225% + 1.3px);
+    height: 30px;
   }
-  
+  .wave1 svg {
+    width: calc(189% + 1.3px);
+    height: 149px;
+  }
+}

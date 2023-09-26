@@ -26,7 +26,7 @@ export const HomeSearch = () => {
           onChange={(event) => setQuery(event.target.value)}
         />
         <button type="submit" className="readexpro home-search-submit">
-          GO
+          GO!
         </button>
       </form>
     </div>

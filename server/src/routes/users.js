@@ -32,7 +32,7 @@ router.get(
 router.get('/success', (req, res) => {
   try {
     const token = jwt.sign({ id: req.user._id }, jwtSecret);
-    res.redirect(`http://localhost:3000/?token=${token}`);
+    res.redirect(`https://spooky-dooky-frontend.web.app//?token=${token}`);
   } catch (error) {
     console.log(error);
     res.redirect('/login');

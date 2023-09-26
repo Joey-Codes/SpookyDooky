@@ -40,6 +40,11 @@
    url("./fonts/Bungee-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Gilroy-Bold";
+  src: local("Gilory-Bold"),
+   url("./fonts/Gilroy-Bold.ttf") format("truetype");
+}
 
 body {
   margin: 0;

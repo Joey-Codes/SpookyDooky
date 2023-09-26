@@ -1,15 +1,20 @@
 import '../styles/about.css';
 import StarRatings from 'react-star-ratings';
+import { useEffect } from 'react';
 
 export const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="flex about">
       <div>
         <br />
         <br />
         <div className='about-row'>
-          <h1 className='readexpro italic mr about-title'>ABOUT</h1>
-          <h1 className='readexpro red italic about-title'>SPOOKY DOOKY</h1>
+          <h1 className='italic mr about-title'>ABOUT</h1>
+          <h1 className='red italic about-title'>SPOOKY DOOKY</h1>
         </div>
         <br />
         <br />
