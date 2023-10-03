@@ -134,11 +134,11 @@ export const PlacePage = ({ query }) => {
               <h2 className='bangers b2 white h-b3a'>Scariness Rating</h2>
               <StarRatings
                 className="star-rating"
-                rating={place.rating} // Replace with your actual rating value
-                starRatedColor="red" // Customize the color of the filled stars
-                starEmptyColor="white" // Customize the color of the empty stars
-                starDimension="5vh" // Adjust the size of the stars
-                starSpacing="2px" // Adjust the spacing between stars
+                rating={place.rating}  
+                starRatedColor="red" 
+                starEmptyColor="white" 
+                starDimension="5vh" 
+                starSpacing="2px"
               />
               <h2 className='readexpro rp3 white ml mobile-rating'>({place.numRatings})</h2>
             </div>
@@ -185,18 +185,18 @@ export const PlacePage = ({ query }) => {
           {reviews.map((review, index) => (
             <div className="review-entry profile-review" key={review._id}>
               <div className='rating-top-portion'>
-                <h2 className='readexpro'>{reviewOwners[index]}</h2>
-                <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
+                <div className='readexpro username bold'>{reviewOwners[index]}</div>
+                <div className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
                   {review.category}
-                </h2>
-                <h2 className='italic mobile-date'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
+                </div>
+                <div className='italic bold date'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</div>
               </div>
               <StarRatings
-                  rating={review.rating} // Replace with your actual rating value
-                  starRatedColor="red" // Customize the color of the filled stars
-                  starEmptyColor="lightgray" // Customize the color of the empty stars
-                  starDimension="4vh" // Adjust the size of the stars
-                  starSpacing="2px" // Adjust the spacing between stars
+                  rating={review.rating} 
+                  starRatedColor="red"
+                  starEmptyColor="lightgray" 
+                  starDimension="4vh"
+                  starSpacing="2px" 
                 />
               <p className='readexpro rp1'>{review.description}</p>
               {review.img && (

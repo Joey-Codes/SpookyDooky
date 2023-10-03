@@ -8,6 +8,7 @@ import { SearchBar } from '../components/searchbar';
 import { Map } from '../components/map';  
 import { ReviewModal } from '../components/reviewmodal';
 import { useGetUserID } from '../hooks/useGetUserID';
+import LoadingCircle from '../images/red-loading-circle.gif';
 
 const customStyles = {
   content: {
@@ -35,25 +36,6 @@ export const Places = () => {
   const [isInitialSelection, setIsInitialSelection] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [showMap, setShowMap] = useState(true);
-
-
-  useEffect(() => {
-    // Check if the navigation has already occurred in this session
-    const hasNavigated = localStorage.getItem("hasNavigated");
-
-    if (!hasNavigated) {
-      // Mark the navigation as occurred in the current session
-      localStorage.setItem("hasNavigated", "true");
-
-      // Navigate to the /about page
-      navigate("/");
-      
-      // After a brief delay, navigate back to the /places page
-      setTimeout(() => {
-        navigate("/places");
-      }, 200); // Adjust the delay time as needed
-    }
-  }, [navigate]); 
 
   const handleShowMap = () => {
     if (showMap === true) {
@@ -149,6 +131,7 @@ export const Places = () => {
   }
 
   const handleMapViewClick = (place) => {
+    setShowMap(false);
     setSelectedPlace(place);
     const placesDisplayElement = document.querySelector('.places-display');
     if (placesDisplayElement) {
@@ -292,40 +275,51 @@ export const Places = () => {
         <br />
         <div className='places-display'>
         <Map mapViewClick={selectedPlace} showMap={showMap} mapPlaces={places} />
-          <div className='place-list'>
-            <h1 className='rp2 bold filter'>{filter}</h1>
+        <div className='place-list'>
+          <h1 className='rp2 bold filter'>{filter}</h1>
+          {places.length === 0 ? (
+            <div className='loading-container'>
+              <br />
+              <br />
+              <h2 className='red places-loading italic'>LOADING</h2>
+              <img src={LoadingCircle} alt="Loading" className='loading-circle'/>
+            </div>
+          ) : (
+            <>
               {places.map((place) => (
-                  <div className="place-entry" key={place._id}>
-                      <div className='entry-format'>
-                          <div className='place-info'>
-                            <h1 className="red readexpro name" onClick={() => handlePlaceClick(place._id)}>{place.name}</h1>
-                            <br />
-                            <div className="place-rating">
-                              <StarRatings
-                                rating={place.rating} // Replace with your actual rating value
-                                starRatedColor="red" // Customize the color of the filled stars
-                                starEmptyColor="lightgray" // Customize the color of the empty stars
-                                starDimension="30px" // Adjust the size of the stars
-                                starSpacing="2px" // Adjust the spacing between stars
-                              />
-                              <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
-                            </div>
-                            <h2 className='readexpro italic white address'>{place.address}</h2>
-                            {place.website && (
-                              <a className='readexpro place-link web-view' href={place.website} target='_blank' rel="noreferrer">
-                                Website
-                              </a>
-                            )}
-                            <button className="readexpro h-b6 blue" style={{fontSize: "25px"}} onClick={() => handleMapViewClick(place)}>|&nbsp;&nbsp;Map View</button>
-                          </div>
-                          <div className='place-image'>
-                            <img className='img' src={place.img} alt='place-pic' />
-                          </div>
-                          <br />
+                <div className="place-entry" key={place._id}>
+                  <div className='entry-format'>
+                    <div className='place-info'>
+                      <h1 className="red readexpro name" onClick={() => handlePlaceClick(place._id)}>{place.name}</h1>
+                      <br />
+                      <div className="place-rating">
+                        <StarRatings
+                          rating={place.rating} 
+                          starRatedColor="red"
+                          starEmptyColor="lightgray"
+                          starDimension="30px"
+                          starSpacing="2px" 
+                        />
+                        <h2 className='readexpro num-ratings white'>({place.numRatings})</h2>
                       </div>
+                      <h2 className='readexpro italic white address'>{place.address}</h2>
+                      {place.website && (
+                        <a className='readexpro place-link web-view' href={place.website} target='_blank' rel="noreferrer">
+                          Website
+                        </a>
+                      )}
+                      <button className="readexpro h-b6 blue" style={{fontSize: "25px"}} onClick={() => handleMapViewClick(place)}>|&nbsp;&nbsp;Map View</button>
+                    </div>
+                    <div className='place-image'>
+                      <img className='img' src={place.img} alt='place-pic' />
+                    </div>
+                    <br />
                   </div>
+                </div>
               ))}
-          </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

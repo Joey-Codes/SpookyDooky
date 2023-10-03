@@ -34,6 +34,24 @@
   margin-right: 2%;
 }
 
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.places-loading {
+  font-size: 40px;
+  font-family: 'Gilroy-Bold';
+}
+
+.loading-circle {
+  height: auto;
+  width: 400px;
+  margin-bottom: 100px;
+}
+
 .entry-format {
   display: flex;
   flex-direction: row;

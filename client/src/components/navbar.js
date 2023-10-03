@@ -23,7 +23,7 @@ export const Navbar = () => {
       Cookies.set('jwtToken', token);
       setJwtToken(token);
 
-      axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/verifytoken`, { withCredentials: true })
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/verifytoken`)
         .then(response => {
           const { userId } = response.data;
           localStorage.setItem('userID', userId);

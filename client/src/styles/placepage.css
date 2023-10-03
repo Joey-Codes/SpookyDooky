@@ -6,18 +6,14 @@
   padding-top: 1%;
 } 
 
-.title-image-section {
-  margin-right: 5%;
-}
+.title-image-section { margin-right: 5%; }
 
 .title-image {
   max-width: 700px;
   max-height: 500px;
 }
 
-.back-button {
-  margin-right: 5%;
-}
+.back-button { margin-right: 5%; }
 
 .h-b6 {
   background-color: transparent;
@@ -27,17 +23,15 @@
 }
 
 .placepage-middle {
-    background-color: black;
-    background-image: url('../images/ghost-background1.png');
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-    padding: 40px 0 40px 0;
-  } 
+  background-color: black;
+  background-image: url('../images/ghost-background1.png');
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  padding: 40px 0 40px 0;
+} 
 
-.place-options {
-    display: flex;
-}
+.place-options { display: flex; }
 
 .modal-form {
   display: flex;
@@ -51,9 +45,7 @@
   align-items: center;
 }
 
-.form-font {
-  font-size: 35px;
-}
+.form-font { font-size: 35px; }
 
 .description-field {
   width: 80%;
@@ -62,13 +54,13 @@
   font-size: 25px;
 }
 
-.rp3 {
-  font-size: 45px;
-}
+.rp3 { font-size: 45px; }
 
-.review-list {
-    margin-left: 10%;
-  }
+.review-list { margin-left: 10%; }
+ 
+.username { 
+  font-size: 25px; 
+}
 
 .rating-top-portion {
   display: flex;
@@ -76,21 +68,10 @@
   justify-content: space-between;
 }
 
-.ghosts-color {
-  background-color: red;
-}
-
-.aliens-color {
-  background-color: orange;
-}
-
-.cryptids-color {
-  background-color: blue;
-}
-
-.unexplained-color {
-  background-color: green;
-}
+.ghosts-color { background-color: red; }
+.aliens-color {background-color: orange; }
+.cryptids-color { background-color: blue; }
+.unexplained-color { background-color: green; }
 
 .page-ratings {
   display: flex;
@@ -103,9 +84,7 @@
   align-items: center;
 }
 
-.h-b3a {
-  margin-right: 50px;
-}
+.h-b3a { margin-right: 50px; }
 
 .review-entry {
   box-shadow: 3px 4px #9b9b9b;
@@ -118,10 +97,10 @@
 }
 
 .review-img {
-  max-width: 100%; /* Make sure the image doesn't exceed its container width */
-  max-height: 300px; /* Maintain aspect ratio */
-  display: block; /* Remove any default inline alignment */
-  margin: 0 auto; /* Center the image horizontally */
+  max-width: 100%; 
+  max-height: 300px; 
+  display: block;
+  margin: 0 auto; 
 }
 
 .filters {
@@ -130,17 +109,11 @@
   justify-content: center;
 }
 
-.mr {
-  margin-right: 20px;
-}
+.date { font-size: 23px; }
 
-.ml {
-  margin-left: 20px;
-}
+.mr { margin-right: 20px; }
 
-.likes {
-  margin-right: 10px;
-}
+.ml { margin-left: 20px; }
 
 .h-b3 {
   color: white;
@@ -151,9 +124,7 @@
   cursor: pointer;
 }
 
-.h-b3:hover {
-  background-color: rgb(255, 79, 79);
-}
+.h-b3:hover { background-color: rgb(255, 79, 79); }
 
 .h-b4 {
   color: black;
@@ -163,9 +134,7 @@
   cursor: pointer;
 }
 
-.h-b4:hover {
-  background-color: rgb(255, 205, 205);
-}
+.h-b4:hover { background-color: rgb(255, 205, 205); }
 
 .h-b4.active {
   background-color: red;
@@ -196,13 +165,9 @@
     max-width: 100%;
   }
 
-  .h-b3a {
-    margin-right: 0;
-  }
+  .h-b3a { margin-right: 0; }
 
-  .mobile-name {
-    text-align: center;
-  }
+  .mobile-name { text-align: center; }
 
   .mobile-add {
     text-align: center;
@@ -216,13 +181,9 @@
     font-size: 20px;
   }
 
-  .mobile-rating {
-    font-size: 20px;
-  }
+  .mobile-rating { font-size: 20px; }
 
-  .mobile-review {
-    font-size: 30px;
-  }
+  .mobile-review { font-size: 30px; }
 
   .scariness-rating {
     margin-right: 0px;
@@ -246,15 +207,13 @@
     text-align: center;
   }
 
-.modal-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-  .form-font {
-    font-size: 25px;
+  .modal-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+  .form-font { font-size: 25px; }
 
   .description-field {
     width: 90%;
@@ -264,27 +223,25 @@
 
   .review-list {
     margin-left: 0%;
-    padding-left: 0;
+    padding: 0 3%;
   }
 
   .review-entry {
     width: 95%;
+    padding: 10px;
   }
+  
+  .username { font-size: 20px; }
 
-  .review-img {
-    max-height: 200px;
-  }
+  .review-img { max-height: 200px; }
 
-  .filters {
-    flex-direction: column;
-  }
+  .filters { flex-direction: column; }
 
-  .mobile-filter:nth-child(-n + 3) {
-     flex-basis: 33.33%;
-  }
+  .mobile-filter:nth-child(-n + 3) { flex-basis: 33.33%; }
 
-  .mobile-date {
+  .date {
     font-size: 16px;
+    padding-top: 5px;
   }
 
   .mr {
@@ -297,9 +254,7 @@
     margin-bottom: 10px;
   }
 
-  .vote {
-    font-size: 25px;
-  }
+  .vote { font-size: 25px; }
 }
 
   
