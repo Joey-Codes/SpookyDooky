@@ -1,12 +1,12 @@
 .home-community {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
 }
 
 .community-example {
-    height: 250px;
-    width: 200px;
+  height: 250px;
+  width: 200px;
 }
 
 .community-section {
@@ -35,7 +35,6 @@
   }
 }
 
-/* Media query for mobile screens */
 @media screen and (max-width: 768px) {
   .home-community {
     margin-top: 75px;
@@ -51,9 +50,7 @@
     align-items: center;
   }
 
-  .ct1 {
-    font-size: 30px;
-  }
+  .ct1 { font-size: 30px; }
 
   .community-example {
     height: 150px;

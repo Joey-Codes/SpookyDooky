@@ -27,9 +27,9 @@ export const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
 
-  const handleDeleteReview = (reviewId) => {
+  const handleDeleteReview = async (reviewId) => {
     try {
-      axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/delete/${reviewId}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/delete/${reviewId}`);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -101,11 +101,11 @@ export const Profile = () => {
               <div className="review-entry" key={review._id}>
                 <h2 className='readexpro italic'>Your review for {placeNames[index]}</h2>
                 <StarRatings
-                    rating={review.rating} // Replace with your actual rating value
-                    starRatedColor="red" // Customize the color of the filled stars
-                    starEmptyColor="lightgray" // Customize the color of the empty stars
-                    starDimension="4vh" // Adjust the size of the stars 
-                    starSpacing="2px" // Adjust the spacing between stars
+                    rating={review.rating} 
+                    starRatedColor="red" 
+                    starEmptyColor="lightgray" 
+                    starDimension="4vh" 
+                    starSpacing="2px" 
                   />
                 <div className='rating-top-portion'>
                   <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>

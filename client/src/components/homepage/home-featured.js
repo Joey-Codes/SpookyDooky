@@ -33,6 +33,7 @@ const slideImagesMobile = [
 export const HomeFeatured = () => {
   const [fadeUp, setFadeUp] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); 
+  const currentSlideImages = isMobile ? slideImagesMobile : slideImagesPC;
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,8 +46,6 @@ export const HomeFeatured = () => {
     };
   }, []);
 
-  const currentSlideImages = isMobile ? slideImagesMobile : slideImagesPC;
-
 
   return (
     <div className="home-featured">
@@ -56,10 +55,10 @@ export const HomeFeatured = () => {
       </div>
       <Slide autoplay={true} duration={3000}>
         {currentSlideImages.map((slideImage, index) => (
-           <Waypoint onEnter={() => setFadeUp(true)}>
-          <div key={index} className={`each-slide-effect ${fadeUp ? 'fade-up' : ''}`}>
-            <img src={slideImage.url} alt="sample review" className='slide-image' />
-          </div>
+          <Waypoint onEnter={() => setFadeUp(true)}>
+            <div key={index} className={`each-slide-effect ${fadeUp ? 'fade-up' : ''}`}>
+              <img src={slideImage.url} alt="sample review" className='slide-image' />
+            </div>
           </Waypoint>
         ))}
       </Slide>

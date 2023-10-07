@@ -87,15 +87,6 @@ export const PlacePage = ({ query }) => {
     }
   };
 
-  const handleDeleteReview = (reviewId) => {
-    try {
-      axios.delete(`${process.env.REACT_APP_SERVER_URL}/reviews/delete/${reviewId}`);
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   if (!place || !reviews) {
     return (
       <div className='readexpro rp2 loading'>
@@ -203,9 +194,6 @@ export const PlacePage = ({ query }) => {
                 <img className='review-img' src={review.img} alt='review-pic'/>
               )}
               <br />
-                <button className="h-b3 rp1" onClick={() => handleDeleteReview(review._id)}>
-                  Delete Review
-                </button>
             </div>
           ))}
         </ul>

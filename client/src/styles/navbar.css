@@ -48,16 +48,16 @@
 }
 
 .navbar a.active::before {
-  background-color: #ff0000; /* Red color for spooky effect */
+  background-color: #ff0000; 
 }
 
 .navbar a:hover::before {
-  background-color: #ff0000; /* Red color for spooky effect */
+  background-color: #ff0000; 
 }
 
 .navbar a.active,
 .navbar a:hover {
-  color: #ff0000; /* Red color for spooky effect */
+  color: #ff0000; 
   border-color: red;
 }
 
@@ -67,10 +67,9 @@
   padding: 5px 10px;
 }
 
-
 /* Hamburger menu styles */
 .hamburger {
-  display: none; /* Hide the hamburger button for larger screens */
+  display: none; 
   cursor: pointer;
   align-items: center;
 }
@@ -91,7 +90,7 @@
 
 /* Mobile menu styles */
 .mobile-menu {
-  display: none; /* Hide the mobile menu by default */
+  display: none; 
 }
 
 /* Show the mobile menu when it's open */
@@ -109,23 +108,21 @@
 }
 
 
-/* Media query for mobile screens */
 @media screen and (max-width: 768px) {
   .hamburger {
-    display: block; /* Show the hamburger button for smaller screens */
+    display: block; 
     position: absolute;
     top: 15px;
     right: 15px;
   }
 
-  /* Hide the main links and right login button for smaller screens */
   .main-links,
   .right-links {
     display: none !important;
   }
 
   .navbar {
-    position: relative; /* Set the navbar to fixed position */
+    position: relative; 
   }
 
   .navbar .left-links {

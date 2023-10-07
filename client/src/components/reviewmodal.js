@@ -25,7 +25,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
   const [starRating, setStarRating] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [areRequiredFieldsEmpty, setAreRequiredFieldsEmpty] = useState(false);
-  const [isImageUploading, setIsImageUploading] = useState(false); // State to track image upload status
+  const [isImageUploading, setIsImageUploading] = useState(false); 
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const [newReview, setNewReview] = useState({
     rating: 0,
@@ -57,7 +57,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
 
-    setIsImageUploading(true); // Set the state to indicate image upload is in progress
+    setIsImageUploading(true); 
     
     const formData = new FormData();
     formData.append('file', file);
@@ -79,7 +79,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
         img: cloudinaryResponse.data.secure_url
       }));
 
-      setIsImageUploading(false); // Set the state back to indicate image upload is complete
+      setIsImageUploading(false); 
 
     } catch (error) {
       console.error("Error uploading image to Cloudinary:", error);
@@ -93,7 +93,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
   
       if (currentPath === targetPath) {
           closeModal();
-          return; // Exit the function without making the delete request
+          return; 
       }
   
       await axios.delete(`${process.env.REACT_APP_SERVER_URL}/places/delete/${placeId}`);
@@ -106,7 +106,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     event.preventDefault();
     
     if (isSubmitDisabled) {
-      return; // Do not proceed with submission
+      return; 
     }
     
     const requiredFields = ['rating', 'category', 'description'];
@@ -114,25 +114,22 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     setAreRequiredFieldsEmpty(isEmpty);
     
     if (isEmpty) {
-      return; // Do not proceed with submission
+      return; 
     }
   
     if (isImageUploading) {
-      setIsSubmitDisabled(true); // Disable the submit button
+      setIsSubmitDisabled(true); 
       setTimeout(() => {
-        setIsSubmitDisabled(false); // Enable the submit button after the delay
-      }, 3000); // 5000 milliseconds (5 seconds)
-      return; // Do not proceed with submission
+        setIsSubmitDisabled(false); 
+      }, 3000); 
+      return;
     }
   
     try {
-      // Only send the image file to Cloudinary if an image is selected
       if (newReview.img instanceof File) {
-        // Upload image to Cloudinary and update newReview.img with the Cloudinary URL
         await handleFileChange(event);
       }
   
-      // Submit the review data to your backend
       await axios.post(`${process.env.REACT_APP_SERVER_URL}/reviews`, newReview);
       const currentPath = window.location.pathname;
       const targetPath = `/places/${placeId}`;
@@ -147,9 +144,6 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     }
     closeModal();
   };
-  
-  
-  
   
 
   return (
@@ -205,18 +199,18 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
               className={`h-b4 readexpro rp1 bold ${selectedCategory === 'Unexplained' ? 'active' : ''}`}
             >UNEXPLAINED
             </button>
-        </div>
-                 <br />
+         </div>
+              <br />
               <h2 className='readexpro form-font'>DESCRIPTION:</h2>
               <textarea className="description-field" name="description" onChange={handleChange} type='text'></textarea>
-        <br />
-                      <div className='modal-row'>
+              <br />
+              <div className='modal-row'>
                 <h2 className='readexpro form-font mr'>ADD PHOTO (optional) -</h2>
                 <input className='readexpro' type="file" onChange={handleFileChange} />
               </div>
               <br />
               {isSubmitDisabled && <h2 className='readexpro italic bold red'>Please wait, image is uploading.</h2>}
-        <div className='modal-row'>
+          <div className='modal-row'>
           <div>
           <button onClick={() => {
             closeModal();

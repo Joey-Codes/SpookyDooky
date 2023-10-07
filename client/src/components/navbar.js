@@ -23,7 +23,7 @@ export const Navbar = () => {
       Cookies.set('jwtToken', token);
       setJwtToken(token);
 
-      axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/verifytoken`)
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/verifytoken/${token}`)
         .then(response => {
           const { userId } = response.data;
           localStorage.setItem('userID', userId);
@@ -67,16 +67,12 @@ export const Navbar = () => {
   return (
     <div className="navbar carterone">
       <div className={`chango left-links ${mobileMenuOpen ? 'open' : ''}`}>OO</div>
-
-      {/* Hamburger Button */}
       <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu}>
         <div className="bar bar1"></div>
         <div className="bar bar2"></div>
         <div className="bar bar3"></div>
       </div>
-
       <div className="main-links">
-        {/* Links for larger screens */}
         <Link to="/" className={activeTab === 'home' ? 'active' : ''} onClick={() => handleTabClick('home')}>HOME</Link>
         <Link to="/places" className={activeTab === 'places' ? 'active' : ''} onClick={() => handleTabClick('places')}>PLACES</Link>
         <Link to="/about" className={activeTab === 'about' ? 'active' : ''} onClick={() => handleTabClick('about')}>ABOUT</Link>
@@ -84,7 +80,6 @@ export const Navbar = () => {
           <Link to="/profile" className={activeTab === 'profile' ? 'active' : ''} onClick={() => handleTabClick('profile')}>PROFILE</Link>
         ) : null}
       </div>
-
       <div className="right-links">
         {!jwtToken ? (
           <Link to="/auth" className={`login ${activeTab === 'login' ? 'active' : ''}`} onClick={() => handleTabClick('login')}>LOG IN</Link>
@@ -92,8 +87,6 @@ export const Navbar = () => {
           <Link onClick={logout} className={`login ${activeTab === 'logout' ? 'active' : ''}`}>LOG OUT</Link>
         )}
       </div>
-
-      {/* Mobile Menu */}
       <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
         <Link to="/" onClick={() => { handleTabClick('home'); handleLinkClick(); }}>HOME</Link>
         <Link to="/places" onClick={() => { handleTabClick('places'); handleLinkClick(); }}>PLACES</Link>

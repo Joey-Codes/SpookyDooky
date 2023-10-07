@@ -9,15 +9,15 @@
 }
 
 .profile-tabs .react-tabs__tab--selected {
-  background: red; /* Set the background of the selected tab to black */
-  color: white; /* Set the text color of the selected tab to white */
+  background: red; 
+  color: white; 
   border-radius: 5px 5px 0 0;
   border-bottom: 0;
 }
 
 .profile-tabs .react-tabs__tab-panel {
   padding: 20px;
-  background: black; /* Set the background of the active tab panel to black */
+  background: black; 
   background-image: url('../images/ghost-background1.png');
   margin: 0;
   background-repeat: repeat;

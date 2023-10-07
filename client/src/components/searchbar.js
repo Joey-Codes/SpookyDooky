@@ -16,17 +16,16 @@ export const SearchBar = ({ onPlaceSelect }) => {
   const handlePlaceSelect = () => {
     const place = autocompleteRef.current.getPlace();
 
-    // Ensure that a valid place is selected
     if (place && place.geometry && place.geometry.location) {
       setSelectedPlace(place);
-      onPlaceSelect(place); // Pass the selected place to the parent component
+      onPlaceSelect(place); 
     }
   };
 
   const handleInputChange = (event) => {
     const { value } = event.target;
-    setSelectedPlace(null); // Clear the selected place when the input value changes
-    autocompleteRef.current.setFields([{ value: '' }]); // Clear the autocomplete field value
+    setSelectedPlace(null); 
+    autocompleteRef.current.setFields([{ value: '' }]); 
   };
 
   if (loadError) return <div>Error loading maps</div>;
@@ -43,7 +42,7 @@ export const SearchBar = ({ onPlaceSelect }) => {
           className="searchbar-input"
           type="text"
           placeholder="Search for a place..."
-          onChange={handleInputChange} // Handle input change event
+          onChange={handleInputChange} 
         />
       </Autocomplete>
     </div>

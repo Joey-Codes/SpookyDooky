@@ -40,7 +40,11 @@ const productionBool = await accessSecret('projects/904458328495/secrets/PRODUCT
 app.use(cookieParser());
 
 app.use(cors({
-  origin: 'https://spooky-dooky-frontend.web.app',
+  origin: [
+    'https://spooky-dooky-frontend.web.app', 
+    'https://spookydooky.net', 
+    'https://www.spookydooky.net',    
+  ],
   credentials: true,
 }));
 

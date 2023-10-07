@@ -59,7 +59,7 @@ export const Places = () => {
   const handleQuerySearch = async (event) => {
     event.preventDefault();
     if (query === "") {
-      return; // No query provided, return early
+      return; 
     } 
     try {
       navigate(`/places?query=${encodeURIComponent(query)}`);
@@ -96,8 +96,8 @@ export const Places = () => {
     event.preventDefault();
     try {
       const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/places`, newPlace);
-      const placeId = response.data._id; // Retrieve the _id property from the response
-      setNewPlaceId(placeId); // Update the newPlaceId state with the place ID
+      const placeId = response.data._id; 
+      setNewPlaceId(placeId);
       openReviewModal();
     } catch (err) {
       console.log(err);
@@ -277,7 +277,7 @@ export const Places = () => {
         <Map mapViewClick={selectedPlace} showMap={showMap} mapPlaces={places} />
         <div className='place-list'>
           <h1 className='rp2 bold filter'>{filter}</h1>
-          {places.length === 0 ? (
+          {places.length === 0 && filter !== "No Results!" ? (
             <div className='loading-container'>
               <br />
               <br />

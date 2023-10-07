@@ -21,13 +21,13 @@ export const HomeCommunity = () => {
             </p>
           </div>
         </Waypoint>
-          <div className={`community-section ${leftPopIn ? 'left-popin' : ''}`}>
-            <img src={glasses_ghost} alt="p2" className="community-example" />
-            <h2 className="carterone ct1 red">FIND NEW PLACES TO VISIT</h2>
-            <p className="readexpro rp1 white">
-              USE THE MAP AND VARIOUS FILTERS TO FIND LOCATIONS OF INTEREST NEAR YOU 
-            </p>
-          </div>
+        <div className={`community-section ${leftPopIn ? 'left-popin' : ''}`}>
+          <img src={glasses_ghost} alt="p2" className="community-example" />
+          <h2 className="carterone ct1 red">FIND NEW PLACES TO VISIT</h2>
+          <p className="readexpro rp1 white">
+            USE THE MAP AND VARIOUS FILTERS TO FIND LOCATIONS OF INTEREST NEAR YOU 
+          </p>
+        </div>
       </div>
     </div>
   );

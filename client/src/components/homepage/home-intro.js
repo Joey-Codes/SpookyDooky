@@ -3,7 +3,6 @@ import ghost from '../../images/ghosts.png';
 import glasses_ghost from '../../images/glasses_ghost.png'
 import weightlifting_ghost from '../../images/weightlifting_ghost.png'
 import { Link } from 'react-router-dom';
-
 import React from 'react';
 
 export const HomeIntro = () => {

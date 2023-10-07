@@ -87,50 +87,30 @@ a {
   flex-direction: column;
 }
 
-.white {
-  color: white;
-}
+.white { color: white; }
 
-.blue {
-  color: rgb(142, 227, 255);
-}
+.blue { color: rgb(142, 227, 255); }
 
-.red {
-    color: red;
-}
+.red { color: red; }
 
 .flex {
   display: flex;
   justify-content: center;
 }
 
-.chango {
-  font-family: 'Chango', cursive;
-}
+.chango { font-family: 'Chango', cursive; }
 
-.bangers {
-  font-family: "Bangers";
-}
+.bangers { font-family: "Bangers"; }
 
-.carterone {
-  font-family: "CarterOne";
-}
+.carterone { font-family: "CarterOne"; }
 
-.rammettoone {
-  font-family: "RammettoOne";
-} 
+.rammettoone { font-family: "RammettoOne"; } 
 
-.readexpro {
-  font-family: "ReadexPro";
-}
+.readexpro { font-family: "ReadexPro"; }
 
-.italic {
-  font-style: italic;
-}
+.italic { font-style: italic; }
 
-.bold {
-  font-weight: bold;
-}
+.bold { font-weight: bold; }
 
 .loading {
   height: 1000px;

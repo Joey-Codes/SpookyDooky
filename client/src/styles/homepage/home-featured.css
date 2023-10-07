@@ -16,9 +16,7 @@
   margin-bottom: 40px;
 }
 
-.rp2 {
-  font-size: 65px;
-}
+.rp2 { font-size: 65px; }
 
 .each-slide-effect {
   display: flex;
@@ -33,9 +31,7 @@
   background-position: center;
 }
 
-.more-reviews {
-  margin-top: 100px;
-}
+.more-reviews { margin-top: 100px; }
 
 @media screen and (max-width: 480px) {
   .home-featured {

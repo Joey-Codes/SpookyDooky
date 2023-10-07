@@ -32,7 +32,7 @@ router.get(
 router.get('/success', (req, res) => {
   try {
     const token = jwt.sign({ id: req.user._id }, jwtSecret);
-    res.redirect(`https://spooky-dooky-frontend.web.app//?token=${token}`);
+    res.redirect(`https://spookydooky.net//?token=${token}`);
   } catch (error) {
     console.log(error);
     res.redirect('/login');
@@ -104,8 +104,8 @@ router.delete("/delete/:userId", async (req, res) => {
 });
 
 
-router.get("/verifytoken", (req, res) =>  {
-  const token = req.cookies.jwtToken;
+router.get("/verifytoken/:token", (req, res) =>  {
+  const token = req.params.token;
 
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized' });
