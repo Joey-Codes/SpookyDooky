@@ -26,6 +26,14 @@ export const Profile = () => {
   const userID = useGetUserID();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState({});
+
+  const toggleShowFullDescription = (index) => {
+    setShowFullDescription((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   const handleDeleteReview = async (reviewId) => {
     try {
@@ -113,7 +121,24 @@ export const Profile = () => {
                   </h2>
                   <h2 className='italic'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
                 </div>
-                <p className='readexpro rp1'>{review.description}</p>
+                <p className={`readexpro rp1 ${showFullDescription[index] ? 'expanded' : 'collapsed'}`}>
+                  {review.description.length > 400 && !showFullDescription[index]
+                    ? `${review.description.substring(0, 400)}...`
+                    : review.description}
+              </p>
+              <br />
+              {review.description.length > 400 && (
+                <button
+                  className="readexpro rp1 show-more-button"
+                  onClick={() => toggleShowFullDescription(index)}
+                >
+                  {showFullDescription[index] ? 'Show less' : 'Show more'}
+                </button>
+              )}
+                <br />
+                {review.img && (
+                  <img className='review-img' src={review.img} alt='review-pic'/>
+                )}
                 <br />
                   <button className="h-b3 rp1" onClick={() => setIsOpen2(true)}>
                     Delete Review

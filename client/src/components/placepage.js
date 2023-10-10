@@ -16,6 +16,15 @@ export const PlacePage = ({ query }) => {
   const [reviews, setReviews] = useState(null);
   const [activeFilter, setActiveFilter] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState({});
+
+  const toggleShowFullDescription = (index) => {
+    setShowFullDescription((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+  
 
   const handleBackClick = () => {
     navigate('/places');
@@ -89,7 +98,7 @@ export const PlacePage = ({ query }) => {
 
   if (!place || !reviews) {
     return (
-      <div className='readexpro rp2 loading'>
+      <div className='readexpro loading'>
         Loading...
       </div>
     );
@@ -189,11 +198,24 @@ export const PlacePage = ({ query }) => {
                   starDimension="4vh"
                   starSpacing="2px" 
                 />
-              <p className='readexpro rp1'>{review.description}</p>
+               <p className={`readexpro rp1 ${showFullDescription[index] ? 'expanded' : 'collapsed'}`}>
+                  {review.description.length > 400 && !showFullDescription[index]
+                    ? `${review.description.substring(0, 400)}...`
+                    : review.description}
+              </p>
+              <br />
+              {review.description.length > 400 && (
+                <button
+                  className="readexpro rp1 show-more-button"
+                  onClick={() => toggleShowFullDescription(index)}
+                >
+                  {showFullDescription[index] ? 'Show less' : 'Show more'}
+                </button>
+              )}
+              <br />
               {review.img && (
                 <img className='review-img' src={review.img} alt='review-pic'/>
               )}
-              <br />
             </div>
           ))}
         </ul>

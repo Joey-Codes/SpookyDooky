@@ -11,18 +11,13 @@ export const Footer = () => {
                         <Link to='/about'>
                             <div className='footer-link'>About</div>
                         </Link>
-                        <Link to='/about'>
-                            <div className='footer-link'>Attribution</div>
-                        </Link>
                     </ul>
                 </div>
                 <br />
                 <div className="footer-column">
-                    <h1 className='red italic'>FEATURES</h1>
+                    <h1 className='red italic'>CONTACT</h1>
                     <ul>
-                        <Link to='/about'>
-                            <div className='footer-link'>Organizations (Coming Soon)</div>
-                        </Link>
+                        <div className='footer-link'>Questions? Email us at spookydooky35@gmail.com</div>
                     </ul>
             </div>
         </div>

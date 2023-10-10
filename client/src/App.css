@@ -113,6 +113,12 @@ a {
 .bold { font-weight: bold; }
 
 .loading {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 120px;
   height: 1000px;
   background-color: rgb(248, 105, 105);
   background-image: url(./images/ghost-background1.png);
@@ -120,7 +126,11 @@ a {
 
 @media (max-width: 767px) {
   .loading {
+    display: block;
+    text-align: left;
     height: 600px;
+    font-size: 50px;
+    color: black;
     background-color: white;
     background-image: url(./images/glasses_ghost.png);
     background-size: cover;
