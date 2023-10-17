@@ -54,39 +54,57 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     setNewReview({ ...newReview, [name]: value });
   };  
 
-  const handleFileChange = async (event) => {
-    const file = event.target.files[0];
+const handleFileChange = async (event) => {
+  setIsImageUploading(true);
+  const file = event.target.files[0];
+  const formData = new FormData();
+  formData.append('file', file);
 
-    setIsImageUploading(true); 
-    
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UNSIGNED_PRESET);
-  
-    try {
-      const cloudinaryResponse = await axios.post(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_NAME}/image/upload`,
-        formData,       
-        {
-          params: {
-              folder: "Review_Photos", 
-          },
-        }
-      );
-  
-      setNewReview(prevState => ({
-        ...prevState,
-        img: cloudinaryResponse.data.secure_url
-      }));
-
-      setIsImageUploading(false); 
-
-    } catch (error) {
-      console.error("Error uploading image to Cloudinary:", error);
-    } 
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
+
+  try {
+    const cloudinaryResponse = await axios.post(
+      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_NAME}/image/upload`,
+      formData,
+      {
+        params: {
+          folder: "Review_Photos",
+          upload_preset: process.env.REACT_APP_CLOUDINARY_UNSIGNED_PRESET,
+        },
+      }
+    );
+
+    const imageUrl = cloudinaryResponse.data.secure_url;
+
+    const nsfwCheckResponse = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/reviews/checkimage`,
+      { imageUrl }, 
+      config
+    );
+
+    if (nsfwCheckResponse.data.isNSFW) {
+      alert('ATTENTION: Our AI has detected NSFW content in your image! Please ensure your image is appropriate. Thanks!');
+      return;
+    }
+
+    setNewReview((prevState) => ({
+      ...prevState,
+      img: imageUrl,
+    }));
+
+    setIsImageUploading(false);
+  } catch (error) {
+    console.error("Error uploading image to Cloudinary:", error);
+    setIsImageUploading(false);
+  }
+};
+
   
-   const deletePlace = async () => {
+  const deletePlace = async () => {
     try {
       const currentPath = window.location.pathname;
       const targetPath = `/places/${placeId}`;
@@ -135,7 +153,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
       const targetPath = `/places/${placeId}`;
   
       if (currentPath === targetPath) {
-        window.location.reload(); 
+        window.location.reload();
       } else {
         navigate(targetPath); 
       }
@@ -209,7 +227,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
                 <input className='readexpro' type="file" onChange={handleFileChange} />
               </div>
               <br />
-              {isSubmitDisabled && <h2 className='readexpro italic bold red'>Please wait, image is uploading.</h2>}
+              {isSubmitDisabled && <h2 className='readexpro italic bold red'>Checking image upload- please wait until message disappears</h2>}
           <div className='modal-row'>
           <div>
           <button onClick={() => {

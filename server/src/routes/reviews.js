@@ -3,8 +3,14 @@ import mongoose from "mongoose";
 import { ReviewModel } from "../models/Reviews.js";
 import { PlacesModel } from "../models/Places.js";
 import { UserModel } from "../models/Users.js";
+import vision from "@google-cloud/vision";
+import {v2 as cloudinary } from 'cloudinary';
+import { extractPublicId } from 'cloudinary-build-url';
 
 const router = express.Router();
+
+const client = new vision.ImageAnnotatorClient();
+
 
 /* Retrieve all Reviews */
 router.get("/", async (req, res) => {
@@ -70,6 +76,38 @@ router.get('/owner/:reviewId', async (req, res) => {
   }
 });
 
+/* Check review image for NSFW content */
+router.post('/checkimage', async (req, res) => {
+  try {
+    const cloudinaryImageUrl = req.body.imageUrl;
+    const [result] = await client.safeSearchDetection(cloudinaryImageUrl);
+    const safeSearchAnnotation = result.safeSearchAnnotation;
+
+    const isNSFW =
+      safeSearchAnnotation.adult === 'LIKELY' ||
+      safeSearchAnnotation.adult === 'VERY_LIKELY' ||
+      safeSearchAnnotation.violence === 'LIKELY' ||
+      safeSearchAnnotation.violence === 'VERY_LIKELY';
+
+      if (isNSFW) {
+        try {
+          const publicId = extractPublicId(cloudinaryImageUrl);
+          const deletionResponse = await cloudinary.uploader.destroy(publicId);
+          console.log(`Deleted image: ${deletionResponse.result}`);
+          res.json({ isNSFW });
+        } catch (cloudinaryError) {
+          console.error('Error deleting image from Cloudinary:', cloudinaryError);
+          res.status(500).json({ message: 'Error deleting image from Cloudinary.' });
+        }
+      } else {
+        res.json({ isNSFW });
+      }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 
   /* Delete a review given its ID */
   router.delete('/delete/:id', async (req, res) => {
@@ -83,6 +121,17 @@ router.get('/owner/:reviewId', async (req, res) => {
       }
   
       const placeId = review.placeId;
+
+      if (review.img != "") {
+        try {
+        const publicId = extractPublicId(review.img);
+        const deletionResponse = await cloudinary.uploader.destroy(publicId);
+        console.log(`Deleted image: ${deletionResponse.result}`);
+      } catch (cloudinaryError) {
+        console.error('Error deleting image from Cloudinary:', cloudinaryError);
+        return res.status(500).json({ error: 'Error deleting image from Cloudinary.' });
+      }
+    }
   
       await review.deleteOne();
   
@@ -90,7 +139,7 @@ router.get('/owner/:reviewId', async (req, res) => {
         { $match: { placeId } },
         { $group: { _id: null, averageRating: { $avg: '$rating' } } },
       ]);
-  
+
       const place = await PlacesModel.findById(placeId);
       place.rating = averageRating.length > 0 ? averageRating[0].averageRating : 0;
       place.numRatings = await ReviewModel.countDocuments({ placeId });
