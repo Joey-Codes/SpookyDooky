@@ -13,6 +13,11 @@
   max-height: 500px;
 }
 
+.disclaimer {
+  display: flex;
+  margin: 3% 10% 0 0;
+}
+
 .back-button { margin-right: 5%; }
 
 .h-b6 {
@@ -163,6 +168,12 @@
   .title-image {
     max-height: 300px;
     max-width: 100%;
+  }
+
+  .disclaimer {
+    font-size: 11px;
+    margin: 0;
+    text-align: center;
   }
 
   .h-b3a { margin-right: 0; }

@@ -119,6 +119,10 @@ export const PlacePage = ({ query }) => {
               Visit Website
             </a>
           )}
+          <h9 className='red readexpro disclaimer'>Disclaimer: Please ensure to obey all laws and regulations before visiting a location. 
+            Never trespass onto a property. Always be sure to obtain site owner's permission before 
+            conducting an investigation.
+          </h9>
         </div>
       </div>
       <div className='placepage-middle flex'>

@@ -72,7 +72,7 @@ passport.use(
     {
       clientID: googleClientId,
       clientSecret: googleClientSecret,
-      callbackURL: `/auth/google/callback`,
+      callbackURL: `https://spooky-dooky-server-gqbpmqhyva-uc.a.run.app/auth/google/callback`,
       passReqToCallback: true,
       debug: true,
     },

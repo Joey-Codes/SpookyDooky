@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import StarRatings from 'react-star-ratings';
+import { RegExpMatcher, englishDataset, englishRecommendedTransformers } from 'obscenity';
 import '../styles/reviewmodal.css'
 
 const customStyles = {
@@ -36,6 +37,11 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     userId: userID,
     placeId: placeId,
     img: "",
+  });
+
+  const matcher = new RegExpMatcher({
+    ...englishDataset.build(),
+    ...englishRecommendedTransformers,
   });
 
   const handleCategoryChange = (event) => {
@@ -142,6 +148,11 @@ const handleFileChange = async (event) => {
       }, 3000); 
       return;
     }
+
+    if (matcher.hasMatch(newReview.description)) {
+      alert('Review description contains profanity. Please ensure your language is appropriate. Thanks!');
+      return;
+    }
   
     try {
       if (newReview.img instanceof File) {
@@ -170,8 +181,13 @@ const handleFileChange = async (event) => {
         <h1 className='readexpro rp2 red'>{placeName}</h1>
         <br />
         <br />
-        <div className='readexpro italic'>Note: If you wish to keep track of all your reviews, please sign in.</div>
-        <div className='readexpro italic'>Otherwise, this review will be labeled as from 'Anonymous'.</div>
+        {userID == null && (
+          <div>
+            <div className='readexpro italic'>Note: If you wish to keep track of this review, please sign in. 
+                                              Otherwise, this review will be labeled as from 'Anonymous'
+            </div>
+          </div>
+        )}
         {areRequiredFieldsEmpty && <h2 className='readexpro italic bold red'>You must fill out all required fields before submitting.</h2>}
         <div className='modal-row'>
           <h2 className='readexpro form-font mr mrp1'>SCARINESS RATING -</h2>

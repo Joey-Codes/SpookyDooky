@@ -16,12 +16,25 @@ export const Footer = () => {
                 <br />
                 <div className="footer-column">
                     <h1 className='red italic'>CONTACT</h1>
+                    <br />
                     <ul>
                         <div className='footer-link'>Questions? Email us at spookydooky35@gmail.com</div>
                     </ul>
             </div>
         </div>
+        <br />
         <div className="footer-line">&copy; 2023 Spooky Dooky. All rights reserved.</div>
+        <div className='policies'>
+            <Link to='/attribution'>
+                <div className="privacy blue">Attribution</div>
+            </Link>
+            <Link to='/contentpolicy'>
+                <div className="privacy blue">Content Policy</div>
+            </Link>
+            <Link to='/privacypolicy'>
+                <div className="privacy blue">Privacy Policy</div>
+            </Link>
+        </div>
         </div>
     )
 };

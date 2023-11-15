@@ -8,25 +8,19 @@ import '../../styles/homepage/home-featured.css';
 
 const slideImagesPC = [
   {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693619567/sample-review_m6mubp.png'
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1698714268/review_dix8lm.jpg'
   },
   {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693619567/sample-review_m6mubp.png'
-  },
-  {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1693619567/sample-review_m6mubp.png'
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1698714547/review3_iizdip.jpg'
   }
 ];
 
 const slideImagesMobile = [
   {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1695689034/sample-review2_mbjpx0.png'
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1698714455/review2_b3sgex.jpg'
   },
   {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1695689034/sample-review2_mbjpx0.png'
-  },
-  {
-    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1695689034/sample-review2_mbjpx0.png'
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1698714546/review5_zer2zd.jpg'
   }
 ];
 

@@ -287,10 +287,15 @@ export const Places = () => {
           ) : (
             <>
               {places.map((place) => (
-                <div className="place-entry" key={place._id}>
+                <div className="place-entry" key={place._id}  onClick={(e) => {
+                  if (e.target.tagName === "A" || e.target.tagName === "BUTTON") {
+                    return;   
+                  }
+                  handlePlaceClick(place._id);
+                }}>
                   <div className='entry-format'>
                     <div className='place-info'>
-                      <h1 className="red readexpro name" onClick={() => handlePlaceClick(place._id)}>{place.name}</h1>
+                      <h1 className="red readexpro name">{place.name}</h1>
                       <br />
                       <div className="place-rating">
                         <StarRatings

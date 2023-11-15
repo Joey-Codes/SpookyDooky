@@ -30,8 +30,22 @@
   margin-top: 20px;
 }
 
+.privacy {
+  text-align: left;
+  font-size: 15px;
+}
+
+.policies {
+  margin: 10px 0 0 35px;
+  display: flex;
+}
+
 @media screen and (max-width: 768px) {
   .footer-container {
     flex-direction: column;
+  }
+
+  .footer-link {
+    font-size: 15px;
   }
 }
