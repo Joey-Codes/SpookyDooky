@@ -29,9 +29,11 @@
   align-items: center;
   justify-content: center;
   background-position: center;
+  width: 1000px;
+  height: auto;
 }
 
-.more-reviews { margin-top: 100px; }
+.more-reviews { margin-top: 30px; }
 
 @media screen and (max-width: 480px) {
   .home-featured {

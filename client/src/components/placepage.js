@@ -6,7 +6,21 @@ import StarRatings from 'react-star-ratings';
 import { ReviewModal } from './reviewmodal';
 import { formatDistanceToNow } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+import Modal from 'react-modal';
 import "../styles/placepage.css";
+
+const customStyles = {
+  content: {
+    position: "fixed",
+    top: '10%',
+    left: '10%',
+    right: '10%',
+    bottom: '10%',
+    transform: 'translate(0, 0)',
+    overflow: 'auto',
+    padding: 0,
+  },
+};
 
 export const PlacePage = ({ query }) => {
   const navigate = useNavigate();
@@ -17,6 +31,8 @@ export const PlacePage = ({ query }) => {
   const [activeFilter, setActiveFilter] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   const toggleShowFullDescription = (index) => {
     setShowFullDescription((prev) => ({
@@ -36,6 +52,23 @@ export const PlacePage = ({ query }) => {
 
   const openModalWithPlaceName = () => {
     setModalIsOpen(true);
+  };
+
+  const openImageModal = (image) => {
+    setSelectedImage(image);
+    setIsImageModalOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+    setIsImageModalOpen(false);
+  };
+ 
+  const isImageWiderThanTaller = (imageUrl) => {
+    const img = new Image();
+    img.src = imageUrl;
+
+    return img.width > img.height;
   };
 
   useEffect(() => {
@@ -218,12 +251,45 @@ export const PlacePage = ({ query }) => {
               )}
               <br />
               {review.img && (
-                <img className='review-img' src={review.img} alt='review-pic'/>
+                <img 
+                  className='review-img' 
+                  src={review.img} 
+                  alt='review-pic'
+                  onClick={() => openImageModal(review.img)}
+                />
               )}
             </div>
           ))}
         </ul>
       )}
+          <Modal 
+            isOpen={isImageModalOpen}
+            onClose={closeImageModal}
+            style={customStyles}
+          >
+            <div style={{ width: "100%", height: "100%", position: "relative" }}>
+              <img
+                className={`image-popup ${isImageWiderThanTaller(selectedImage) ? 'rotated-image' : ''}`}
+                src={selectedImage}
+                alt='review-pic-popup'
+              />
+              <br />  
+              <button
+                className="h-b3 readexpro"
+                onClick={closeImageModal}
+                style={{ 
+                  position: "absolute", 
+                  bottom: 0, 
+                  left: 0,
+                  right: 0,
+                  margin: "auto",
+                  fontSize: "30px",
+                }}
+              >
+                CLOSE
+              </button>
+            </div>
+          </Modal>  
     </div>
   );
 };

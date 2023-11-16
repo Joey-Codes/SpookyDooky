@@ -8,6 +8,9 @@ import '../../styles/homepage/home-featured.css';
 
 const slideImagesPC = [
   {
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1700018876/review6_bl0x14.jpg'
+  },
+  {
     url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1698714268/review_dix8lm.jpg'
   },
   {
@@ -16,6 +19,9 @@ const slideImagesPC = [
 ];
 
 const slideImagesMobile = [
+  {
+    url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1700018876/review7_ndzbpm.jpg'
+  },
   {
     url: 'https://res.cloudinary.com/duj0zlvda/image/upload/v1698714455/review2_b3sgex.jpg'
   },
