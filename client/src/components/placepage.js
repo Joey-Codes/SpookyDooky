@@ -250,14 +250,25 @@ export const PlacePage = ({ query }) => {
                 </button>
               )}
               <br />
-              {review.img && (
-                <img 
-                  className='review-img' 
-                  src={review.img} 
-                  alt='review-pic'
-                  onClick={() => openImageModal(review.img)}
-                />
-              )}
+              <div className='image-display'>
+                {review.img && (
+                  <img 
+                    className='review-img' 
+                    src={review.img} 
+                    alt='review-pic'
+                    onClick={() => openImageModal(review.img)}
+                  />
+                )}
+                <br />
+                {review.img2 && (
+                  <img 
+                    className='review-img' 
+                    src={review.img2} 
+                    alt='review-pic2'
+                    onClick={() => openImageModal(review.img2)}
+                  />
+                )}
+              </div>
             </div>
           ))}
         </ul>

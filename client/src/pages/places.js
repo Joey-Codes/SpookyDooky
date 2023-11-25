@@ -66,6 +66,10 @@ export const Places = () => {
       const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/places/searchquery/${query}`);
       setPlaces(response.data);
       setFilter(response.data.length > 0 ? `Search Results` : `No Results!`);
+      const searchElement = document.querySelector('.filter');
+      if (searchElement) {
+        searchElement.scrollIntoView({ behavior: 'smooth' });
+      }
     } catch (err) {
       console.log(err);
     }
@@ -152,6 +156,11 @@ export const Places = () => {
       } else if (filter === "recentlyadded") {
         setFilter("Recently Added");
       } 
+
+      const searchElement = document.querySelector('.filter');
+      if (searchElement) {
+        searchElement.scrollIntoView({ behavior: 'smooth' });
+      }
     } catch (err) {
       console.error(err);
     }

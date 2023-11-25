@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.5dfe9553.css",
-    "main.js": "/static/js/main.725f5759.js",
+    "main.css": "/static/css/main.4701ac44.css",
+    "main.js": "/static/js/main.e6c28481.js",
     "static/media/red-loading-circle.gif": "/static/media/red-loading-circle.4c1e5b2943f366c2d33c.gif",
     "static/media/weightlifting_ghost.png": "/static/media/weightlifting_ghost.5f6f6170935dbe22af16.png",
     "static/media/glasses_ghost.png": "/static/media/glasses_ghost.6748f47629bc6ff4959f.png",
@@ -17,11 +17,11 @@
     "static/media/LilitaOne-Regular.ttf": "/static/media/LilitaOne-Regular.6f506507b06161b73e85.ttf",
     "static/media/google-icon.png": "/static/media/google-icon.960c670a7a8d952eba35.png",
     "index.html": "/index.html",
-    "main.5dfe9553.css.map": "/static/css/main.5dfe9553.css.map",
-    "main.725f5759.js.map": "/static/js/main.725f5759.js.map"
+    "main.4701ac44.css.map": "/static/css/main.4701ac44.css.map",
+    "main.e6c28481.js.map": "/static/js/main.e6c28481.js.map"
   },
   "entrypoints": [
-    "static/css/main.5dfe9553.css",
-    "static/js/main.725f5759.js"
+    "static/css/main.4701ac44.css",
+    "static/js/main.e6c28481.js"
   ]
 }

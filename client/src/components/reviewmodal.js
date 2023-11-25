@@ -37,6 +37,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     userId: userID,
     placeId: placeId,
     img: "",
+    img2: "",
   });
 
   const matcher = new RegExpMatcher({
@@ -60,7 +61,7 @@ export const ReviewModal = ({ isOpen, closeModal, placeId, userID, placeName}) =
     setNewReview({ ...newReview, [name]: value });
   };  
 
-const handleFileChange = async (event) => {
+const handleFileChange = async (event, imageNum) => {
   setIsImageUploading(true);
   const file = event.target.files[0];
   const formData = new FormData();
@@ -99,7 +100,7 @@ const handleFileChange = async (event) => {
 
     setNewReview((prevState) => ({
       ...prevState,
-      img: imageUrl,
+      [imageNum]: imageUrl,
     }));
 
     setIsImageUploading(false);
@@ -190,7 +191,7 @@ const handleFileChange = async (event) => {
         )}
         {areRequiredFieldsEmpty && <h2 className='readexpro italic bold red'>You must fill out all required fields before submitting.</h2>}
         <div className='modal-row'>
-          <h2 className='readexpro form-font mr mrp1'>SCARINESS RATING -</h2>
+          <h2 className='readexpro form-font mr mrp1'>SCARINESS RATING</h2>
           <StarRatings
             rating={starRating}
             starRatedColor="red"
@@ -203,7 +204,7 @@ const handleFileChange = async (event) => {
         </div>
         <br />
         <div className='modal-row'>
-          <h2 className='readexpro form-font mr'>CATEGORY -</h2>
+          <h2 className='readexpro form-font mr'>CATEGORY</h2>
             <button
               name="category"
               value="Ghosts"
@@ -235,26 +236,30 @@ const handleFileChange = async (event) => {
             </button>
          </div>
               <br />
-              <h2 className='readexpro form-font'>DESCRIPTION:</h2>
+              <h2 className='readexpro form-font'>DESCRIPTION</h2>
               <textarea className="description-field" name="description" onChange={handleChange} type='text'></textarea>
               <br />
               <div className='modal-row'>
-                <h2 className='readexpro form-font mr'>ADD PHOTO (optional) -</h2>
-                <input className='readexpro' type="file" onChange={handleFileChange} />
+                <h2 className='readexpro form-font mr'>ADD PHOTO</h2>
+                <h2 className='readexpro'>(optional up to 2)</h2>
               </div>
+              <input className='readexpro' type="file" onChange={(e) => handleFileChange(e, "img")} />
+              <br />
+              <input className='readexpro' type="file" onChange={(e) => handleFileChange(e, "img2")} disabled={!newReview.img} />
+              <br />
               <br />
               {isSubmitDisabled && <h2 className='readexpro italic bold red'>Checking image upload- please wait until message disappears</h2>}
           <div className='modal-row'>
           <div>
-          <button onClick={() => {
-            closeModal();
-            deletePlace();
-          }} className='h-b3 h-b3a readexpro form-font mr'>
-            Cancel
-          </button>
-          <button onClick={onSubmit} className='h-b3 readexpro form-font' disabled={isSubmitDisabled}>
-            Add Review
-          </button>
+            <button onClick={() => {
+              closeModal();
+              deletePlace();
+            }} className='h-b3 h-b3a readexpro form-font mr'>
+              Cancel
+            </button>
+            <button onClick={onSubmit} className='h-b3 readexpro form-font' disabled={isSubmitDisabled}>
+              Add Review
+            </button>
           </div>
         </div>
       </div>

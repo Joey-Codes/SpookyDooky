@@ -11,7 +11,6 @@ const router = express.Router();
 
 const client = new vision.ImageAnnotatorClient();
 
-
 /* Retrieve all Reviews */
 router.get("/", async (req, res) => {
     try {
@@ -108,6 +107,32 @@ router.post('/checkimage', async (req, res) => {
   }
 });
 
+/* Edit a review's description */
+router.patch('/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  const { description } = req.body;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid review ID' });
+    }
+
+    const updatedReview = await ReviewModel.findByIdAndUpdate(
+      id,
+      { $set: { description } },
+      { new: true } 
+    );
+
+    if (!updatedReview) {
+      return res.status(404).json({ message: 'Review not found' });
+    }
+
+    return res.status(200).json({ message: 'Review edited successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
   /* Delete a review given its ID */
   router.delete('/delete/:id', async (req, res) => {
@@ -124,14 +149,25 @@ router.post('/checkimage', async (req, res) => {
 
       if (review.img != "") {
         try {
-        const publicId = extractPublicId(review.img);
-        const deletionResponse = await cloudinary.uploader.destroy(publicId);
-        console.log(`Deleted image: ${deletionResponse.result}`);
-      } catch (cloudinaryError) {
-        console.error('Error deleting image from Cloudinary:', cloudinaryError);
-        return res.status(500).json({ error: 'Error deleting image from Cloudinary.' });
+          const publicId = extractPublicId(review.img);
+          const deletionResponse = await cloudinary.uploader.destroy(publicId);
+          console.log(`Deleted image: ${deletionResponse.result}`);
+        } catch (cloudinaryError) {
+          console.error('Error deleting image from Cloudinary:', cloudinaryError);
+          return res.status(500).json({ error: 'Error deleting image from Cloudinary.' });
+        }
+      } 
+      
+      if (review.img2 != "") {
+        try {
+          const publicId2 = extractPublicId(review.img2);
+          const deletionResponse2 = await cloudinary.uploader.destroy(publicId2);
+          console.log(`Deleted image2: ${deletionResponse2.result}`);
+        } catch (cloudinaryError) {
+          console.error('Error deleting image2 from Cloudinary:', cloudinaryError);
+          return res.status(500).json({ error: 'Error deleting image2 from Cloudinary.' });
+        }
       }
-    }
   
       await review.deleteOne();
   

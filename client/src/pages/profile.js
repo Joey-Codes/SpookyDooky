@@ -91,6 +91,49 @@ export const Profile = () => {
     fetchPlaceNames();
   }, [myReviews]);
 
+  useEffect(() => {
+    const editedReviewId = localStorage.getItem('editedReviewId');
+    if (editedReviewId) {
+      const editedReviewElement = document.getElementById(`review-${editedReviewId}`);
+      if (editedReviewElement) {
+        editedReviewElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+  
+      localStorage.removeItem('editedReviewId');
+    }
+  }, []);
+
+  const [editingReviewIndex, setEditingReviewIndex] = useState(null);
+  const [editedDescription, setEditedDescription] = useState('');
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const handleEditClick = (index, description) => {
+    setEditingReviewIndex(index);
+    setEditedDescription(description);
+    setIsEditModalOpen(true);
+  };
+
+  const handleSaveEdit = async (reviewId) => {
+    try {
+      await axios.patch(`${process.env.REACT_APP_SERVER_URL}/reviews/edit/${reviewId}`, {
+        description: editedDescription,
+      });
+
+      localStorage.setItem('editedReviewId', reviewId);
+      setEditingReviewIndex(null);
+      setIsEditModalOpen(false);
+
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleEditModalClose = () => {
+    setIsEditModalOpen(false);
+    setEditingReviewIndex(null);
+  };
+
   return (
   <div className="profile-tabs"> 
   <Tabs>
@@ -106,7 +149,7 @@ export const Profile = () => {
       ) : (
       <ul className='review-list'>
         {myReviews.map((review, index) => (
-              <div className="review-entry" key={review._id}>
+              <div className="review-entry" id={`review-${review._id}`} key={review._id}>
                 <h2 className='readexpro italic'>Your review for {placeNames[index]}</h2>
                 <StarRatings
                     rating={review.rating} 
@@ -119,41 +162,67 @@ export const Profile = () => {
                   <h2 className={`h-b2 h-b2a readexpro rp1 ${review.category === 'Ghosts' ? 'ghosts-color' : ''} ${review.category === 'Aliens' ? 'aliens-color' : ''} ${review.category === 'Cryptids' ? 'cryptids-color' : ''} ${review.category === 'Unexplained' ? 'unexplained-color' : ''}`}>
                     {review.category}
                   </h2>
-                  <h2 className='italic'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h2>
+                  <h3 className='italic'>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true, locale: enUS })}</h3>
                 </div>
                 <p className={`readexpro rp1 ${showFullDescription[index] ? 'expanded' : 'collapsed'}`}>
                   {review.description.length > 400 && !showFullDescription[index]
                     ? `${review.description.substring(0, 400)}...`
                     : review.description}
-              </p>
-              <br />
-              {review.description.length > 400 && (
-                <button
-                  className="readexpro rp1 show-more-button"
-                  onClick={() => toggleShowFullDescription(index)}
-                >
-                  {showFullDescription[index] ? 'Show less' : 'Show more'}
-                </button>
-              )}
+                </p>
                 <br />
-                {review.img && (
-                  <img className='review-img' src={review.img} alt='review-pic'/>
+                {review.description.length > 400 && (
+                  <button
+                    className="readexpro rp1"
+                    onClick={() => toggleShowFullDescription(index)}
+                  >
+                    {showFullDescription[index] ? 'Show less' : 'Show more'}
+                  </button>
                 )}
                 <br />
+                <div className='image-display'>
+                  {review.img && (
+                    <img className='review-img' src={review.img} alt='review-pic' />
+                  )}
+                  <br />
+                  {review.img2 && (
+                    <img className='review-img' src={review.img2} alt='review-pic2' />
+                  )}
+                </div>
+                <br />
+                <br />
+                <button
+                  className="h-b3 rp1 mr"
+                  onClick={() => handleEditClick(index, review.description)}
+                >
+                  Edit Review
+                </button>
                   <button className="h-b3 rp1" onClick={() => setIsOpen2(true)}>
                     Delete Review
                   </button>
                   <Modal isOpen={isOpen2} style={customStyles}>
                     <h2 className='readexpro white'>Are you sure you wish to delete this review?</h2>
-                    <div className='flex'>
+                    <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
                       <button className='h-b3 readexpro rp1 mr' onClick={() => setIsOpen2(false)}>Cancel</button>
-                      <button className='h-b3 readexpro rp1' onClick={() => handleDeleteReview(review._id)}>Yes</button>
+                      <button className='h-b3 readexpro rp1 mr' onClick={() => handleDeleteReview(review._id)}>Yes</button>
                     </div>
                   </Modal>
               </div>
             ))}
       </ul>
       )}
+      <Modal isOpen={isEditModalOpen} style={customStyles}>
+        <h2 className='readexpro white'>Edit Review Description</h2>
+        <textarea
+          className='edit-review'
+          value={editedDescription}
+          onChange={(e) => setEditedDescription(e.target.value)}
+        />
+        <br />
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
+          <button className='h-b3 readexpro rp1 mr' onClick={handleEditModalClose}>Cancel</button>
+          <button className='h-b3 readexpro rp1 mr' onClick={() => handleSaveEdit(myReviews[editingReviewIndex]._id, editedDescription)}>Save Edit</button>
+        </div>
+      </Modal>
     </div>
     </TabPanel>
     <TabPanel>

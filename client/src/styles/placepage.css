@@ -50,7 +50,7 @@
   align-items: center;
 }
 
-.form-font { font-size: 35px; }
+.form-font { font-size: 30px; }
 
 .description-field {
   width: 80%;
@@ -101,11 +101,18 @@
   width: 75%;
 }
 
+.image-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .review-img {
   max-width: 100%; 
   max-height: 300px; 
   display: block;
   margin: 0 auto; 
+  object-fit: contain;
 }
 
 .image-popup {
@@ -222,6 +229,7 @@
   .modal-form {
     display: flex;
     text-align: center;
+    padding-top: 10px;
   }
 
   .modal-row {
@@ -249,6 +257,10 @@
   }
   
   .username { font-size: 20px; }
+
+  .image-display {
+    flex-direction: column;
+  }
 
   .review-img { max-height: 200px; }
 
